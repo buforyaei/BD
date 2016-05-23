@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD Forms", "BD Forms\BD Forms.csproj", "{D66074DF-6623-4F2D-BD32-A55E532B278D}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD ManagerApp", "BD ManagerApp\BD ManagerApp.csproj", "{EDF3A6BC-EB45-4C3B-967D-0D63DE418400}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD EmployApp", "BD EmployApp\BD EmployApp.csproj", "{09D2E19B-2E07-4DF8-8290-03AE01E4F287}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{D51E8674-C496-472E-9A41-EE0BD154C069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{09D2E19B-2E07-4DF8-8290-03AE01E4F287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09D2E19B-2E07-4DF8-8290-03AE01E4F287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09D2E19B-2E07-4DF8-8290-03AE01E4F287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51E8674-C496-472E-9A41-EE0BD154C069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51E8674-C496-472E-9A41-EE0BD154C069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51E8674-C496-472E-9A41-EE0BD154C069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51E8674-C496-472E-9A41-EE0BD154C069}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
