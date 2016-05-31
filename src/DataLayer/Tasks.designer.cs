@@ -8,6 +8,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace DataLayer
 {
 	using System.Data.Linq;
@@ -19,8 +20,9 @@ namespace DataLayer
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Serwis")]
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Serwis")]
 	public partial class TasksDataContext : System.Data.Linq.DataContext
 	{
 		

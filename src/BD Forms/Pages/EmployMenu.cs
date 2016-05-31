@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataLayer;
+using BizLayer;
 
 namespace BD_Forms
 {
@@ -144,6 +146,11 @@ namespace BD_Forms
         {
             InitialTasksForm initialTasksForm = new InitialTasksForm();
             initialTasksForm.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = BizLayer.BizService.GetProblem(1);
         }
     }
 }

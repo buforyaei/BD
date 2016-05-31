@@ -47,6 +47,7 @@
             this.SearchButton = new System.Windows.Forms.Button();
             this.OrdersButton = new System.Windows.Forms.Button();
             this.OrdersPanel = new System.Windows.Forms.Panel();
+            this.InitializeTasksButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.OrdersList = new System.Windows.Forms.ListBox();
             this.SearchPanel = new System.Windows.Forms.Panel();
@@ -60,16 +61,17 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.TasksPanel = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button4 = new System.Windows.Forms.Button();
             this.TasksList = new System.Windows.Forms.ListBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.InitializeTasksButton = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.NewOrderPanel.SuspendLayout();
             this.OrdersPanel.SuspendLayout();
             this.SearchPanel.SuspendLayout();
             this.TasksPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // MyTasksButton
@@ -253,6 +255,16 @@
             this.OrdersPanel.Size = new System.Drawing.Size(488, 309);
             this.OrdersPanel.TabIndex = 8;
             // 
+            // InitializeTasksButton
+            // 
+            this.InitializeTasksButton.Location = new System.Drawing.Point(239, 260);
+            this.InitializeTasksButton.Name = "InitializeTasksButton";
+            this.InitializeTasksButton.Size = new System.Drawing.Size(112, 37);
+            this.InitializeTasksButton.TabIndex = 10;
+            this.InitializeTasksButton.Text = "Initialize/edit tasks for selected";
+            this.InitializeTasksButton.UseVisualStyleBackColor = true;
+            this.InitializeTasksButton.Click += new System.EventHandler(this.InitializeTasksButton_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(357, 260);
@@ -273,6 +285,7 @@
             // 
             // SearchPanel
             // 
+            this.SearchPanel.Controls.Add(this.dataGridView1);
             this.SearchPanel.Controls.Add(this.button3);
             this.SearchPanel.Controls.Add(this.button2);
             this.SearchPanel.Controls.Add(this.listBox1);
@@ -305,6 +318,7 @@
             this.button2.TabIndex = 14;
             this.button2.Text = "Search";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // listBox1
             // 
@@ -373,6 +387,16 @@
             this.TasksPanel.Size = new System.Drawing.Size(472, 309);
             this.TasksPanel.TabIndex = 10;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(177, 259);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(138, 37);
+            this.button5.TabIndex = 12;
+            this.button5.Text = "Edit Selected";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -404,26 +428,6 @@
             this.TasksList.Size = new System.Drawing.Size(445, 238);
             this.TasksList.TabIndex = 0;
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(177, 259);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(138, 37);
-            this.button5.TabIndex = 12;
-            this.button5.Text = "Edit Selected";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // InitializeTasksButton
-            // 
-            this.InitializeTasksButton.Location = new System.Drawing.Point(239, 260);
-            this.InitializeTasksButton.Name = "InitializeTasksButton";
-            this.InitializeTasksButton.Size = new System.Drawing.Size(112, 37);
-            this.InitializeTasksButton.TabIndex = 10;
-            this.InitializeTasksButton.Text = "Initialize/edit tasks for selected";
-            this.InitializeTasksButton.UseVisualStyleBackColor = true;
-            this.InitializeTasksButton.Click += new System.EventHandler(this.InitializeTasksButton_Click);
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -433,6 +437,14 @@
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Menager";
             this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 90);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(463, 173);
+            this.dataGridView1.TabIndex = 16;
             // 
             // EmployMenu
             // 
@@ -460,6 +472,7 @@
             this.SearchPanel.ResumeLayout(false);
             this.SearchPanel.PerformLayout();
             this.TasksPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -505,5 +518,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button InitializeTasksButton;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
