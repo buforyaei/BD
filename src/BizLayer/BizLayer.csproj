@@ -49,13 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Query\ClientQuery.cs" />
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="BizService.cs" />
+    <Compile Include="Query\EmployeesQuery.cs" />
+    <Compile Include="Query\ObjectQuery.cs" />
+    <Compile Include="Query\ObjectTypeQuery.cs" />
+    <Compile Include="Query\PersonQuery.cs" />
+    <Compile Include="Query\ProblemQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\TaskQuery.cs" />
+    <Compile Include="Query\TaskTypeQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

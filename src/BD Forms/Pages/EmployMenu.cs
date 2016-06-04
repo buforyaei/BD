@@ -24,7 +24,7 @@ namespace BD_Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Close();  
+            Close();
             Application.Exit();
         }
 
@@ -54,7 +54,7 @@ namespace BD_Forms
             OrdersPanel.Hide();
             SearchPanel.Hide();
             TasksPanel.Hide();
-            NewOrderPanel.Location = new Point(165,12);
+            NewOrderPanel.Location = new Point(165, 12);
             //156,12
             MyTasksButton.Enabled = false;
             SearchButton.Enabled = false;
@@ -139,7 +139,7 @@ namespace BD_Forms
         {
             var singleTaskView = new SingleTaskView();
             singleTaskView.Show();
-            
+
         }
 
         private void InitializeTasksButton_Click(object sender, EventArgs e)
@@ -150,7 +150,10 @@ namespace BD_Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = BizLayer.BizService.GetProblem(1);
+            dataGridView1.DataSource = BizLayer.Query.TaskQuery.GetTasks();
+            //BizLayer.ObjectQuery.UpdateObject(2, 4);
+            //dataGridView1.DataSource = BizLayer.ObjectQuery.GetObject(0);
+            //dataGridView1.DataSource = BizLayer.ObjectQuery.GetObject(4);
         }
     }
 }

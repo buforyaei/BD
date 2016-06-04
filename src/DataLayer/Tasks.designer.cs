@@ -30,18 +30,21 @@ namespace DataLayer
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertProblem(Problem instance);
+    partial void UpdateProblem(Problem instance);
+    partial void DeleteProblem(Problem instance);
+    partial void InsertObject(Object instance);
+    partial void UpdateObject(Object instance);
+    partial void DeleteObject(Object instance);
+    partial void InsertPerson(Person instance);
+    partial void UpdatePerson(Person instance);
+    partial void DeletePerson(Person instance);
     partial void InsertClient(Client instance);
     partial void UpdateClient(Client instance);
     partial void DeleteClient(Client instance);
     partial void InsertEmployee(Employee instance);
     partial void UpdateEmployee(Employee instance);
     partial void DeleteEmployee(Employee instance);
-    partial void InsertObject(Object instance);
-    partial void UpdateObject(Object instance);
-    partial void DeleteObject(Object instance);
-    partial void InsertProblem(Problem instance);
-    partial void UpdateProblem(Problem instance);
-    partial void DeleteProblem(Problem instance);
     #endregion
 		
 		public TasksDataContext() : 
@@ -74,19 +77,11 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Client> Clients
+		public System.Data.Linq.Table<Problem> Problems
 		{
 			get
 			{
-				return this.GetTable<Client>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Employee> Employees
-		{
-			get
-			{
-				return this.GetTable<Employee>();
+				return this.GetTable<Problem>();
 			}
 		}
 		
@@ -103,14 +98,6 @@ namespace DataLayer
 			get
 			{
 				return this.GetTable<Object_type>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Problem> Problems
-		{
-			get
-			{
-				return this.GetTable<Problem>();
 			}
 		}
 		
@@ -137,428 +124,20 @@ namespace DataLayer
 				return this.GetTable<Person>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
-	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _clientID;
-		
-		private EntitySet<Object> _Objects;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnclientIDChanging(int value);
-    partial void OnclientIDChanged();
-    #endregion
-		
-		public Client()
-		{
-			this._Objects = new EntitySet<Object>(new Action<Object>(this.attach_Objects), new Action<Object>(this.detach_Objects));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_clientID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int clientID
+		public System.Data.Linq.Table<Client> Clients
 		{
 			get
 			{
-				return this._clientID;
-			}
-			set
-			{
-				if ((this._clientID != value))
-				{
-					this.OnclientIDChanging(value);
-					this.SendPropertyChanging();
-					this._clientID = value;
-					this.SendPropertyChanged("clientID");
-					this.OnclientIDChanged();
-				}
+				return this.GetTable<Client>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Object", Storage="_Objects", ThisKey="clientID", OtherKey="clientID")]
-		public EntitySet<Object> Objects
+		public System.Data.Linq.Table<Employee> Employees
 		{
 			get
 			{
-				return this._Objects;
-			}
-			set
-			{
-				this._Objects.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Objects(Object entity)
-		{
-			this.SendPropertyChanging();
-			entity.Client = this;
-		}
-		
-		private void detach_Objects(Object entity)
-		{
-			this.SendPropertyChanging();
-			entity.Client = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employees")]
-	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _employID;
-		
-		private string _username;
-		
-		private string _password;
-		
-		private string _role;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnemployIDChanging(int value);
-    partial void OnemployIDChanged();
-    partial void OnusernameChanging(string value);
-    partial void OnusernameChanged();
-    partial void OnpasswordChanging(string value);
-    partial void OnpasswordChanged();
-    partial void OnroleChanging(string value);
-    partial void OnroleChanged();
-    #endregion
-		
-		public Employee()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int employID
-		{
-			get
-			{
-				return this._employID;
-			}
-			set
-			{
-				if ((this._employID != value))
-				{
-					this.OnemployIDChanging(value);
-					this.SendPropertyChanging();
-					this._employID = value;
-					this.SendPropertyChanged("employID");
-					this.OnemployIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="VarChar(50)")]
-		public string username
-		{
-			get
-			{
-				return this._username;
-			}
-			set
-			{
-				if ((this._username != value))
-				{
-					this.OnusernameChanging(value);
-					this.SendPropertyChanging();
-					this._username = value;
-					this.SendPropertyChanged("username");
-					this.OnusernameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(50)")]
-		public string password
-		{
-			get
-			{
-				return this._password;
-			}
-			set
-			{
-				if ((this._password != value))
-				{
-					this.OnpasswordChanging(value);
-					this.SendPropertyChanging();
-					this._password = value;
-					this.SendPropertyChanged("password");
-					this.OnpasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="NChar(10)")]
-		public string role
-		{
-			get
-			{
-				return this._role;
-			}
-			set
-			{
-				if ((this._role != value))
-				{
-					this.OnroleChanging(value);
-					this.SendPropertyChanging();
-					this._role = value;
-					this.SendPropertyChanged("role");
-					this.OnroleChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Object")]
-	public partial class Object : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _objectID;
-		
-		private System.Nullable<int> _clientID;
-		
-		private EntitySet<Problem> _Problems;
-		
-		private EntityRef<Client> _Client;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnobjectIDChanging(int value);
-    partial void OnobjectIDChanged();
-    partial void OnclientIDChanging(System.Nullable<int> value);
-    partial void OnclientIDChanged();
-    #endregion
-		
-		public Object()
-		{
-			this._Problems = new EntitySet<Problem>(new Action<Problem>(this.attach_Problems), new Action<Problem>(this.detach_Problems));
-			this._Client = default(EntityRef<Client>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_objectID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int objectID
-		{
-			get
-			{
-				return this._objectID;
-			}
-			set
-			{
-				if ((this._objectID != value))
-				{
-					this.OnobjectIDChanging(value);
-					this.SendPropertyChanging();
-					this._objectID = value;
-					this.SendPropertyChanged("objectID");
-					this.OnobjectIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_clientID", DbType="Int")]
-		public System.Nullable<int> clientID
-		{
-			get
-			{
-				return this._clientID;
-			}
-			set
-			{
-				if ((this._clientID != value))
-				{
-					if (this._Client.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnclientIDChanging(value);
-					this.SendPropertyChanging();
-					this._clientID = value;
-					this.SendPropertyChanged("clientID");
-					this.OnclientIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Object_Problem", Storage="_Problems", ThisKey="objectID", OtherKey="objectID")]
-		public EntitySet<Problem> Problems
-		{
-			get
-			{
-				return this._Problems;
-			}
-			set
-			{
-				this._Problems.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Object", Storage="_Client", ThisKey="clientID", OtherKey="clientID", IsForeignKey=true)]
-		public Client Client
-		{
-			get
-			{
-				return this._Client.Entity;
-			}
-			set
-			{
-				Client previousValue = this._Client.Entity;
-				if (((previousValue != value) 
-							|| (this._Client.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Client.Entity = null;
-						previousValue.Objects.Remove(this);
-					}
-					this._Client.Entity = value;
-					if ((value != null))
-					{
-						value.Objects.Add(this);
-						this._clientID = value.clientID;
-					}
-					else
-					{
-						this._clientID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Client");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Problems(Problem entity)
-		{
-			this.SendPropertyChanging();
-			entity.Object = this;
-		}
-		
-		private void detach_Problems(Problem entity)
-		{
-			this.SendPropertyChanging();
-			entity.Object = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Object type]")]
-	public partial class Object_type
-	{
-		
-		private System.Nullable<int> _code;
-		
-		private string _name;
-		
-		public Object_type()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code", DbType="Int")]
-		public System.Nullable<int> code
-		{
-			get
-			{
-				return this._code;
-			}
-			set
-			{
-				if ((this._code != value))
-				{
-					this._code = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this._name = value;
-				}
+				return this.GetTable<Employee>();
 			}
 		}
 	}
@@ -607,7 +186,7 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_problemID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_problemID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int problemID
 		{
 			get
@@ -786,6 +365,206 @@ namespace DataLayer
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Object")]
+	public partial class Object : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _objectID;
+		
+		private System.Nullable<int> _clientID;
+		
+		private EntitySet<Problem> _Problems;
+		
+		private EntityRef<Client> _Client;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnobjectIDChanging(int value);
+    partial void OnobjectIDChanged();
+    partial void OnclientIDChanging(System.Nullable<int> value);
+    partial void OnclientIDChanged();
+    #endregion
+		
+		public Object()
+		{
+			this._Problems = new EntitySet<Problem>(new Action<Problem>(this.attach_Problems), new Action<Problem>(this.detach_Problems));
+			this._Client = default(EntityRef<Client>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_objectID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int objectID
+		{
+			get
+			{
+				return this._objectID;
+			}
+			set
+			{
+				if ((this._objectID != value))
+				{
+					this.OnobjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._objectID = value;
+					this.SendPropertyChanged("objectID");
+					this.OnobjectIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_clientID", DbType="Int")]
+		public System.Nullable<int> clientID
+		{
+			get
+			{
+				return this._clientID;
+			}
+			set
+			{
+				if ((this._clientID != value))
+				{
+					if (this._Client.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnclientIDChanging(value);
+					this.SendPropertyChanging();
+					this._clientID = value;
+					this.SendPropertyChanged("clientID");
+					this.OnclientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Object_Problem", Storage="_Problems", ThisKey="objectID", OtherKey="objectID")]
+		public EntitySet<Problem> Problems
+		{
+			get
+			{
+				return this._Problems;
+			}
+			set
+			{
+				this._Problems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Object", Storage="_Client", ThisKey="clientID", OtherKey="clientID", IsForeignKey=true)]
+		public Client Client
+		{
+			get
+			{
+				return this._Client.Entity;
+			}
+			set
+			{
+				Client previousValue = this._Client.Entity;
+				if (((previousValue != value) 
+							|| (this._Client.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Client.Entity = null;
+						previousValue.Objects.Remove(this);
+					}
+					this._Client.Entity = value;
+					if ((value != null))
+					{
+						value.Objects.Add(this);
+						this._clientID = value.clientID;
+					}
+					else
+					{
+						this._clientID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Client");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Problems(Problem entity)
+		{
+			this.SendPropertyChanging();
+			entity.Object = this;
+		}
+		
+		private void detach_Problems(Problem entity)
+		{
+			this.SendPropertyChanging();
+			entity.Object = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Object type]")]
+	public partial class Object_type
+	{
+		
+		private System.Nullable<int> _code;
+		
+		private string _name;
+		
+		public Object_type()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code", DbType="Int")]
+		public System.Nullable<int> code
+		{
+			get
+			{
+				return this._code;
+			}
+			set
+			{
+				if ((this._code != value))
+				{
+					this._code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Task")]
 	public partial class Task
 	{
@@ -810,7 +589,7 @@ namespace DataLayer
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_taskID", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_taskID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
 		public int taskID
 		{
 			get
@@ -985,8 +764,10 @@ namespace DataLayer
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Person")]
-	public partial class Person
+	public partial class Person : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _name;
 		
@@ -996,8 +777,33 @@ namespace DataLayer
 		
 		private System.Nullable<int> _phone;
 		
+		private int _personID;
+		
+		private EntitySet<Client> _Clients;
+		
+		private EntitySet<Employee> _Employees;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnsurnameChanging(string value);
+    partial void OnsurnameChanged();
+    partial void OnaddressChanging(string value);
+    partial void OnaddressChanged();
+    partial void OnphoneChanging(System.Nullable<int> value);
+    partial void OnphoneChanged();
+    partial void OnpersonIDChanging(int value);
+    partial void OnpersonIDChanged();
+    #endregion
+		
 		public Person()
 		{
+			this._Clients = new EntitySet<Client>(new Action<Client>(this.attach_Clients), new Action<Client>(this.detach_Clients));
+			this._Employees = new EntitySet<Employee>(new Action<Employee>(this.attach_Employees), new Action<Employee>(this.detach_Employees));
+			OnCreated();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50)")]
@@ -1011,7 +817,11 @@ namespace DataLayer
 			{
 				if ((this._name != value))
 				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
 					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
 				}
 			}
 		}
@@ -1027,7 +837,11 @@ namespace DataLayer
 			{
 				if ((this._surname != value))
 				{
+					this.OnsurnameChanging(value);
+					this.SendPropertyChanging();
 					this._surname = value;
+					this.SendPropertyChanged("surname");
+					this.OnsurnameChanged();
 				}
 			}
 		}
@@ -1043,7 +857,11 @@ namespace DataLayer
 			{
 				if ((this._address != value))
 				{
+					this.OnaddressChanging(value);
+					this.SendPropertyChanging();
 					this._address = value;
+					this.SendPropertyChanged("address");
+					this.OnaddressChanged();
 				}
 			}
 		}
@@ -1059,8 +877,456 @@ namespace DataLayer
 			{
 				if ((this._phone != value))
 				{
+					this.OnphoneChanging(value);
+					this.SendPropertyChanging();
 					this._phone = value;
+					this.SendPropertyChanged("phone");
+					this.OnphoneChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_personID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int personID
+		{
+			get
+			{
+				return this._personID;
+			}
+			set
+			{
+				if ((this._personID != value))
+				{
+					this.OnpersonIDChanging(value);
+					this.SendPropertyChanging();
+					this._personID = value;
+					this.SendPropertyChanged("personID");
+					this.OnpersonIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_Client", Storage="_Clients", ThisKey="personID", OtherKey="personID")]
+		public EntitySet<Client> Clients
+		{
+			get
+			{
+				return this._Clients;
+			}
+			set
+			{
+				this._Clients.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_Employee", Storage="_Employees", ThisKey="personID", OtherKey="personID")]
+		public EntitySet<Employee> Employees
+		{
+			get
+			{
+				return this._Employees;
+			}
+			set
+			{
+				this._Employees.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Clients(Client entity)
+		{
+			this.SendPropertyChanging();
+			entity.Person = this;
+		}
+		
+		private void detach_Clients(Client entity)
+		{
+			this.SendPropertyChanging();
+			entity.Person = null;
+		}
+		
+		private void attach_Employees(Employee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Person = this;
+		}
+		
+		private void detach_Employees(Employee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Person = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
+	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _clientID;
+		
+		private System.Nullable<int> _personID;
+		
+		private EntitySet<Object> _Objects;
+		
+		private EntityRef<Person> _Person;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnclientIDChanging(int value);
+    partial void OnclientIDChanged();
+    partial void OnpersonIDChanging(System.Nullable<int> value);
+    partial void OnpersonIDChanged();
+    #endregion
+		
+		public Client()
+		{
+			this._Objects = new EntitySet<Object>(new Action<Object>(this.attach_Objects), new Action<Object>(this.detach_Objects));
+			this._Person = default(EntityRef<Person>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_clientID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int clientID
+		{
+			get
+			{
+				return this._clientID;
+			}
+			set
+			{
+				if ((this._clientID != value))
+				{
+					this.OnclientIDChanging(value);
+					this.SendPropertyChanging();
+					this._clientID = value;
+					this.SendPropertyChanged("clientID");
+					this.OnclientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_personID", DbType="Int")]
+		public System.Nullable<int> personID
+		{
+			get
+			{
+				return this._personID;
+			}
+			set
+			{
+				if ((this._personID != value))
+				{
+					if (this._Person.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnpersonIDChanging(value);
+					this.SendPropertyChanging();
+					this._personID = value;
+					this.SendPropertyChanged("personID");
+					this.OnpersonIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Object", Storage="_Objects", ThisKey="clientID", OtherKey="clientID")]
+		public EntitySet<Object> Objects
+		{
+			get
+			{
+				return this._Objects;
+			}
+			set
+			{
+				this._Objects.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_Client", Storage="_Person", ThisKey="personID", OtherKey="personID", IsForeignKey=true)]
+		public Person Person
+		{
+			get
+			{
+				return this._Person.Entity;
+			}
+			set
+			{
+				Person previousValue = this._Person.Entity;
+				if (((previousValue != value) 
+							|| (this._Person.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Person.Entity = null;
+						previousValue.Clients.Remove(this);
+					}
+					this._Person.Entity = value;
+					if ((value != null))
+					{
+						value.Clients.Add(this);
+						this._personID = value.personID;
+					}
+					else
+					{
+						this._personID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Person");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Objects(Object entity)
+		{
+			this.SendPropertyChanging();
+			entity.Client = this;
+		}
+		
+		private void detach_Objects(Object entity)
+		{
+			this.SendPropertyChanging();
+			entity.Client = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employees")]
+	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _employID;
+		
+		private string _username;
+		
+		private string _password;
+		
+		private string _role;
+		
+		private System.Nullable<int> _personID;
+		
+		private EntityRef<Person> _Person;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnemployIDChanging(int value);
+    partial void OnemployIDChanged();
+    partial void OnusernameChanging(string value);
+    partial void OnusernameChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    partial void OnroleChanging(string value);
+    partial void OnroleChanged();
+    partial void OnpersonIDChanging(System.Nullable<int> value);
+    partial void OnpersonIDChanged();
+    #endregion
+		
+		public Employee()
+		{
+			this._Person = default(EntityRef<Person>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int employID
+		{
+			get
+			{
+				return this._employID;
+			}
+			set
+			{
+				if ((this._employID != value))
+				{
+					this.OnemployIDChanging(value);
+					this.SendPropertyChanging();
+					this._employID = value;
+					this.SendPropertyChanged("employID");
+					this.OnemployIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="VarChar(50)")]
+		public string username
+		{
+			get
+			{
+				return this._username;
+			}
+			set
+			{
+				if ((this._username != value))
+				{
+					this.OnusernameChanging(value);
+					this.SendPropertyChanging();
+					this._username = value;
+					this.SendPropertyChanged("username");
+					this.OnusernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(50)")]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this.OnpasswordChanging(value);
+					this.SendPropertyChanging();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="NChar(10)")]
+		public string role
+		{
+			get
+			{
+				return this._role;
+			}
+			set
+			{
+				if ((this._role != value))
+				{
+					this.OnroleChanging(value);
+					this.SendPropertyChanging();
+					this._role = value;
+					this.SendPropertyChanged("role");
+					this.OnroleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_personID", DbType="Int")]
+		public System.Nullable<int> personID
+		{
+			get
+			{
+				return this._personID;
+			}
+			set
+			{
+				if ((this._personID != value))
+				{
+					if (this._Person.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnpersonIDChanging(value);
+					this.SendPropertyChanging();
+					this._personID = value;
+					this.SendPropertyChanged("personID");
+					this.OnpersonIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_Employee", Storage="_Person", ThisKey="personID", OtherKey="personID", IsForeignKey=true)]
+		public Person Person
+		{
+			get
+			{
+				return this._Person.Entity;
+			}
+			set
+			{
+				Person previousValue = this._Person.Entity;
+				if (((previousValue != value) 
+							|| (this._Person.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Person.Entity = null;
+						previousValue.Employees.Remove(this);
+					}
+					this._Person.Entity = value;
+					if ((value != null))
+					{
+						value.Employees.Add(this);
+						this._personID = value.personID;
+					}
+					else
+					{
+						this._personID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Person");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
