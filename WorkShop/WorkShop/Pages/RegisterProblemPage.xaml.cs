@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
 {
@@ -20,9 +21,12 @@ namespace WorkShop.Pages
     /// </summary>
     public partial class RegisterProblemPage : Page
     {
+        private RegisterProblemViewModel _viewModel = new RegisterProblemViewModel();
         public RegisterProblemPage()
         {
             InitializeComponent();
+            DataContext = _viewModel;
+            _viewModel.Load();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
