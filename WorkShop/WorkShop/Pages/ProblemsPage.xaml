@@ -1,0 +1,30 @@
+﻿<Page x:Class="WorkShop.Pages.ProblemsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="700"
+	Title="ProblemsPage" DataContext="{Binding Problems, Source={StaticResource Locator}}">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" Margin="10" ItemsSource="{Binding ProblemsList}" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Button Grid.Row="2" Content="Cancel" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="Button_Click"  />
+            <Button Grid.Row="0"  Content="Edit selected problem" Margin="10,5,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="Button_Click_1"   />
+            <Button Grid.Row="1"  Content="Show selected tasks list " Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="Button_Click_2"   />
+        </Grid>
+        
+    </Grid>
+</Page>

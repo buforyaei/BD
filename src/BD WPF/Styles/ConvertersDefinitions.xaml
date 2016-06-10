@@ -1,0 +1,33 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="clr-namespace:BD_WPF.Converters"
+    mc:Ignorable="d">
+
+    <converters:DateTimeToStringFormatConverter x:Key="DateTimeToStringFormatConverter" />
+    <converters:BooleanToOppositeBooleanConverter x:Key="BooleanToOppositeBooleanConverter" />
+    <converters:BooleanToOppositeVisibilityConverter x:Key="BooleanToOppositeVisibilityConverter" />
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:LongAddConverter x:Key="LongAddConverter" />
+    <converters:LongLessThanToBooleanConverter x:Key="LongLessThanToBooleanConverter" />
+    <converters:LongLessThanToVisibilityConverter x:Key="LongLessThanToVisibilityConverter" />
+    <converters:LongMoreThanToBooleanConverter x:Key="LongMoreThanToBooleanConverter" />
+    <converters:LongMoreThanToVisibilityConverter x:Key="LongMoreThanToVisibilityConverter" />
+    <converters:StringToLowerConverter x:Key="StringToLowerConverter" />
+    <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
+    <converters:DateToRemainingStringConverter x:Key="DateToRemainingStringConverter" />
+    <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+    <converters:DoubleToCurrencyStringConverter x:Key="DoubleToCurrencyStringConverter" />
+    <converters:CamelcaseStringToStringConverter x:Key="CamelcaseStringToStringConverter" />
+    <converters:IsNotNullOrEmptyToBooleanConverter x:Key="IsNotNullOrEmptyToBooleanConverter" />
+    <converters:IsNotNullOrEmptyToVisibilityConverter x:Key="IsNotNullOrEmptyToVisibilityConverter" />
+    <converters:IsNullOrEmptyToVisibilityConverter x:Key="IsNullOrEmptyToVisibilityConverter" />
+    <converters:IsParameterEqualToVisibilityConverter x:Key="IsParameterEqualToVisibilityConverter" />
+    <converters:IsParameterEqualToIntEnumToVisibilityConverter x:Key="IsParameterEqualToIntEnumToVisibilityConverter" />
+    <converters:StringNameToShortStringConverter x:Key="StringNameToShortStringConverter" />
+    <converters:StringToStringFormatConverter x:Key="StringToStringFormatConverter" />
+    <converters:DoubleToRatioConverter x:Key="DoubleToRatioConverter" />
+    <converters:IntToBackgroundColorConverter x:Key="IntToBackgroundColorConverter" />
+</ResourceDictionary>

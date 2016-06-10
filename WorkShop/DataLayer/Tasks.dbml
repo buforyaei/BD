@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Serwis" Class="TasksDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LENOVO;Initial Catalog=Serwis;Integrated Security=True" SettingsObjectName="DataLayer.Properties.Settings" SettingsPropertyName="SerwisConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Problem" Member="Problems">
+    <Type Name="Problem">
+      <Column Name="problemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="problemDesc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="resultDesc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="beginDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="endDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="objectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Problem_Task" Member="Tasks" ThisKey="problemID" OtherKey="problemID" Type="Task" />
+      <Association Name="Object_Problem" Member="Object" ThisKey="objectID" OtherKey="objectID" Type="Object" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Object" Member="Objects">
+    <Type Name="Object">
+      <Column Name="objectID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="clientID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Object_Problem" Member="Problems" ThisKey="objectID" OtherKey="objectID" Type="Problem" />
+      <Association Name="Client_Object" Member="Client" ThisKey="clientID" OtherKey="clientID" Type="Client" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Object type]" Member="Object_types">
+    <Type Name="Object_type">
+      <Column Name="code" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Task" Member="Tasks">
+    <Type Name="Task">
+      <Column Name="taskID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="taskDesc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="resultDesc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="beginDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="endDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="problemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="employID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Problem_Task" Member="Problem" ThisKey="problemID" OtherKey="problemID" Type="Problem" IsForeignKey="true" />
+      <Association Name="Employee_Task" Member="Employee" ThisKey="employID" OtherKey="employID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Task type]" Member="Task_types">
+    <Type Name="Task_type">
+      <Column Name="code" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Person" Member="Persons">
+    <Type Name="Person">
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="surname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="phone" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="personID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Person_Client" Member="Clients" ThisKey="personID" OtherKey="personID" Type="Client" />
+      <Association Name="Person_Employee" Member="Employees" ThisKey="personID" OtherKey="personID" Type="Employee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Client" Member="Clients">
+    <Type Name="Client">
+      <Column Name="clientID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="personID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Client_Object" Member="Objects" ThisKey="clientID" OtherKey="clientID" Type="Object" />
+      <Association Name="Person_Client" Member="Person" ThisKey="personID" OtherKey="personID" Type="Person" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employees" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="employID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="role" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="personID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Employee_Task" Member="Tasks" ThisKey="employID" OtherKey="employID" Type="Task" />
+      <Association Name="Person_Employee" Member="Person" ThisKey="personID" OtherKey="personID" Type="Person" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
