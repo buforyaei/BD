@@ -30,8 +30,15 @@ namespace WorkShop.ViewModel
 
         private ObservableCollection<ProblemListItem> _problemsList;
         public ICommand LoadCmd { get; set; }
-        
-        
+
+        public ObservableCollection<WorkShop.Models.ProblemModel> ProblemsDataGrid
+        {
+            get { return _problemsDataGrid; }
+            set { Set(ref _problemsDataGrid, value); }
+        }
+
+        private ObservableCollection<WorkShop.Models.ProblemModel> _problemsDataGrid;
+
         
         public ProblemsViewModel()
         {
@@ -44,13 +51,43 @@ namespace WorkShop.ViewModel
         }
         public void Load()
         {
-            ObservableCollection<ProblemListItem> problemsList = new ObservableCollection<ProblemListItem>();
-            problemsList.Add(_w0);
-            problemsList.Add(_w1);
-            problemsList.Add(_w2);
-            problemsList.Add(_w3);
-            problemsList.Add(_w4);
-            ProblemsList = problemsList;
+            var a = BizLayer.ProblemQuery.GetProblems();
+            var b = a.ToList();
+            var c = b.ToArray();
+            var problemsArray = new WorkShop.Models.ProblemModel[c.Length];
+            for (int i=0;i<c.Length;i++)
+            {
+                //int problemID, string problemDesc, string resultDesc, DateTime beginDate, DateTime endDate, int objectId)
+                problemsArray[i]=new WorkShop.Models.ProblemModel(c[i].problemID, c[i].problemDesc, c[i].resultDesc, null, null, null);
+            }
+            var problemsObservable = new ObservableCollection<ProblemListItem>();
+            for (int i = 0; i < c.Length; i++)
+            {
+                ///(string name, string id, string phone, string description)
+                problemsObservable.Add(new ProblemListItem(problemsArray[i].problemDesc, problemsArray[i].problemID.ToString(),
+                    problemsArray[i].endDate.ToString(), problemsArray[i].problemDesc));
+            }
+            ProblemsList = problemsObservable;
+            // ObservableCollection<ProblemListItem> problemsList = new ObservableCollection<ProblemListItem>();
+            //
+            // ObservableCollection<ProblemListItem> problemsList = new ObservableCollection<ProblemListItem>();
+            //problemsList.Add(_w0);
+            //problemsList.Add(_w1);
+            //problemsList.Add(_w2);
+            //problemsList.Add(_w3);
+            //problemsList.Add(_w4);
+            //ProblemsList = problemsList;
+            //var p = new ObservableCollection<WorkShop.Models.ProblemModel>();
+            //for (int i = 0; i < ProblemsList.Count; i++)
+            //{
+            //    ///(string name, string id, string phone, string description)
+            //    p.Add(problemsArray[i]);
+            //}
+            //ProblemsDataGrid = p;
+        }
+        public ObservableCollection<T> ToObservableCollection<T>(IEnumerable<T> enumeration)
+        {
+            return new ObservableCollection<T>(enumeration);
         }
     }
 }

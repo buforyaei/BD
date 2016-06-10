@@ -26,7 +26,7 @@ namespace BizLayer
 
             return (zz);
         }
-        public static IQueryable<DataLayer.Problem> GetProblems(int id)
+        public static IQueryable<DataLayer.Problem> GetProblems()
         {
             TasksDataContext dc = new TasksDataContext();
             //dc.Log = Console.Out;

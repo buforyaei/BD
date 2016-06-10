@@ -13,7 +13,8 @@
             <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" Margin="10" ItemsSource="{Binding ProblemsList}" />
+        <ListView Grid.Row="0" Margin="10"  ItemsSource="{Binding ProblemsList}" />
+        <DataGrid Grid.Row="0" Margin="10" Visibility="Collapsed" ItemsSource="{Binding ProblemsDataGrid}"></DataGrid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
