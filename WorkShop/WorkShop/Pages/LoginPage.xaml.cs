@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -54,8 +55,11 @@ namespace WorkShop.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            BizLayer.Query.EmployeesQuery.AddEmployee("admin","","Admin",1);
+            var persons =   BizLayer.Query.PersonQuery.GetPersons().ToArray();
             StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password);
-            if (NavigationService != null)
+            var users = BizLayer.Query.EmployeesQuery.GetEmployees();
+            if (NavigationService != null && _viewModel.Login())
             {
                 if (StaticPagesUi.User.IsAdmin()) NavigationService.Navigate(StaticPagesUi.MenuAdminPage);
                     //next goes to emoloyy instead of manager menu

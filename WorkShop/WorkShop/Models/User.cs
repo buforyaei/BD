@@ -30,17 +30,17 @@ namespace WorkShop.Models
 
         public bool IsEmployy()
         {
-            if (!Name.Contains("employy")) return false;
+            if (Role != Role.Employy) return false;
             return true;
         }
         public bool IsManaager()
         {
-            if (!Name.Contains("manager")) return false;
+            if (Role != Role.Manager) return false;
             return true;
         }
         public bool IsAdmin()
         {
-            if (!Name.Contains("admin")) return false;
+            if (Role != Role.Admin) return false;
             return true;
         }
     }
