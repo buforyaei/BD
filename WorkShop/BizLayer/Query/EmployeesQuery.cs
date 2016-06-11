@@ -22,7 +22,7 @@ namespace BizLayer.Query
 
             return (zz);
         }
-        public static IQueryable<DataLayer.Employee> GetEmployees(int id)
+        public static IQueryable<DataLayer.Employee> GetEmployees()//int id
         {
             TasksDataContext dc = new TasksDataContext();
             //dc.Log = Console.Out;
@@ -32,7 +32,7 @@ namespace BizLayer.Query
             return (zz);
         }
 
-        public static void AddEmployee(string username, string password, string role, int personID)
+        public static void AddEmployee(string username, string password, string role, int personID) //,int personID
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
@@ -40,7 +40,7 @@ namespace BizLayer.Query
                 employee.username = username;
                 employee.password = password;
                 employee.role = role;
-                employee.personID = personID;
+               // employee.personID = personID;
                 dc.Employees.InsertOnSubmit(employee);
                 dc.SubmitChanges();
             }

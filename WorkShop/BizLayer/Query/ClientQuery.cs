@@ -15,7 +15,7 @@ namespace BizLayer.Query
 
             return (zz);
         }
-        public static IQueryable<DataLayer.Client> GetClients(int id)
+        public static IQueryable<DataLayer.Client> GetClients() //int id
         {
             TasksDataContext dc = new TasksDataContext();
             //dc.Log = Console.Out;

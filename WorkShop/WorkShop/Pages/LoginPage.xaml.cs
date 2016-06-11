@@ -19,8 +19,8 @@ namespace WorkShop.Pages
             
             DataContext = _viewModel;
             /////////////////
-            LoginBox.Text = "manager";
-            //LoginBox.Text = "admin";
+            //LoginBox.Text = "manager";
+            LoginBox.Text = "admin";
             //LoginBox.Text = "emoployy";
             LoginLabel.Visibility = Visibility.Collapsed;
             ////////////////

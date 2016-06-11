@@ -26,7 +26,7 @@ namespace WorkShop.Pages
         {
             InitializeComponent();
             DataContext = _viewModel;
-            _viewModel.Load();
+            _viewModel.LoadCmd.Execute(null);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

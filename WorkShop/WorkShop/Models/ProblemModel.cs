@@ -10,13 +10,11 @@ namespace WorkShop.Models
     {
         public int problemID { get; set; }
         public string problemDesc { get; set; }
-
         public string resultDesc { get; set; }
-
         public DateTime? beginDate { get; set; }
         public DateTime? endDate { get; set; }
-
         public int? objectId { get; set; }
+
         public ProblemModel(int problemID, string problemDesc, string resultDesc, DateTime? beginDate, DateTime? endDate, int? objectId)
         {
             this.problemID = problemID;

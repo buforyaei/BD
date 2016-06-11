@@ -103,13 +103,17 @@ namespace WorkShop.ViewModel
         }
         private void Load()
         {
-            ObservableCollection<UserListItem> workerListItems = new ObservableCollection<UserListItem>();
-            workerListItems.Add(_w0);
-            workerListItems.Add(_w1);
-            workerListItems.Add(_w2);
-            workerListItems.Add(_w3);
-            workerListItems.Add(_w4);
-            WorkerListItems = workerListItems;
+            //ObservableCollection<UserListItem> workerListItems = new ObservableCollection<UserListItem>();
+            //workerListItems.Add(_w0);
+            //workerListItems.Add(_w1);
+            //workerListItems.Add(_w2);
+            //workerListItems.Add(_w3);
+            //workerListItems.Add(_w4);
+            //WorkerListItems = workerListItems;
+           // BizLayer.Query.EmployeesQuery.AddEmployee("sebix", "test", "Employy");
+            var a = BizLayer.Query.EmployeesQuery.GetEmployees();
+            var b = BizLayer.Query.ProblemQuery.GetProblems();
+            var c = BizLayer.Query.ProblemQuery.GetProblem(3);
 
         }
     }

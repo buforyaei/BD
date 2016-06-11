@@ -22,7 +22,7 @@ namespace BizLayer.Query
 
             return (zz);
         }
-        public static IQueryable<DataLayer.Person> GetPersons(int id)
+        public static IQueryable<DataLayer.Person> GetPersons() //int id
         {
             TasksDataContext dc = new TasksDataContext();
             //dc.Log = Console.Out;
