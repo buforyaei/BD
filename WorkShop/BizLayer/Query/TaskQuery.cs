@@ -34,7 +34,7 @@ namespace BizLayer.Query
         }
 
         public static void AddTask(DateTime beginDate, DateTime endDate, string taskDesc,
-                string resultDesc, string status)
+                string resultDesc, string status, int problemID, int employID)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
@@ -44,13 +44,14 @@ namespace BizLayer.Query
                 task.taskDesc = taskDesc;
                 task.resultDesc = resultDesc;
                 task.status = status;
-
+                task.problemID = problemID;
+                task.employID = employID;
                 dc.Tasks.InsertOnSubmit(task);
                 dc.SubmitChanges();
             }
         }
-        public static void UpdateProblem(int id, DateTime beginDate, DateTime endDate, string taskDesc,
-                string resultDesc,string status)
+        public static void UpdateTask(int id, DateTime beginDate, DateTime endDate, string taskDesc,
+                string resultDesc,string status, int problemID, int employID)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
@@ -63,11 +64,12 @@ namespace BizLayer.Query
                 task_.taskDesc = taskDesc;
                 task_.resultDesc = resultDesc;
                 task_.status = status;
-
+                task_.problemID = problemID;
+                task_.employID = employID;
                 dc.SubmitChanges();
             }
         }
-        public static void DeleteProblem(int id)
+        public static void DeleteTask(int id)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {

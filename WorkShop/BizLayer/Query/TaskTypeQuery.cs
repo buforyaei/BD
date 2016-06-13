@@ -22,7 +22,7 @@ namespace BizLayer.Query
 
             return (zz);
         }
-        public static IQueryable<DataLayer.Task_type> GetTaskTypes(int id)
+        public static IQueryable<DataLayer.Task_type> GetTaskTypes()
         {
             TasksDataContext dc = new TasksDataContext();
             //dc.Log = Console.Out;

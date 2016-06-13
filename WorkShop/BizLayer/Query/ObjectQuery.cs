@@ -23,7 +23,7 @@ namespace BizLayer
             return (zz);
         }
 
-        public static IQueryable<DataLayer.Object> GetObjects(int id)
+        public static IQueryable<DataLayer.Object> GetObjects()
         {
             TasksDataContext dc = new TasksDataContext();
             //dc.Log = Console.Out;
@@ -62,6 +62,13 @@ namespace BizLayer
                 var obj = from o in dc.Objects
                           where o.objectID == id
                           select o;
+                var problem = from p in dc.Problems
+                              where p.objectID == id
+                              select p;
+                foreach(var p in problem)
+                {
+                    p.objectID = null;
+                }
                 foreach(var o in obj)
                 {
                     dc.Objects.DeleteOnSubmit(o);

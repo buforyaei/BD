@@ -30,7 +30,7 @@ namespace BizLayer.Query
             return (zz);
         }
         public static void AddProblem(DateTime beginDate, DateTime endDate, string problemDesc,
-                string resultDesc)
+                string resultDesc, int objectID)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
@@ -39,13 +39,14 @@ namespace BizLayer.Query
                 problem.endDate = endDate;
                 problem.problemDesc = problemDesc;
                 problem.resultDesc = resultDesc;
+                problem.objectID = objectID;
 
                 dc.Problems.InsertOnSubmit(problem);
                 dc.SubmitChanges();
             }
         }
         public static void UpdateProblem(int id, DateTime beginDate, DateTime endDate, string problemDesc,
-                string resultDesc)
+                string resultDesc, int objectID)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
@@ -57,6 +58,7 @@ namespace BizLayer.Query
                 problem_.endDate = endDate;
                 problem_.problemDesc = problemDesc;
                 problem_.resultDesc = resultDesc;
+                problem_.objectID = objectID;
 
                 dc.SubmitChanges();
             }
@@ -68,6 +70,13 @@ namespace BizLayer.Query
                 var problem = from p in dc.Problems
                               where p.problemID == id
                               select p;
+                var task = from t in dc.Tasks
+                          where t.problemID == id
+                          select t;
+                foreach (var t in task)
+                {
+                    t.problemID = null;
+                }
                 foreach (var p in problem)
                 {
                     dc.Problems.DeleteOnSubmit(p);

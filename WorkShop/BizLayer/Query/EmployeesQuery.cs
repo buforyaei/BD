@@ -40,7 +40,7 @@ namespace BizLayer.Query
                 employee.username = username;
                 employee.password = password;
                 employee.role = role;
-               // employee.personID = personID;
+                employee.personID = personID;
                 dc.Employees.InsertOnSubmit(employee);
                 dc.SubmitChanges();
             }
@@ -67,6 +67,13 @@ namespace BizLayer.Query
                 var emp = from e in dc.Employees
                           where e.employID == id
                           select e;
+                var task = from t in dc.Tasks
+                           where t.employID == id
+                           select t;
+                foreach(var t in task)
+                {
+                    t.employID = null;
+                }
                 foreach (var e in emp)
                 {
                     dc.Employees.DeleteOnSubmit(e);

@@ -24,12 +24,12 @@ namespace BizLayer.Query
 
             return (zz);
         }
-        public static void AddClient(int clientID)
+        public static void AddClient(int personID)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
                 DataLayer.Client client = new DataLayer.Client();
-                client.clientID = clientID;
+                client.personID = personID;
                 dc.Clients.InsertOnSubmit(client);
                 dc.SubmitChanges();
             }
@@ -54,8 +54,15 @@ namespace BizLayer.Query
                 var client = from c in dc.Clients
                           where c.clientID == id
                           select c;
-                foreach (var c in client)
+                var obj = from o in dc.Objects
+                          where o.clientID == id
+                          select o;
+                foreach (var o in obj )
                 {
+                    o.clientID = null;
+                }
+                foreach (var c in client)
+                { 
                     dc.Clients.DeleteOnSubmit(c);
                 }
                 dc.SubmitChanges();

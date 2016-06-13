@@ -45,7 +45,7 @@ namespace BizLayer.Query
                 dc.SubmitChanges();
             }
         }
-        public static void UpdateEmployee(int id, string name, string surname, string address, int phone)
+        public static void UpdatePerson(int id, string name, string surname, string address, int phone)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
@@ -60,13 +60,27 @@ namespace BizLayer.Query
                 dc.SubmitChanges();
             }
         }
-        public static void DeleteEmployee(int id)
+        public static void DeletePerson(int id)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
                 var person = from p in dc.Persons
                           where p.personID == id
                           select p;
+                var client = from c in dc.Clients
+                             where c.personID == id
+                             select c;
+                var emp = from e in dc.Employees
+                             where e.personID == id
+                             select e;
+                foreach(var e in emp)
+                {
+                    e.personID = null;
+                }
+                foreach (var c in client)
+                {
+                    c.personID = null;
+                }
                 foreach (var p in person)
                 {
                     dc.Persons.DeleteOnSubmit(p);
