@@ -55,7 +55,9 @@ namespace WorkShop.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            BizLayer.Query.EmployeesQuery.AddEmployee("admin","","Admin",1);
+            BizLayer.Query.EmployeesQuery.AddEmployee("admint","","Admin",1);
+            BizLayer.Query.EmployeesQuery.AddEmployee("mant", "", "Manager", 1);
+            BizLayer.Query.EmployeesQuery.AddEmployee("emplt", "", "Employy", 1);
             var persons =   BizLayer.Query.PersonQuery.GetPersons().ToArray();
             StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password);
             var users = BizLayer.Query.EmployeesQuery.GetEmployees();
