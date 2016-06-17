@@ -25,11 +25,11 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Problems topic:" HorizontalAlignment="Right" Margin="20,50,0,10" Foreground="Gray" FontSize="15"/>
             <TextBox Grid.Row="0" Grid.Column="1" Margin="0,50,80,10" Foreground="Gray" FontSize="15"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Assign to:" HorizontalAlignment="Right" Margin="20,0,0,10" Foreground="Gray" FontSize="15"/>
-            <ComboBox ItemsSource="{Binding EmployeesString}"  Grid.Row="1" Grid.Column="1" Margin="0,0,80,10" Foreground="Gray" FontSize="15"/>
+            <ComboBox ItemsSource="{Binding EmployeesString}" SelectedItem="{Binding SelectedEmployee}" Grid.Row="1" Grid.Column="1" Margin="0,0,80,10" Foreground="Gray" FontSize="15"/>
             <Label Grid.Row="2" Grid.Column="0" Content="Deadline:" HorizontalAlignment="Right" Margin="0,0,0,10" Foreground="Gray" FontSize="15"/>
-            <DatePicker Grid.Row="2" Grid.Column="1" Margin="0,0,80,10" Foreground="Gray" FontSize="15" HorizontalAlignment="Stretch" />
+            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Deadline}" Margin="0,0,80,10" Foreground="Gray" FontSize="15" HorizontalAlignment="Stretch" />
             <Label Grid.Row="3" Grid.Column="0" Content="Description:" HorizontalAlignment="Right" Margin="0,0,0,10" Foreground="Gray" FontSize="15"/>
-            <TextBox Grid.Row="3" Grid.Column="1" MaxLines="4" MinLines="4" Foreground="Gray" FontSize="15" Margin="0,0,80,10" TextWrapping="Wrap"/>
+            <TextBox Grid.Row="3" Text="{Binding Description}" Grid.Column="1" MaxLines="4" MinLines="4" Foreground="Gray" FontSize="15" Margin="0,0,80,10" TextWrapping="Wrap"/>
             <Label Grid.Row="4" Grid.Column="0" Content="Comment:" HorizontalAlignment="Right" Margin="0,0,0,10" Foreground="Gray" FontSize="15"/>
             <TextBox Grid.Row="4" Grid.Column="1" MaxLines="4" MinLines="4" Foreground="Gray" FontSize="15" Margin="0,0,80,10" TextWrapping="Wrap"/>
             <Grid Grid.Row="5" Grid.Column="1">
@@ -43,8 +43,8 @@
                 </Grid.ColumnDefinitions>
                 <RadioButton Grid.Row="0" Grid.Column="0" Foreground="Gray" FontSize="15" Content="Open" IsChecked="True"/>
                 <RadioButton Grid.Row="0" Grid.Column="0" Foreground="Gray" FontSize="15" Content="Close" IsChecked="False" Margin="70,0,0,0"/>
-                <Button Grid.Row="1" HorizontalAlignment="Stretch" Grid.Column="1" Content="Accept" Margin="0,20,80,0"  FontSize="18" Foreground="White" Background="DodgerBlue" />
-                <Button Grid.Row="1" HorizontalAlignment="Stretch" Grid.Column="0"  Content="Cancel" Margin="0,20,80,0" FontSize="18" Foreground="White" Background="DodgerBlue" Click="Button_Click_1"  />
+                <Button Grid.Row="1" HorizontalAlignment="Stretch" Grid.Column="1" Content="Accept" Margin="0,20,80,0"  FontSize="18" Foreground="White" Background="DodgerBlue" Click="AddTask_Click" />
+                <Button Grid.Row="1" HorizontalAlignment="Stretch" Grid.Column="0"  Content="Go Back" Margin="0,20,80,0" FontSize="18" Foreground="White" Background="DodgerBlue" Click="GoBack_Click_1"  />
             </Grid>
         </Grid>
     </Grid>

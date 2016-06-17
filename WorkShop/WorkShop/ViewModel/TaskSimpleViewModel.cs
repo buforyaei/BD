@@ -19,12 +19,17 @@ namespace WorkShop.ViewModel
         private string _comment;
         private string _description;
         private DateTime _deadline;
+        private string _selectedEmployee;
         public ObservableCollection<DataLayer.Employee> Employees
         {
             get { return _employees; }
             set { Set(ref _employees, value); }
         }
-
+        public string SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set { Set(ref _selectedEmployee, value); }
+        }
         public ObservableCollection<String> EmployeesString
         {
             get { return _employeesString; }
@@ -51,6 +56,7 @@ namespace WorkShop.ViewModel
             set { Set(ref _deadline, value); }
         }
         public ICommand LoadCmd { get; set; }
+        public ICommand AddTaskCmd { get; set; }
         
         public TaskSimpleViewModel()
         {
@@ -59,9 +65,26 @@ namespace WorkShop.ViewModel
         private void InitializeCommands()
         {
             LoadCmd = new RelayCommand<int>(Load);
+            AddTaskCmd = new RelayCommand<int>(AddTask);
           
         }
 
+        public void AddTask(int id)
+        {
+            if (SelectedEmployee != null && Description !=null && Deadline != null )
+            {
+                var empl = BizLayer.Query.EmployeesQuery.GetEmployees();
+                foreach (var e in empl)
+                {
+                    if (e.username == SelectedEmployee)
+                    {
+                        BizLayer.Query.TaskQuery.AddTask(DateTime.Today, Deadline, Description, "", "open", id, e.employID);
+                        break;
+                    }
+                }
+               
+            }
+        }
         public void Load(int id)
         {
             var employees = new ObservableCollection<DataLayer.Employee>();
@@ -76,6 +99,7 @@ namespace WorkShop.ViewModel
             EmployeesString = employeesstring;
             var problem = BizLayer.Query.ProblemQuery.GetProblem(id);
             Topic = problem.ToString();
+            Deadline = DateTime.Today;
 
         }
     }

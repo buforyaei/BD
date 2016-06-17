@@ -86,8 +86,8 @@ namespace WorkShop.ViewModel
             
             //Nie można wykonać operacji tworzenia, aktualizacji lub usuwania w odniesieniu do elementu 
             //„Table(Task)”, ponieważ nie ma ona klucza podstawowego
-            //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow 23problemu numer 3","resultdescpire","open",3,1 );
-            //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow 12problemu numer 3", "resultdescpire", "open", 3,1);
+            //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow 23problemu numer 3", "resultdescpire", "open", 3, 1);
+            //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow 12problemu numer 3", "resultdescpire", "open", 3, 1);
             //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow21212 problemu numer 2", "resultdescpire", "open", 2, 1);
             //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow 342342problemu numer 2", "resultdescpire", "open", 2, 1);
         }

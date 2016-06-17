@@ -40,9 +40,14 @@ namespace WorkShop.Pages
             Id = id;
             _viewModel.Load(Id);
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void GoBack_Click_1(object sender, RoutedEventArgs e)
         {
             if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.ProblemsTaskListPage);
+        }
+
+        private void AddTask_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.AddTaskCmd.Execute(Id);
         }
     }
 }
