@@ -15,17 +15,17 @@ using System.Windows.Shapes;
 
 namespace WorkShop.UserControls
 {
-    /// <summary>
-    /// Interaction logic for UserListItem.xaml
-    /// </summary>
     public partial class UserListItem : UserControl
     {
-        public UserListItem(string name, string role, int id)
+        public UserListItem(string name, string phone, string address, string role, int id)
         {
             InitializeComponent();
-            Name.Content = name;
-            Role.Content = role;
-            Id.Content = id.ToString();
+            Name.Content += name;
+            Role.Content += role;
+            Id.Content += id.ToString();
+            Address.Content += address;
+            Phone.Content += phone;
+
         }
     }
 }

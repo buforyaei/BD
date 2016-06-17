@@ -4,23 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="300" MaxHeight="80" MinHeight="80">
-    <Grid>
+             d:DesignHeight="80" d:DesignWidth="300" MaxHeight="80" MinHeight="80" VerticalAlignment="Stretch">
+    <Grid Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
          <Grid.ColumnDefinitions>
              <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>  
         <Image Grid.Column="0" Source="../Resources/profilePhoto.png" />
         <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="1" FontSize="12" Foreground="Gray" Margin="10,0,0,0" Name="Name"/>
-            <Label Grid.Row="2" Name="Id" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
-            <Label Grid.Row="0" Name="Role" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
+            <Label Grid.Row="0" Grid.Column="1" Name="Name" FontSize="12" Foreground="Gray" Margin="10,0,0,0" />
+            <Label Grid.Row="1" Grid.Column="0" Name="Id" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
+            <Label Grid.Row="0" Grid.Column="0" Name="Role" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Address: "  Name="Address" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Phone: " Name="Phone" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
         </Grid>
     </Grid>
 </UserControl>

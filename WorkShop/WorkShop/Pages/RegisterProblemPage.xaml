@@ -24,21 +24,21 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="1" Content="Problem" HorizontalAlignment="Left" Margin="0,0,0,20" Foreground="Gray" FontSize="20"/>
         <Label Grid.Row="0" Grid.Column="0" Content="Client name:" HorizontalAlignment="Right" Margin="20,50,0,10" Foreground="Gray" FontSize="15"/>
-        <TextBox Text="{Binding Name}"  Grid.Row="0" Grid.Column="1" Margin="0,50,10,10" Foreground="Gray" FontSize="15"/>
+        <TextBox Text="{Binding Name}" Name="Name" Grid.Row="0" Grid.Column="1" Margin="0,50,10,10" Foreground="Gray" FontSize="15"/>
         <Label Grid.Row="0" Grid.Column="2" Content="Phone:" HorizontalAlignment="Right" Margin="20,50,0,10" Foreground="Gray" FontSize="15"/>
-        <TextBox Grid.Row="0" Text="{Binding PhoneNumber}" Grid.Column="3" Margin="0,50,10,10" Foreground="Gray" FontSize="15"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Adress:" HorizontalAlignment="Right" Margin="20,0,0,10" Foreground="Gray" FontSize="15"/>
-        <TextBox Text="{Binding Address}" Grid.Row="2" Grid.Column="1" Margin="0,0,10,10" Foreground="Gray" FontSize="15"/>
+        <TextBox Grid.Row="0" Text="{Binding PhoneNumber}"  Name="Phone" Grid.Column="3" Margin="0,50,10,10" Foreground="Gray" FontSize="15"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Address:" HorizontalAlignment="Right" Margin="20,0,0,10" Foreground="Gray" FontSize="15"/>
+        <TextBox Text="{Binding Address}" Name="Address" Grid.Row="2" Grid.Column="1" Margin="0,0,10,10" Foreground="Gray" FontSize="15"/>
         <Label Grid.Row="2" Grid.Column="2" Content="Object:" HorizontalAlignment="Right" Margin="20,0,0,10" Foreground="Gray" FontSize="15"/>
-        <TextBox Text="{Binding Object}" Grid.Row="2" Grid.Column="3" Margin="0,0,10,10" Foreground="Gray" FontSize="15"/>
+        <TextBox Text="{Binding Object}" Name="Object" Grid.Row="2" Grid.Column="3" Margin="0,0,10,10" Foreground="Gray" FontSize="15"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Id:" HorizontalAlignment="Right" Margin="0,0,0,10" Foreground="Gray" FontSize="15"/>
-        <TextBox IsEnabled="False" Grid.Row="3" Grid.Column="1" Margin="0,0,10,10" Foreground="Gray" FontSize="15"/>
+        <TextBox IsEnabled="False" Name="Id"  Grid.Row="3" Grid.Column="1" Margin="0,0,10,10" Foreground="Gray" FontSize="15"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Description:" HorizontalAlignment="Right" Margin="0,0,0,10" Foreground="Gray" FontSize="15"/>
-        <TextBox Grid.Row="3" Text="{Binding VehicleName}" Grid.Column="3" Margin="0,0,10,10" Foreground="Gray" FontSize="15"/>
+        <TextBox Grid.Row="3" Text="{Binding VehicleName}" Name="VehicleName" Grid.Column="3" Margin="0,0,10,10" Foreground="Gray" FontSize="15"/>
         <Label Grid.Row="3" Grid.Column="2" Content="Vehicle:" HorizontalAlignment="Right" Margin="0,0,0,10" Foreground="Gray" FontSize="15"/>
-        <TextBox Text="{Binding Descritpion}" Grid.Row="4" Grid.Column="1" MaxLines="5" MinLines="5" Foreground="Gray" FontSize="15" Margin="0,0,10,10" TextWrapping="Wrap"/>
+        <TextBox Text="{Binding Descritpion}"  Name="Description" Grid.Row="4" Grid.Column="1" MaxLines="5" MinLines="5" Foreground="Gray" FontSize="15" Margin="0,0,10,10" TextWrapping="Wrap"/>
         <Label Grid.Row="4" Grid.Column="2" Content="Result Des:" HorizontalAlignment="Right" Margin="0,0,0,10" Foreground="Gray" FontSize="15"/>
-        <TextBox Text="{Binding ResultDescritpion}" Grid.Row="4" Grid.Column="3" MaxLines="5" MinLines="5" Foreground="Gray" FontSize="15" Margin="0,0,10,10" TextWrapping="Wrap"/>
+        <TextBox Text="{Binding ResultDescritpion}"  Name="ResultDesc" Grid.Row="4" Grid.Column="3" MaxLines="5" MinLines="5" Foreground="Gray" FontSize="15" Margin="0,0,10,10" TextWrapping="Wrap"/>
        
         <Grid Grid.Row="5" Grid.Column="1">
             <Grid.RowDefinitions>     

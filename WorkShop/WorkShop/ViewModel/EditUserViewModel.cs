@@ -13,21 +13,21 @@ namespace WorkShop.ViewModel
 {
     public class EditUserViewModel : ViewModelBase
     {
-        UserListItem _w0 = new UserListItem("Kowalski Jan", "Manager", 1515);
-        UserListItem _w1 = new UserListItem("Test", "Employy", 6515);
-        UserListItem _w2 = new UserListItem("Katarzyna Bąk", "Manager", 1815);
-        UserListItem _w3 = new UserListItem("Każmierczak Mateusz", "Employy", 1715);
-        UserListItem _w4 = new UserListItem("Ban Ki Mun", "Employy", 1555);
+        //UserListItem _w0 = new UserListItem("Kowalski Jan", "Manager", 1515);
+        //UserListItem _w1 = new UserListItem("Test", "Employy", 6515);
+        //UserListItem _w2 = new UserListItem("Katarzyna Bąk", "Manager", 1815);
+        //UserListItem _w3 = new UserListItem("Każmierczak Mateusz", "Employy", 1715);
+        //UserListItem _w4 = new UserListItem("Ban Ki Mun", "Employy", 1555);
 
 
-
+        private ObservableCollection<UserListItem> _workerListItems;
         public ObservableCollection<UserListItem> WorkerListItems
         {
             get { return _workerListItems; }
             set { Set(ref _workerListItems, value); }
         }
 
-        private ObservableCollection<UserListItem> _workerListItems;
+       
         public ICommand LoadCmd { get; set; }
         public ICommand NameFilterCmd { get; set; }
         public ICommand IdFilterCmd { get; set; }
@@ -103,7 +103,15 @@ namespace WorkShop.ViewModel
         }
         private void Load()
         {
-            //ObservableCollection<UserListItem> workerListItems = new ObservableCollection<UserListItem>();
+            ObservableCollection<UserListItem> workerListItems = new ObservableCollection<UserListItem>();
+            var employees = BizLayer.Query.EmployeesQuery.GetEmployees();
+            var persons = BizLayer.Query.PersonQuery.GetPersons();
+            foreach (var employee in employees)
+            {
+                workerListItems.Add(new UserListItem(employee.Person.name,employee.Person.phone.ToString(),
+                    employee.Person.address,employee.role,employee.employID));
+            }
+            WorkerListItems = workerListItems;
             //workerListItems.Add(_w0);
             //workerListItems.Add(_w1);
             //workerListItems.Add(_w2);
@@ -111,7 +119,7 @@ namespace WorkShop.ViewModel
             //workerListItems.Add(_w4);
             //WorkerListItems = workerListItems;
            // BizLayer.Query.EmployeesQuery.AddEmployee("sebix", "test", "Employy");
-            var a = BizLayer.Query.EmployeesQuery.GetEmployees();
+            
             var b = BizLayer.Query.ProblemQuery.GetProblems();
             var c = BizLayer.Query.ProblemQuery.GetProblem(3);
 

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkShop.UserControls;
 using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
@@ -28,8 +29,13 @@ namespace WorkShop.Pages
             DataContext = _viewModel;
             _viewModel.LoadCmd.Execute(null);
         }
+        protected void OnNavigatedTo(NavigationEventArgs e)
+        {
+           _viewModel.LoadCmd.Execute(null);
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             if (StaticPagesUi.User.IsManaager())
             {
@@ -42,16 +48,49 @@ namespace WorkShop.Pages
            
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void EditProblem_Click(object sender, RoutedEventArgs e)
         {
-            //nalezy stworzyc konstruktor z argumentami dla zazanczonego problemu do edycji
-            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.RegisterProblemPage);
+
+            foreach(var item in _viewModel.ProblemsList)
+            {
+                if (item.IsSelected)
+                {
+                    var editProblem = new RegisterProblemPage(item);
+                    if (NavigationService != null) NavigationService.Navigate(editProblem);
+                    return;
+                }
+             
+               
+            }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void TasksList_Click(object sender, RoutedEventArgs e)
         {
-             if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.ProblemsTaskListPage);
+            foreach (var item in _viewModel.ProblemsList)
+            {
+                if (item.IsSelected)
+                {
+                    if (NavigationService != null) NavigationService.Navigate(new ProblemsTaskListPage(item.Id.Content.ToString()));
+                    return;
+                }
+
+
+            }
         }
-        
+
+        private void Page_GotFocus(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private async void ListView_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            
+           
+        }
+
+      
+
+
     }
 }

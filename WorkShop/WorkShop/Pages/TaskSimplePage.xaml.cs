@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
 {
@@ -20,11 +21,25 @@ namespace WorkShop.Pages
     /// </summary>
     public partial class TaskSimplePage : Page
     {
+        private TaskSimpleViewModel _viewModel = new TaskSimpleViewModel();
+        public int Id
+        {
+            get;
+            set;
+        }
         public TaskSimplePage()
         {
             InitializeComponent();
+            DataContext = _viewModel;
+            //_viewModel.Load();
         }
-
+        public TaskSimplePage(int id)
+        {
+            InitializeComponent();
+            DataContext = _viewModel;
+            Id = id;
+            _viewModel.Load(Id);
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.ProblemsTaskListPage);

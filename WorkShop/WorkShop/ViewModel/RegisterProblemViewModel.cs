@@ -86,12 +86,12 @@ namespace WorkShop.ViewModel
                 ClientQuery.AddClient(persons.Last().personID);
                 var clientss = ClientQuery.GetClients().ToArray();
 
-                //ObjectTypeQuery.AddObjectType(1, VehicleName);
+               // ObjectTypeQuery.AddObjectType(clientss.Last().clientID, VehicleName);
                 BizLayer.ObjectQuery.AddObject(clientss.Last().clientID);
-                    
-                ProblemQuery.AddProblem(DateTime.Today, DateTime.MaxValue, Descritpion,"");
+                var objects = BizLayer.ObjectQuery.GetObjects().ToArray();
+                ProblemQuery.AddProblem(DateTime.Today, DateTime.MaxValue, Descritpion,ResultDescritpion, objects.Last().objectID);
                
-                MessageBox.Show("User was successfully added to system", "OK",
+                MessageBox.Show("Problem & client was added", "OK",
                      MessageBoxButton.OK);
             }
             else

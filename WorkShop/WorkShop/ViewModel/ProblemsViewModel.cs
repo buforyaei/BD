@@ -35,21 +35,16 @@ namespace WorkShop.ViewModel
         }
         public void Load()
         {
-            var c = ProblemQuery.GetProblems().ToArray();
-            var problemsArray = new Models.ProblemModel[c.Length];
-            for (int i=0;i<c.Length;i++)
+           var problemsList = new ObservableCollection<ProblemListItem>();
+            var problems = ProblemQuery.GetProblems().ToArray();
+            foreach (var problem in problems)
             {
-                problemsArray[i]= new Models.ProblemModel(c[i].problemID, c[i].problemDesc, c[i].resultDesc, null, null, null);
+               // var obj = BizLayer.ObjectQuery.GetObject(problem.Object.objectID);
+                var tasks = BizLayer.Query.TaskQuery.GetTasks();
+
+                problemsList.Add(new ProblemListItem("Kowalski Jan",problem.problemID.ToString(),"2342342",problem.problemDesc,problem.resultDesc,"SPS2345","6",problem.endDate.Value.Date, "Rynek 1A Rybnik"));
             }
-            var problemsObservable = new ObservableCollection<ProblemListItem>();
-            for (int i = 0; i < c.Length; i++)
-            {
-               
-                problemsObservable.Add(new ProblemListItem(problemsArray[i].problemDesc, problemsArray[i].problemID.ToString(),
-                    problemsArray[i].endDate.ToString(), problemsArray[i].problemDesc));
-            }
-            ProblemsList = problemsObservable;
-           
+            ProblemsList = problemsList;
         }
     }
 }

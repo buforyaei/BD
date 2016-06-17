@@ -20,9 +20,9 @@ namespace WorkShop.Pages
             
             DataContext = _viewModel;
             /////////////////
-            //LoginBox.Text = "manager";
-            LoginBox.Text = "admin";
-            //LoginBox.Text = "emoployy";
+            LoginBox.Text = "mant";
+            //LoginBox.Text = "admint";
+            //LoginBox.Text = "emoplt";
             LoginLabel.Visibility = Visibility.Collapsed;
             ////////////////
         }
@@ -55,7 +55,7 @@ namespace WorkShop.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            BizLayer.Query.EmployeesQuery.AddEmployee("admint","","Admin",1);
+            BizLayer.Query.EmployeesQuery.AddEmployee("admint", "", "Admin", 1);
             BizLayer.Query.EmployeesQuery.AddEmployee("mant", "", "Manager", 1);
             BizLayer.Query.EmployeesQuery.AddEmployee("emplt", "", "Employy", 1);
             var persons =   BizLayer.Query.PersonQuery.GetPersons().ToArray();

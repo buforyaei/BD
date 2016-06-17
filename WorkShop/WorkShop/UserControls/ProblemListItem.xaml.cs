@@ -17,13 +17,33 @@ namespace WorkShop.UserControls
 {
     public partial class ProblemListItem : UserControl
     {
-        public ProblemListItem(string name, string id, string phone, string description)
+        public bool IsSelected { get; set; }
+        public string Address { get; set; }
+
+        public ProblemListItem(string name, string id, string phone, string description, string result, string obj, string tasks, DateTime endTime, string address)
         {
             InitializeComponent();
             Description.Content += description;
+            ResultDescription.Content += result;
+            Object.Content += obj;
+            Tasks.Content += tasks;
             ClientName.Content += name;
             Id.Content += id;
             Phone.Content += phone;
+            IsSelected = false;
+            Address = address;
+            if (endTime == DateTime.MaxValue)
+                IsOpenBox.IsChecked = true;
+            else IsOpenBox.IsChecked = false;
+        }
+
+   
+        private void UIElement_OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+            IsSelected = !IsSelected;
+            if (IsSelected) TextBox.Background = Brushes.LightGreen;
+            else TextBox.Background = Brushes.Gray;
         }
     }
 }

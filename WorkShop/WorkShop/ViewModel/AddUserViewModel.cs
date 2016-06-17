@@ -38,13 +38,14 @@ namespace WorkShop.ViewModel
             set { Set(ref _phone, value); }
         }
 
-        private string _password;
         public bool IsEmployeeChecked
         {
             get { return _isEmployeeChecked; }
             set { Set(ref _isEmployeeChecked, value); }
         }
         private bool _isEmployeeChecked;
+
+        private string _password;
         public string Password
         {
             get { return _password; }
@@ -63,8 +64,9 @@ namespace WorkShop.ViewModel
 
         private void AddUser()
         {
-            if (Name != "" && Password != "")
+            if (Name != "" && Password != "" && Name != null && Password != null)
             {
+                //zabezpieczyc ze np spacje i literki nie moga byc w numerze telfonu
                 BizLayer.Query.PersonQuery.AddPerson(Name,Name,Address,Int32.Parse(Phone));
                 var persons = BizLayer.Query.PersonQuery.GetPersons().ToArray();
                 if (IsEmployeeChecked)
@@ -87,7 +89,7 @@ namespace WorkShop.ViewModel
         }
         private  void Load()
         {
-            var users = BizLayer.Query.EmployeesQuery.GetEmployees();
+            
 
         }
     }
