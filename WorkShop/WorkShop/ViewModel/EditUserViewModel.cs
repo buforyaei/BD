@@ -108,6 +108,7 @@ namespace WorkShop.ViewModel
             var persons = BizLayer.Query.PersonQuery.GetPersons();
             foreach (var employee in employees)
             {
+                if(employee.Person!=null)
                 workerListItems.Add(new UserListItem(employee.Person.name,employee.Person.phone.ToString(),
                     employee.Person.address,employee.role,employee.employID));
             }

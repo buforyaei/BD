@@ -8,6 +8,12 @@
       <Association Name="Person_Client" Member="Person" ThisKey="personID" OtherKey="personID" Type="Person" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.[Task type]" Member="Task_types">
+    <Type Name="Task_type">
+      <Column Name="code" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Employees" Member="Employees">
     <Type Name="Employee">
       <Column Name="employID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -29,7 +35,7 @@
   </Table>
   <Table Name="dbo.[Object type]" Member="Object_types">
     <Type Name="Object_type">
-      <Column Name="code" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="code" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
@@ -56,15 +62,9 @@
       <Association Name="Object_Problem" Member="Object" ThisKey="objectID" OtherKey="objectID" Type="Object" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.[Task type]" Member="Task_types">
-    <Type Name="Task_type">
-      <Column Name="code" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Task" Member="Tasks">
     <Type Name="Task">
-      <Column Name="taskID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="taskID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="taskDesc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="resultDesc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
