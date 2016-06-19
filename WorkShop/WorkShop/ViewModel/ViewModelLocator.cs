@@ -17,6 +17,8 @@ namespace WorkShop.ViewModel
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MyTasksViewModel>();
+            SimpleIoc.Default.Register<ObjectViewModel>();
+            SimpleIoc.Default.Register<ObjectListViewModel>();
             SimpleIoc.Default.Register<ProblemsViewModel>();
             SimpleIoc.Default.Register<ProblemsTaskListViewModel>();
             SimpleIoc.Default.Register<RaportViewModel>();
@@ -109,6 +111,20 @@ namespace WorkShop.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<ProblemsTaskListViewModel>();
+            }
+        }
+        public ObjectViewModel Object
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ObjectViewModel>();
+            }
+        }
+        public ObjectListViewModel ObjectList
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ObjectListViewModel>();
             }
         }
         public static void Cleanup()

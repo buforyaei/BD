@@ -96,6 +96,12 @@
     <Compile Include="Pages\MyTasksPage.xaml.cs">
       <DependentUpon>MyTasksPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ObjectListPage.xaml.cs">
+      <DependentUpon>ObjectListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ObjectPage.xaml.cs">
+      <DependentUpon>ObjectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ProblemsPage.xaml.cs">
       <DependentUpon>ProblemsPage.xaml</DependentUpon>
     </Compile>
@@ -115,6 +121,9 @@
       <DependentUpon>TaskSimplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="StaticPagesUI.cs" />
+    <Compile Include="UserControls\ObjectItem.xaml.cs">
+      <DependentUpon>ObjectItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProblemListItem.xaml.cs">
       <DependentUpon>ProblemListItem.xaml</DependentUpon>
     </Compile>
@@ -130,6 +139,8 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MyTasksViewModel.cs" />
+    <Compile Include="ViewModel\ObjectListViewModel.cs" />
+    <Compile Include="ViewModel\ObjectViewModel.cs" />
     <Compile Include="ViewModel\ProblemsTaskListViewModel.cs" />
     <Compile Include="ViewModel\ProblemsViewModel.cs" />
     <Compile Include="ViewModel\RaportViewModel.cs" />
@@ -181,6 +192,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ObjectListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ObjectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ProblemsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TaskSimplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ObjectItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

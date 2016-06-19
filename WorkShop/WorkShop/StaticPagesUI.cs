@@ -18,6 +18,8 @@ namespace WorkShop
         public static MenuEmployyPage MenuEmployyPage = new MenuEmployyPage();
         public static MenuManagerPage MenuManagerPage = new MenuManagerPage();
         public static MyTasksPage MyTasksPage = new MyTasksPage();
+        public static ObjectPage ObjectPage = new ObjectPage();
+        public static ObjectListPage ObjectListPage = new ObjectListPage();
         public static ProblemsPage ProblemsPage = new ProblemsPage();
         public static ProblemsTaskListPage ProblemsTaskListPage = new ProblemsTaskListPage();
         public static RaportPage RaportPage = new RaportPage();

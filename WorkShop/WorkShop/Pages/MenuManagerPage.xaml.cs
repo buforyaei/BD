@@ -28,7 +28,7 @@ namespace WorkShop.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.RegisterProblemPage);
+            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.ObjectListPage);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
