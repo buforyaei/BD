@@ -1,0 +1,11 @@
+usun¹æ w ogóle task_type i object_type.
+person -> phone - int -> string
+object, dodaæ property name(rejestracyjny numer) i model(ale jako jedn¹ property string i ju¿)
+zwróciæ uwagê na akcesory private i public jeœli tam wystêpj¹ bo to wa¿ne.
+usun¹æ wszystkie dane z bazy i dodac po kilka rekodów, ale tak, by jedne by³y z kluczami do drugich,
+tj. konkretnie spojone dane i sprawdziæ czy dzia³aj¹...
+napisaæ jak pokolei powinno sie dodawac obiekty np.
+objekt, client, problem, taks itd.
+usunac surname z person i bedziemy klepac tylko name, nie potrzebne to jest i przeszkadza
+psrson dodac osobne property city, street, housenumber, zamiast address
+ 
