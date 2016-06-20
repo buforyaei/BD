@@ -26,7 +26,7 @@ namespace WorkShop.Pages
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ObjectsButton_Click(object sender, RoutedEventArgs e)
         {
             if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.ObjectListPage);
         }
@@ -45,6 +45,16 @@ namespace WorkShop.Pages
         {
             ViewModelLocator.Cleanup();
             Application.Current.Shutdown();
+        }
+
+        private void ClientsButton_Click(object sender, RoutedEventArgs e)
+        {
+           if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.ClientsPage);
+        }
+
+        private void RegisterProblemButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.RegisterProblemPage);
         }
     }
 }

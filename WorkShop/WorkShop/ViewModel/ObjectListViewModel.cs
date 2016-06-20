@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
+using BizLayer.Query;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using WorkShop.Models;
@@ -112,7 +113,7 @@ namespace WorkShop.ViewModel
             if (SelectedClient != null) ClientNameString = SelectedClient.Person.name;
             //objects loading
             ObservableCollection<ObjectItem> objects = new ObservableCollection<ObjectItem>();
-            var objectsBizLayer = BizLayer.ObjectQuery.GetObjects();
+            var objectsBizLayer = ObjectQuery.GetObjects();
             var problems = BizLayer.Query.ProblemQuery.GetProblems();
             
             foreach (var o in objectsBizLayer)

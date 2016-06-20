@@ -87,8 +87,8 @@ namespace WorkShop.ViewModel
                 var clientss = ClientQuery.GetClients().ToArray();
 
                // ObjectTypeQuery.AddObjectType(clientss.Last().clientID, VehicleName);
-                BizLayer.ObjectQuery.AddObject(clientss.Last().clientID);
-                var objects = BizLayer.ObjectQuery.GetObjects().ToArray();
+                ObjectQuery.AddObject(clientss.Last().clientID);
+                var objects = ObjectQuery.GetObjects().ToArray();
                 ProblemQuery.AddProblem(DateTime.Today, DateTime.MaxValue, Descritpion,ResultDescritpion, objects.Last().objectID);
                
                 MessageBox.Show("Problem & client was added", "OK",

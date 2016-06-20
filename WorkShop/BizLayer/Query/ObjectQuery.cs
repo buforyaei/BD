@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Permissions;
-using System.Runtime;
+﻿using System.Linq;
 using DataLayer;
 
-namespace BizLayer
+namespace BizLayer.Query
 {
     public class ObjectQuery
     {

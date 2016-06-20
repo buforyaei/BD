@@ -23,11 +23,11 @@
         </Grid.ColumnDefinitions>
         <Label  Grid.Column="0" Content="Menu" FontSize="25" Foreground="Gray"  HorizontalAlignment="Center" Margin="0,80,0,0"/>
         <Button Grid.Column="0" Grid.Row="1" FontSize="18" Content="Objects" Margin="140,10,140,0" 
-                Foreground="White" Background="DodgerBlue" Click="Button_Click" />
+                Foreground="White" Background="DodgerBlue" Click="ObjectsButton_Click" />
         <Button Grid.Column="0" Grid.Row="2" FontSize="18" Content="Clients" Margin="140,10,140,0" 
-                Foreground="White" Background="DodgerBlue" Click="Button_Click" />
+                Foreground="White" Background="DodgerBlue" Click="ClientsButton_Click" />
         <Button Grid.Column="0" Grid.Row="3" FontSize="18" Content="Register new problem" Margin="140,10,140,0" 
-                Foreground="White" Background="DodgerBlue" Click="Button_Click" />
+                Foreground="White" Background="DodgerBlue" Click="RegisterProblemButton_Click" />
         <Button Grid.Column="0" Grid.Row="4" Content="Problems &amp; Tasks Edition" FontSize="18"  Margin="140,10,140,0"
                 Foreground="White" Background="DodgerBlue" Click="Button_Click_1" />
         <Button Grid.Column="0" Grid.Row="5" Content="Search" FontSize="18"  Margin="140,10,140,0"

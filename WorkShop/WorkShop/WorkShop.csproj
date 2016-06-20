@@ -75,6 +75,9 @@
     <Compile Include="Pages\AddUserPage.xaml.cs">
       <DependentUpon>AddUserPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ClientsPage.xaml.cs">
+      <DependentUpon>ClientsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditTasksPage.xaml.cs">
       <DependentUpon>EditTasksPage.xaml</DependentUpon>
     </Compile>
@@ -99,9 +102,6 @@
     <Compile Include="Pages\ObjectListPage.xaml.cs">
       <DependentUpon>ObjectListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ObjectPage.xaml.cs">
-      <DependentUpon>ObjectPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\ProblemsPage.xaml.cs">
       <DependentUpon>ProblemsPage.xaml</DependentUpon>
     </Compile>
@@ -121,6 +121,9 @@
       <DependentUpon>TaskSimplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="StaticPagesUI.cs" />
+    <Compile Include="UserControls\ClientListItem.xaml.cs">
+      <DependentUpon>ClientListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ObjectItem.xaml.cs">
       <DependentUpon>ObjectItem.xaml</DependentUpon>
     </Compile>
@@ -134,13 +137,13 @@
       <DependentUpon>UserListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AddUserViewModel.cs" />
+    <Compile Include="ViewModel\ClientsViewModel.cs" />
     <Compile Include="ViewModel\EditTasksViewModel.cs" />
     <Compile Include="ViewModel\EditUserViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MyTasksViewModel.cs" />
     <Compile Include="ViewModel\ObjectListViewModel.cs" />
-    <Compile Include="ViewModel\ObjectViewModel.cs" />
     <Compile Include="ViewModel\ProblemsTaskListViewModel.cs" />
     <Compile Include="ViewModel\ProblemsViewModel.cs" />
     <Compile Include="ViewModel\RaportViewModel.cs" />
@@ -149,6 +152,10 @@
     <Compile Include="ViewModel\TaskSimpleViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Pages\AddUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ClientsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,10 +203,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ObjectPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\ProblemsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TaskSimplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ClientListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

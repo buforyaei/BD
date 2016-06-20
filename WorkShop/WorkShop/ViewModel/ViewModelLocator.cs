@@ -12,12 +12,12 @@ namespace WorkShop.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<AddUserViewModel>();
+            SimpleIoc.Default.Register<ClientsViewModel>();
             SimpleIoc.Default.Register<EditTasksViewModel>();
             SimpleIoc.Default.Register<EditUserViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MyTasksViewModel>();
-            SimpleIoc.Default.Register<ObjectViewModel>();
             SimpleIoc.Default.Register<ObjectListViewModel>();
             SimpleIoc.Default.Register<ProblemsViewModel>();
             SimpleIoc.Default.Register<ProblemsTaskListViewModel>();
@@ -113,18 +113,19 @@ namespace WorkShop.ViewModel
                 return ServiceLocator.Current.GetInstance<ProblemsTaskListViewModel>();
             }
         }
-        public ObjectViewModel Object
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ObjectViewModel>();
-            }
-        }
+
         public ObjectListViewModel ObjectList
         {
             get
             {
                 return ServiceLocator.Current.GetInstance<ObjectListViewModel>();
+            }
+        }
+        public ClientsViewModel Clients
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ClientsViewModel>();
             }
         }
         public static void Cleanup()
