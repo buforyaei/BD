@@ -25,17 +25,19 @@ namespace BizLayer.Query
 
             return (zz);
         }
-        public static void AddObject(int clientID)
+        public static void AddObject(int clientID,string name, string model)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
                 DataLayer.Object obj = new DataLayer.Object();
                 obj.clientID = clientID;
+                obj.name = name;
+                obj.model = model;
                 dc.Objects.InsertOnSubmit(obj);
                 dc.SubmitChanges();
             }
         }
-        public static void UpdateObject(int id, int clientID)
+        public static void UpdateObject(int id, int clientID, string name, string model)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
@@ -44,6 +46,8 @@ namespace BizLayer.Query
                               select o;
                 DataLayer.Object obj_ = obj.Single();
                 obj_.clientID = clientID;
+                obj_.name = name;
+                obj_.model = model;
                 dc.SubmitChanges();
             }
         }

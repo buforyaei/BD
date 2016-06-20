@@ -32,20 +32,21 @@ namespace BizLayer.Query
             return (zz);
         }
 
-        public static void AddPerson(string name, string surname, string address, int phone)
+        public static void AddPerson(string name, string city, string street,string housenumber, string phone)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
                 Person person = new Person();
                 person.name = name;
-                person.surname = surname;
-                person.address = address;
+                person.city = city;
+                person.street = street;
+                person.housenumber = housenumber;
                 person.phone = phone;
                 dc.Persons.InsertOnSubmit(person);
                 dc.SubmitChanges();
             }
         }
-        public static void UpdatePerson(int id, string name, string surname, string address, int phone)
+        public static void UpdatePerson(int id, string name, string city, string street, string housenumber, string phone)
         {
             using (TasksDataContext dc = new TasksDataContext())
             {
@@ -54,8 +55,9 @@ namespace BizLayer.Query
                           select p;
                 Person person_ = person.Single();
                 person_.name = name;
-                person_.surname = surname;
-                person_.address = address;
+                person_.city = city;
+                person_.street = street;
+                person_.housenumber = housenumber;
                 person_.phone = phone;
                 dc.SubmitChanges();
             }

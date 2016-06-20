@@ -1,0 +1,7 @@
+person -> employ
+person -> client -> object -> problem 
+
+zeby istnial employ potrzebny jest person
+zeby istnial problem potrzebny jest object...
+
+problem + employ sa potrzebni do stworzenia taska
