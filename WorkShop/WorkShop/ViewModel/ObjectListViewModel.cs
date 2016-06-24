@@ -23,6 +23,7 @@ namespace WorkShop.ViewModel
           public ICommand ClientChangedCmd { get; set; }
           public ICommand RefreshCmd { get; set; }
           public ICommand FillFieldsByClickedItemCmd { get; set; }
+          public ICommand ClearFieldsCmd { get; set; }
         private ObservableCollection<ObjectItem> _objects;
         public ObservableCollection<ObjectItem> Objects
         {
@@ -87,6 +88,7 @@ namespace WorkShop.ViewModel
             ClientChangedCmd = new RelayCommand<DataLayer.Client>(ClientChanged);
             RefreshCmd = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(Refresh);
             FillFieldsByClickedItemCmd = new RelayCommand<DataLayer.Object>(FillFieldsByClickedItem);
+            ClearFieldsCmd = new RelayCommand(ClearFields);
         }
 
         private void FillFieldsByClickedItem(DataLayer.Object obj)

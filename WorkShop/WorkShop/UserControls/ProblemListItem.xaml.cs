@@ -18,23 +18,28 @@ namespace WorkShop.UserControls
     public partial class ProblemListItem : UserControl
     {
         public bool IsSelected { get; set; }
-        public string Address { get; set; }
-
-        public ProblemListItem(string name, string id, string phone, string description, string result, string obj, string tasks, DateTime endTime, string address)
+        public DataLayer.Problem Problem { get; set; }
+        public DataLayer.Object Obj { get; set; }
+        public ProblemListItem(DataLayer.Problem problem)
         {
             InitializeComponent();
-            Description.Content += description;
-            ResultDescription.Content += result;
-            Object.Content += obj;
-            Tasks.Content += tasks;
-            ClientName.Content += name;
-            Id.Content += id;
-            Phone.Content += phone;
-            IsSelected = false;
-            Address = address;
-            if (endTime == DateTime.MaxValue)
-                IsOpenBox.IsChecked = true;
-            else IsOpenBox.IsChecked = false;
+            Problem = problem;
+            Description.Content += Problem.problemDesc;
+            ResultDescription.Content += Problem.resultDesc;
+            var obj = BizLayer.Query.ObjectQuery.GetObject(Problem.objectID.Value);
+            Obj = obj.First();
+            ObjectInfo.Content += " Name:" + Obj.name + " Model:" + Obj.model + " Id:" + Obj.objectID + " Client Name:" + Obj.Client;
+            if (problem.endDate.Value.Year ==DateTime.MaxValue.Year)
+            {
+                Date.Content = "Start date: " + Problem.beginDate.Value.ToString("yy-MM-dd") + " Not closed";
+                Date.Foreground = Brushes.DarkRed;
+            }
+            else
+            {
+                Date.Content = "Start date: " + Problem.beginDate.Value.ToString("yy-MM-dd") + " End Date: " + Problem.endDate.Value.ToString("yy-MM-dd");
+                Date.Foreground = Brushes.DarkGreen;
+            }
+            
         }
 
    

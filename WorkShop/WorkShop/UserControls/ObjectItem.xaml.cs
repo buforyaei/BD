@@ -35,17 +35,19 @@ namespace WorkShop.UserControls
                 ObjId.Content = obj.objectID.ToString();
                 if (Client != null)
                 {
-                    ClientInfo.Content += "\nid: " + Client.clientID + " Name: " + Client.Person.name + "Phone: " + Client.Person.phone + "\n" +
+                    ClientInfo.Content += "\nId: " + Client.clientID + " Name: " + Client.Person.name + "Phone: " + Client.Person.phone + "\n" +
                         "Address: " + Client.Person.city + " "+ Client.Person.street +" "+ Client.Person.housenumber;
                     foreach (var p in Problems)
                     {
                         if (p.endDate < DateTime.Now)
-                            ProblemInfo.Content += "id:" + p.problemID + " Description: " + p.problemDesc + " \nResult:" +
-                                                   p.resultDesc + " Problem started at " + p.beginDate +
-                                                   " is closed at " + p.endDate + "\n";
+                        {
+                                    ProblemInfo.Content += "\nId:" + p.problemID + "\nDescription: " + p.problemDesc + " \nResult:" +
+                                                           p.resultDesc + "\nProblem started at " + p.beginDate.Value.ToString("dd-mm-yy") +
+                                                           "\n is closed at " + p.endDate.Value.ToString("dd-mm-yy") + "\n";
+                        }
                         else
-                            ProblemInfo.Content += "id:" + p.problemID + " Description: " + p.problemDesc + " \nResult:" +
-                                                   p.resultDesc + " Problem started at " + p.beginDate +
+                            ProblemInfo.Content += "id:" + p.problemID + "\nDescription: " + p.problemDesc + " \nResult:" +
+                                                   p.resultDesc + "\nProblem started at " + p.beginDate.Value.ToString("dd-MM-yy") +
                                                    " is notclosed\n";
                     }
 

@@ -91,7 +91,7 @@ namespace WorkShop.ViewModel
         }
         private void RegisterProblem()
         {
-            if (SelectedObject!= null && String.IsNullOrEmpty(Descritpion) && BeginDate != DateTime.MinValue)
+            if (SelectedObject!= null && !String.IsNullOrEmpty(Descritpion) && BeginDate != DateTime.MinValue)
             {
                 if(ProblemId=="")
                 ProblemQuery.AddProblem(BeginDate,EndDate,Descritpion,ResultDescritpion,SelectedObject.objectID);

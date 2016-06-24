@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -55,6 +56,14 @@ namespace WorkShop.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ProgressBar.Visibility = Visibility.Visible;
+            Login();
+         
+            ProgressBar.Visibility = Visibility.Hidden;   
+        }
+
+        private void Login()
+        {
             BizLayer.Query.PersonQuery.AddPerson("Admin Test", "Rybnik", "Rynek", "23A", "769865456");
             BizLayer.Query.PersonQuery.AddPerson("ManAger Test", "Rybnik", "Rudzka", "13A", "769865456");
             BizLayer.Query.PersonQuery.AddPerson("Employee Test", "Rybnik", "Rudzka", "13C", "769865456");
@@ -66,23 +75,25 @@ namespace WorkShop.Pages
             BizLayer.Query.PersonQuery.AddPerson("Tom Scavo", "Sadney", "WhisteriaLane", "1012", "325623564");
             BizLayer.Query.ClientQuery.AddClient(4);
             BizLayer.Query.ClientQuery.AddClient(5);
-            BizLayer.Query.ObjectQuery.AddObject(1,"Opel Corsa", "SWD0545");
+            BizLayer.Query.ObjectQuery.AddObject(1, "Opel Corsa", "SWD0545");
             BizLayer.Query.ObjectQuery.AddObject(1, "Volvo S60", "SJZ4564");
             BizLayer.Query.ObjectQuery.AddObject(2, "Fiat Punto", "SWD0545");
+            BizLayer.Query.ProblemQuery.AddProblem(DateTime.Today, DateTime.MaxValue, "Wymiana opon.",null,1);
+            BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016,1,5), DateTime.Today, "Lakierowanie nadkola - lewego.", null, 2);
+            BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 3, 15), new DateTime(2016, 4, 1), "Spawanie progów", null, 1);
             /////////////////////
-            var persons =   BizLayer.Query.PersonQuery.GetPersons().ToArray();
+            var persons = BizLayer.Query.PersonQuery.GetPersons().ToArray();
             StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password);
             var users = BizLayer.Query.EmployeesQuery.GetEmployees();
             if (NavigationService != null && _viewModel.Login())
             {
                 if (StaticPagesUi.User.IsAdmin()) NavigationService.Navigate(StaticPagesUi.MenuAdminPage);
-                    //next goes to emoloyy instead of manager menu
+                //next goes to emoloyy instead of manager menu
                 else if (StaticPagesUi.User.IsManaager()) NavigationService.Navigate(StaticPagesUi.MenuManagerPage);
                 else if (StaticPagesUi.User.IsEmployy()) NavigationService.Navigate(StaticPagesUi.MenuEmployyPage);
                 else Application.Current.Shutdown();
-              
+
             }
-                
         }
     }
 }

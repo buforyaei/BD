@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-              d:DesignHeight="80" d:DesignWidth="600" MaxHeight="120" MinHeight="100">
+              d:DesignHeight="80" d:DesignWidth="600" MaxHeight="240" MinHeight="100">
 
 
     <Grid Background="White">
@@ -43,8 +43,8 @@
            
             <Label Grid.Row="1" Grid.Column="0" Content="Client Info "  Name="ClientInfo" FontSize="11" Foreground="Gray" Margin="0,0,0,0"/>
             <Button Grid.Row="1"  Content="Show Info" Name="ClientInfoButton" FontSize="12" Foreground="Gray" Margin="0,5,15,5" HorizontalAlignment="Right" Click="ClientInfoButton_Click"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Problem Info:" Name="Comment" FontSize="12" Foreground="Gray" Margin="0,0,0,0"/>
-            <Button Grid.Row="2"  Content="Show Info" Name="ProblemInfo" FontSize="12" Foreground="Gray" Margin="0,5,15,10" HorizontalAlignment="Right" Click="ProblemInfo_Click"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Problem Info " Name="ProblemInfo" FontSize="12" Foreground="Gray" Margin="0,0,0,0"/>
+            <Button Grid.Row="2"  Content="Show Info" Name="ProblemInfoButton" FontSize="12" Foreground="Gray" Margin="0,5,15,10" HorizontalAlignment="Right" MaxWidth="60" MaxHeight="20" Click="ProblemInfo_Click"/>
         </Grid>
     </Grid>
 </UserControl>

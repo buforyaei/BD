@@ -18,5 +18,10 @@ namespace WorkShop.Pages
         {
             Main.Content = new LoginPage();
         }
+
+        private void ProgressBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

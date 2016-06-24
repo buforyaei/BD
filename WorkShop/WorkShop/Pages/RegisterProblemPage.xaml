@@ -40,9 +40,9 @@
         <Label Grid.Column="1" Grid.Row="1" Margin="265,0,0,0" Content="Problem Id:" FontSize="15" Foreground="Gray"/>
         <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="1" Margin="350,0,125,5" Text="{Binding ProblemId}"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Description:" HorizontalAlignment="Right" Margin="0,0,0,5" Foreground="Gray" FontSize="15"/>
-        <TextBox Name="Description" Grid.Row="3" Grid.Column="1" MinLines="4" MaxLines="6" TextWrapping="Wrap" Margin="0,0,125,5" Foreground="Gray" FontSize="15"></TextBox>
+        <TextBox Name="Description" Text="{Binding Descritpion}" Grid.Row="3" Grid.Column="1" MinLines="4" MaxLines="6" TextWrapping="Wrap" Margin="0,0,125,5" Foreground="Gray" FontSize="15"></TextBox>
         <Label Grid.Row="4" Grid.Column="0" Content="Result description:" HorizontalAlignment="Right" Margin="0,0,0,5" Foreground="Gray" FontSize="15"/>
-        <TextBox Name="ResultDesc" Grid.Row="4" Grid.Column="1" MinLines="4" MaxLines="6" TextWrapping="Wrap" Margin="0,0,125,5" Foreground="Gray" FontSize="15"></TextBox>
+        <TextBox Name="ResultDesc" Grid.Row="4" Text ="{Binding ResultDescritpion}"  Grid.Column="1" MinLines="4" MaxLines="6" TextWrapping="Wrap" Margin="0,0,125,5" Foreground="Gray" FontSize="15"></TextBox>
 
 
         <Grid Grid.Row="5" Grid.Column="1">

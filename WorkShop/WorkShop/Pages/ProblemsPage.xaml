@@ -24,9 +24,14 @@
                 <RowDefinition Height="Auto"/>
 
             </Grid.RowDefinitions>
-            <Button Grid.Row="2" Content="Go Back" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="Cancel_Click"  />
-            <Button Grid.Row="0"  Content="Edit selected problem" Margin="10,5,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="EditProblem_Click"   />
-            <Button Grid.Row="1"  Content="Show selected tasks list " Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="TasksList_Click"   />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Grid.Row="2" Content="Go Back" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="Gray" Click="Cancel_Click"  />
+            <Button Grid.Column="1" Grid.Row="2" Content="Refresh" Command="{Binding RefreshCmd}" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue"   />
+            <Button Grid.Column="0" Grid.Row="0"  Content="Edit selected problem" Margin="10,5,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="EditProblem_Click"   />
+            <Button Grid.Column="0" Grid.Row="1"  Content="Show selected tasks list " Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="TasksList_Click"   />
         </Grid>
         
     </Grid>

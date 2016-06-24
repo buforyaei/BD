@@ -23,7 +23,7 @@ namespace WorkShop.ViewModel
 
         private ObservableCollection<ProblemListItem> _problemsList;
         public ICommand LoadCmd { get; set; }
-        
+        public ICommand RefreshCmd { get; set; }
         public ProblemsViewModel()
         {
             InitializeCommands();
@@ -31,7 +31,13 @@ namespace WorkShop.ViewModel
         private void InitializeCommands()
         {
             LoadCmd = new RelayCommand(Load);
+            RefreshCmd = new RelayCommand(Refresh);
           
+        }
+
+        private void Refresh()
+        {
+            Load();
         }
         public void Load()
         {
@@ -42,7 +48,7 @@ namespace WorkShop.ViewModel
                // var obj = BizLayer.ObjectQuery.GetObject(problem.Object.objectID);
                 var tasks = BizLayer.Query.TaskQuery.GetTasks();
 
-                problemsList.Add(new ProblemListItem("Kowalski Jan",problem.problemID.ToString(),"2342342",problem.problemDesc,problem.resultDesc,"SPS2345","6",problem.endDate.Value.Date, "Rynek 1A Rybnik"));
+                problemsList.Add(new ProblemListItem(problem));
             }
             ProblemsList = problemsList;
         }

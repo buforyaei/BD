@@ -15,6 +15,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -29,6 +31,7 @@
         <Button Grid.Column="0" Grid.Row="3" Margin="140,10,140,0" Height="30" Content="Login"  FontSize="18"
                 Foreground="White" Background="DodgerBlue" Command="{Binding LoginCmd}" Click="Button_Click"/>
         <Label Grid.Column="0" Margin="10,10,150,0" HorizontalAlignment="Right" Grid.Row="4" Content="Don't have an account? Contact: admin@workshop.com" Foreground="Gray" />
-        
+        <ProgressBar Name="ProgressBar" Visibility="Collapsed" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" Height="10" VerticalAlignment="Top" Width="500" Foreground="LightBlue" IsIndeterminate="True" Margin="0" VerticalContentAlignment="Center"/>
+
     </Grid>
 </Page>

@@ -53,7 +53,7 @@
                 <Button HorizontalAlignment="Stretch"  Grid.Row="0" Content="Add/Update" Margin="0,5,10,0" Command="{Binding AddObjectCmd}" FontSize="18" Foreground="White" Background="DodgerBlue"/>
                 <Button HorizontalAlignment="Stretch"  Grid.Row="1" Content="Refresh" Margin="0,5,10,0" Command="{Binding RefreshCmd}" FontSize="18" Foreground="White" Background="DodgerBlue"/>
                 <Button HorizontalAlignment="Stretch" Grid.Row="3" Name="GoBackButton"  Content="Go Back" Margin="0,30,10,0" FontSize="18" Foreground="White" Background="Gray" Click="GoBackButton_Click" />
-                <Button HorizontalAlignment="Stretch" Grid.Row="2" Name="CleraFieldsButton" Content="Clear fields" Margin="0,5,10,0" FontSize="18" Foreground="White" Background="DodgerBlue" Click="GoBackButton_Click" />
+                <Button HorizontalAlignment="Stretch" Grid.Row="2" Name="CleraFieldsButton" Content="Clear fields" Command="{Binding ClearFieldsCmd}" Margin="0,5,10,0" FontSize="18" Foreground="White" Background="DodgerBlue"  />
             </Grid>
 
         </Grid>
