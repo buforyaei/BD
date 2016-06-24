@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,55 +18,52 @@ namespace WorkShop.ViewModel
         
         public ICommand LoadCmd { get; set; }
         public ICommand RegisterProblemCmd { get; set; }
-        private bool _isEmployeeChecked;
-        private string _name;
-        private string _phoneNumber;
-        private string _address;
+        public ICommand ClearFieldsCmd { get; set; }
+        public ICommand RefreshCmd { get; set; }
         private string _descritpion;
-        private string _vehicleName;
         private string _resultDescritpion;
-        private string _object;
+        private DataLayer.Object _selectedObject;
+        private ObservableCollection<DataLayer.Object> _objects; 
+        private DateTime _beginDate;
+        private DateTime _endDate;
+        private string _problemId;
 
-        public string Object
+        public ObservableCollection<DataLayer.Object> Objects
         {
-            get { return _object; }
-            set { Set(ref _object, value); }
+            get { return _objects; }
+            set { Set(ref _objects, value); }
         }
-        public string Name
+        public DateTime BeginDate
         {
-            get { return _name; }
-            set { Set(ref _name, value); }
+            get { return _beginDate; }
+            set { Set(ref _beginDate, value); }
+        }
+        public DateTime EndDate
+        {
+            get { return _endDate; }
+            set { Set(ref _endDate, value); }
+        }
+        public DataLayer.Object SelectedObject
+        {
+            get { return _selectedObject; }
+            set { Set(ref _selectedObject, value); }
         }
         public string ResultDescritpion
         {
             get { return _resultDescritpion; }
             set { Set(ref _resultDescritpion, value); }
-        }
-        public string VehicleName
-        {
-            get { return _vehicleName; }
-            set { Set(ref _vehicleName, value); }
-        }
-        public string Address
-        {
-            get { return _address; }
-            set { Set(ref _address, value); }
-        }
-        public bool IsEmployeeChecked
-        {
-            get { return _isEmployeeChecked; }
-            set { Set(ref _isEmployeeChecked, value); }
-        }
-        public string PhoneNumber
-        {
-            get { return _phoneNumber; }
-            set { Set(ref _phoneNumber, value); }
-        }
+        } 
         public string Descritpion
         {
             get { return _descritpion; }
             set { Set(ref _descritpion, value); }
         }
+        public string ProblemId
+        {
+            get { return _problemId; }
+            set { Set(ref _problemId, value); }
+        }
+
         public RegisterProblemViewModel()
         {
             InitializeCommands();
@@ -74,24 +72,34 @@ namespace WorkShop.ViewModel
         private void InitializeCommands()
         {
             LoadCmd = new RelayCommand(Load);
-            RegisterProblemCmd = new RelayCommand(RegisterProblem); 
+            RegisterProblemCmd = new RelayCommand(RegisterProblem);
+            ClearFieldsCmd = new RelayCommand(ClearFields); 
+            RefreshCmd = new RelayCommand(Refresh);
         }
 
+        private void Refresh()
+        {
+            Load();
+        }
+        private void ClearFields()
+        {
+            BeginDate = DateTime.Today;
+            EndDate = DateTime.MaxValue;
+            ProblemId = "";
+            Descritpion = "";
+            ResultDescritpion = "";
+        }
         private void RegisterProblem()
         {
-            if (Name != null && PhoneNumber != null && Descritpion != null && Address != null && Name != null && PhoneNumber != "" && Descritpion != "" && Address != "")
+            if (SelectedObject!= null && String.IsNullOrEmpty(Descritpion) && BeginDate != DateTime.MinValue)
             {
-                //PersonQuery.AddPerson(Name,Address,Int32.Parse(PhoneNumber));
-                var persons = PersonQuery.GetPersons().ToArray();
-                ClientQuery.AddClient(persons.Last().personID);
-                var clientss = ClientQuery.GetClients().ToArray();
+                if(ProblemId=="")
+                ProblemQuery.AddProblem(BeginDate,EndDate,Descritpion,ResultDescritpion,SelectedObject.objectID);
+                else
+                    ProblemQuery.UpdateProblem(Int32.Parse(ProblemId), BeginDate, EndDate, Descritpion,
+                        ResultDescritpion, SelectedObject.objectID);
 
-               // ObjectTypeQuery.AddObjectType(clientss.Last().clientID, VehicleName);
-                //ObjectQuery.AddObject(clientss.Last().clientID);
-                var objects = ObjectQuery.GetObjects().ToArray();
-                ProblemQuery.AddProblem(DateTime.Today, DateTime.MaxValue, Descritpion,ResultDescritpion, objects.Last().objectID);
-               
-                MessageBox.Show("Problem & client was added", "OK",
+                MessageBox.Show("Operation successfull", "OK",
                      MessageBoxButton.OK);
             }
             else
@@ -99,18 +107,22 @@ namespace WorkShop.ViewModel
                 MessageBox.Show("Some unnullable fields where left emppty.", "Ops!",
                     MessageBoxButton.OK);
             }
-            var users = PersonQuery.GetPersons();
-         //   var clients = ClientQuery.GetClients();
-            Name = "";
-            Descritpion = "";
         }
         private  void Load()
         {
-            var users = ProblemQuery.GetProblems();
-
+            ClearFields();
+            var objects = ObjectQuery.GetObjects().ToList();
+            var objectsObservable = new ObservableCollection<DataLayer.Object>();
+            if(objects.Count>0)
+            {
+                    foreach (var o in objects)
+                    {
+                        objectsObservable.Add(o);
+                    }
+                Objects = objectsObservable;
+                SelectedObject = Objects.FirstOrDefault();
+            }
         }
-    }
-
-     
- }
+    }    
+}
 

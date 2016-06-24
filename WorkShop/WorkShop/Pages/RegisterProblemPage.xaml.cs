@@ -31,14 +31,7 @@ namespace WorkShop.Pages
             InitializeComponent();
             DataContext = _viewModel;
             _viewModel.LoadCmd.Execute(null);
-            Name.Text = problemItem.ClientName.Content.ToString().Substring(13);
-            Phone.Text = problemItem.Phone.Content.ToString().Substring(7);
-            Address.Text = problemItem.Address.Substring(9);
-            Description.Text = problemItem.Description.Content.ToString().Substring(12);
-            ResultDesc.Text = problemItem.ResultDescription.Content.ToString().Substring(7);
-            VehicleName.Text = problemItem.Object.Content.ToString().Substring(8);
-            Object.Text = problemItem.Object.Content.ToString().Substring(8);
-            Id.Text = problemItem.Id.Content.ToString().Substring(4);
+            
 
 
 

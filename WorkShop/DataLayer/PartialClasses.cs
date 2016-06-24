@@ -13,4 +13,11 @@ namespace DataLayer
             return this.name;
         }
     }
+    partial class Object
+    {
+        public override string ToString()
+        {
+            return "Name: " + this.name + " Model: " + this.model + " Id: " + this.objectID;
+        }
+    }
 }

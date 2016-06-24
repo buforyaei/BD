@@ -66,7 +66,9 @@ namespace WorkShop.Pages
             BizLayer.Query.PersonQuery.AddPerson("Tom Scavo", "Sadney", "WhisteriaLane", "1012", "325623564");
             BizLayer.Query.ClientQuery.AddClient(4);
             BizLayer.Query.ClientQuery.AddClient(5);
-
+            BizLayer.Query.ObjectQuery.AddObject(1,"Opel Corsa", "SWD0545");
+            BizLayer.Query.ObjectQuery.AddObject(1, "Volvo S60", "SJZ4564");
+            BizLayer.Query.ObjectQuery.AddObject(2, "Fiat Punto", "SWD0545");
             /////////////////////
             var persons =   BizLayer.Query.PersonQuery.GetPersons().ToArray();
             StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password);
