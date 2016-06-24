@@ -30,29 +30,43 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="1" Content="Objects" HorizontalAlignment="Left" Margin="0,0,0,20" Foreground="Gray" FontSize="20"></Label>
-        <Label Grid.Row="0" Grid.Column="0" Content="Name:" HorizontalAlignment="Right" Margin="20,50,0,20" Foreground="Gray" FontSize="15"></Label>
-        <TextBox  MinWidth="150" Grid.Row="0" Grid.Column="1" Margin="0,50,10,20" Foreground="Gray" FontSize="15"></TextBox>
-        <Label Grid.Row="1" Grid.Column="0" Content="Model:" HorizontalAlignment="Right" Margin="20,0,0,20" Foreground="Gray" FontSize="15"></Label>
-        <TextBox  MinWidth="150" Grid.Row="1" Grid.Column="1" Margin="0,0,10,20" Foreground="Gray" FontSize="15"></TextBox>
-        <Label Grid.Row="2" Grid.Column="0" Content="Id:" HorizontalAlignment="Right" Margin="20,0,0,20" Foreground="Gray" FontSize="15"></Label>
-        <TextBox  Grid.Row="2" Grid.Column="1" Margin="0,00,10,20" Foreground="Gray" FontSize="15"></TextBox>
-        <Label Grid.Row="3" Grid.Column="0" Content="Client ID:" HorizontalAlignment="Right" Margin="20,0,0,10" Foreground="Gray" FontSize="15"></Label>
-        <ComboBox ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" DisplayMemberPath="clientID" Grid.Row="3" Grid.Column="1" Margin="0,00,10,10" Foreground="Gray" FontSize="15" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
-            <Label Grid.Row="4" Grid.Column="1" Content="{Binding ClientNameString}" HorizontalAlignment="Left" Margin="0,0,0,20" Foreground="DodgerBlue" FontSize="15"></Label>
-
-
+        <Label Grid.Row="0" Grid.Column="0" Content="Name:" HorizontalAlignment="Right" Margin="00,50,0,20" Foreground="Gray" FontSize="15"></Label>
+        <TextBox  MinWidth="150" Grid.Row="0" Text="{Binding Name}" Grid.Column="1" Margin="0,50,5,20" Foreground="Gray" FontSize="15"></TextBox>
+        <Label Grid.Row="1" Grid.Column="0" Content="Model:" HorizontalAlignment="Right" Margin="0,0,0,20" Foreground="Gray" FontSize="15"></Label>
+        <TextBox  MinWidth="150" Grid.Row="1" Text="{Binding Model}"  Grid.Column="1" Margin="0,0,5,20" Foreground="Gray" FontSize="15"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0" Content="Id:" HorizontalAlignment="Right" Margin="0,0,0,20" Foreground="Gray" FontSize="15"></Label>
+        <TextBox IsEnabled="False" Grid.Row="2" Grid.Column="1" Margin="0,00,5,20" Foreground="Gray" FontSize="15"></TextBox>
+        <Label Grid.Row="3" Grid.Column="0" Content="Client ID:" HorizontalAlignment="Right" Margin="0,0,0,10" Foreground="Gray" FontSize="15"></Label>
+            <ComboBox Name="ClientComboBox" ItemsSource="{Binding Clients}"  SelectedItem="{Binding SelectedClient}" IsSynchronizedWithCurrentItem="True"
+                      Grid.Row="3" Grid.Column="1" Margin="0,00,5,10" Foreground="Gray" FontSize="15" SelectionChanged="ComboBox_SelectionChanged"
+                      DisplayMemberPath="Person"></ComboBox>
+            <!--<TextBox  Text="{Binding ClientNameString}" IsEnabled="False" Grid.Row="4" Grid.Column="1" Margin="0,00,5,10" Foreground="Gray" FontSize="20"></TextBox>
+            <Label Grid.Row="4" Grid.Column="0" Content="Client:" HorizontalAlignment="Right" Margin="0,0,0,10" Foreground="Gray" FontSize="15"></Label>-->
             <Grid Grid.Row="5" Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Button HorizontalAlignment="Stretch" Grid.Column="1" Content="Add/Update" Margin="0,20,10,0" Command="{Binding AddUserCmd}" FontSize="18" Foreground="White" Background="DodgerBlue"/>
-                <Button HorizontalAlignment="Stretch" Grid.Column="0"  Content="Cancel" Margin="0,20,10,0" FontSize="18" Foreground="White" Background="DodgerBlue" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button HorizontalAlignment="Stretch"  Grid.Row="0" Content="Add/Update" Margin="0,5,10,0" Command="{Binding AddObjectCmd}" FontSize="18" Foreground="White" Background="DodgerBlue"/>
+                <Button HorizontalAlignment="Stretch"  Grid.Row="1" Content="Refresh" Margin="0,5,10,0" Command="{Binding RefreshCmd}" FontSize="18" Foreground="White" Background="DodgerBlue"/>
+                <Button HorizontalAlignment="Stretch" Grid.Row="3" Name="GoBackButton"  Content="Go Back" Margin="0,30,10,0" FontSize="18" Foreground="White" Background="Gray" Click="GoBackButton_Click" />
+                <Button HorizontalAlignment="Stretch" Grid.Row="2" Name="CleraFieldsButton" Content="Clear fields" Margin="0,5,10,0" FontSize="18" Foreground="White" Background="DodgerBlue" Click="GoBackButton_Click" />
             </Grid>
-            
+
         </Grid>
+       
         <Grid Grid.Column="1">
-            <ListView Margin="10"></ListView>
+            <ListBox Margin="10" Name="ListBox" ItemsSource="{Binding Objects}" SelectionChanged="ListBox_OnSelectionChanged" SelectedItem="{Binding SelctedObject}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
         </Grid>
     </Grid>
 </Page>

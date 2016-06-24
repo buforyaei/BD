@@ -15,14 +15,11 @@ using System.Windows.Shapes;
 
 namespace WorkShop.UserControls
 {
-    /// <summary>
-    /// Interaction logic for ObjectItem.xaml
-    /// </summary>
     public partial class ObjectItem : UserControl
     {
-        private DataLayer.Object Obj { get; set; } 
-        DataLayer.Client Client { get; set; } 
-        List<DataLayer.Problem> Problems { get; set; }
+        public DataLayer.Object Obj { get; set; }
+        public DataLayer.Client Client { get; set; }
+        public List<DataLayer.Problem> Problems { get; set; }
 
         public ObjectItem(DataLayer.Object obj, DataLayer.Client client, List<DataLayer.Problem> problems)
         {
@@ -32,13 +29,14 @@ namespace WorkShop.UserControls
                 Obj = obj;
                 Client = client;
                 Problems = problems;
-                //Name.Content = obj.Name;
-                // Model.Content = obj.Model;
+                Name.Content = obj.name;
+                Model.Content = obj.model;
 
                 ObjId.Content = obj.objectID.ToString();
                 if (Client != null)
                 {
-                    ClientInfo.Content += "id:" + Client.clientID + " Name:" + Client.Person.name;
+                    ClientInfo.Content += "\nid: " + Client.clientID + " Name: " + Client.Person.name + "Phone: " + Client.Person.phone + "\n" +
+                        "Address: " + Client.Person.city + " "+ Client.Person.street +" "+ Client.Person.housenumber;
                     foreach (var p in Problems)
                     {
                         if (p.endDate < DateTime.Now)

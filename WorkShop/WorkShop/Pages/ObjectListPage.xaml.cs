@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkShop.UserControls;
 using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
@@ -29,7 +30,29 @@ namespace WorkShop.Pages
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _viewModel.ClientChangedCmd.Execute(null);
+            try
+            {
+                if (ClientComboBox.HasItems) _viewModel.ClientChangedCmd.Execute(e.AddedItems[0]);
+            }
+            catch
+            {
+                //ignored do nothing istead of 'isworking bools'
+            }
+
+        }
+
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.MenuManagerPage);
+        }
+       
+        private void ListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!ListBox.Items.IsEmpty)
+            {
+                var c = ListBox.SelectedItem as ObjectItem;
+                if (c != null) _viewModel.FillFieldsByClickedItemCmd.Execute(c.Obj);
+            }
         }
     }
 }

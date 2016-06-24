@@ -17,9 +17,6 @@ using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
 {
-    /// <summary>
-    /// Interaction logic for ClientsPage.xaml
-    /// </summary>
     public partial class ClientsPage : Page
     {
         private ClientsViewModel _viewModel = new ClientsViewModel(); 
@@ -37,8 +34,11 @@ namespace WorkShop.Pages
     
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var c = e.AddedItems[0] as ClientListItem;
-            if (c != null) _viewModel.FillFieldsByClickedItem(c.Client);
+            if (!ListBox.Items.IsEmpty)
+            {
+                var c = ListBox.SelectedItem as ClientListItem;
+                if (c != null) _viewModel.FillFieldsByClickedItem(c.Client);
+            }
         }
     }
 }

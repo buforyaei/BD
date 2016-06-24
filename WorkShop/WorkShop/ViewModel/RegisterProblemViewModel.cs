@@ -81,13 +81,13 @@ namespace WorkShop.ViewModel
         {
             if (Name != null && PhoneNumber != null && Descritpion != null && Address != null && Name != null && PhoneNumber != "" && Descritpion != "" && Address != "")
             {
-                PersonQuery.AddPerson(Name,Name,Address,Int32.Parse(PhoneNumber));
+                //PersonQuery.AddPerson(Name,Address,Int32.Parse(PhoneNumber));
                 var persons = PersonQuery.GetPersons().ToArray();
                 ClientQuery.AddClient(persons.Last().personID);
                 var clientss = ClientQuery.GetClients().ToArray();
 
                // ObjectTypeQuery.AddObjectType(clientss.Last().clientID, VehicleName);
-                ObjectQuery.AddObject(clientss.Last().clientID);
+                //ObjectQuery.AddObject(clientss.Last().clientID);
                 var objects = ObjectQuery.GetObjects().ToArray();
                 ProblemQuery.AddProblem(DateTime.Today, DateTime.MaxValue, Descritpion,ResultDescritpion, objects.Last().objectID);
                

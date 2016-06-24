@@ -67,7 +67,7 @@ namespace WorkShop.ViewModel
             if (Name != "" && Password != "" && Name != null && Password != null)
             {
                 //zabezpieczyc ze np spacje i literki nie moga byc w numerze telfonu
-                BizLayer.Query.PersonQuery.AddPerson(Name,Name,Address,Int32.Parse(Phone));
+               // BizLayer.Query.PersonQuery.AddPerson(Name,Address,Int32.Parse(Phone));
                 var persons = BizLayer.Query.PersonQuery.GetPersons().ToArray();
                 if (IsEmployeeChecked)
                         BizLayer.Query.EmployeesQuery.AddEmployee(Name, Password, Role.Employy.ToString(),persons.Last().personID);

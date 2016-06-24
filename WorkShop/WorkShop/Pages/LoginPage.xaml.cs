@@ -55,9 +55,19 @@ namespace WorkShop.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            BizLayer.Query.PersonQuery.AddPerson("Admin Test", "Rybnik", "Rynek", "23A", "769865456");
+            BizLayer.Query.PersonQuery.AddPerson("ManAger Test", "Rybnik", "Rudzka", "13A", "769865456");
+            BizLayer.Query.PersonQuery.AddPerson("Employee Test", "Rybnik", "Rudzka", "13C", "769865456");
             BizLayer.Query.EmployeesQuery.AddEmployee("admint", "", "Admin", 1);
-            BizLayer.Query.EmployeesQuery.AddEmployee("mant", "", "Manager", 1);
-            BizLayer.Query.EmployeesQuery.AddEmployee("emplt", "", "Employy", 1);
+            BizLayer.Query.EmployeesQuery.AddEmployee("mant", "", "Manager", 2);
+            BizLayer.Query.EmployeesQuery.AddEmployee("emplt", "", "Employy", 3);
+            //////////////////////
+            BizLayer.Query.PersonQuery.AddPerson("Johan", "Oslo", "TsjfStrrer", "253", "789456123");
+            BizLayer.Query.PersonQuery.AddPerson("Tom Scavo", "Sadney", "WhisteriaLane", "1012", "325623564");
+            BizLayer.Query.ClientQuery.AddClient(4);
+            BizLayer.Query.ClientQuery.AddClient(5);
+
+            /////////////////////
             var persons =   BizLayer.Query.PersonQuery.GetPersons().ToArray();
             StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password);
             var users = BizLayer.Query.EmployeesQuery.GetEmployees();

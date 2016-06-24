@@ -18,6 +18,7 @@ namespace WorkShop.ViewModel
           public ICommand LoadCmd { get; set; }
           public ICommand AddClientCmd { get; set; }
           public ICommand ClearFieldsCmd { get; set; }
+          public ICommand RefreshCmd { get; set; }
 
         private ObservableCollection<ClientListItem> _clients;
         public ObservableCollection<ClientListItem> Clients
@@ -71,6 +72,7 @@ namespace WorkShop.ViewModel
         private void InitializeCommands()
         {
             LoadCmd = new RelayCommand(Load);
+            RefreshCmd = new RelayCommand(Refresh);
             AddClientCmd = new RelayCommand(AddClient);
             ClearFieldsCmd = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(ClearFields);
         }
@@ -83,15 +85,11 @@ namespace WorkShop.ViewModel
                 { 
                     
                     var client = BizLayer.Query.ClientQuery.GetClient(Int32.Parse(ClientId)).ToArray();
-                   //tochyba jest glupie bosie podmienia person BizLayer.Query.ClientQuery.UpdateClient(Int32.Parse(ClientId), client[0].Person.personID);
-                    BizLayer.Query.PersonQuery.UpdatePerson(client[0].Person.personID,Name,Name,Street,Int32.Parse(Phone));
+                    BizLayer.Query.PersonQuery.UpdatePerson(client[0].Person.personID, Name, City, Street, HouseNumber, Phone);
+                    MessageBox.Show("User was successfully updated", "OK",
+                       MessageBoxButton.OK);
                     Load();
-                    Name = String.Empty;
-                    Phone = String.Empty;
-                    Street = String.Empty;
-                    City = String.Empty;
-                    HouseNumber = String.Empty;
-                    ClientId = String.Empty;
+                    ClearFields();
                 }
                 catch
                 {
@@ -102,12 +100,12 @@ namespace WorkShop.ViewModel
             {
                 try
                 {
-                    BizLayer.Query.PersonQuery.AddPerson(Name, Name, City, Int32.Parse(Phone));
+                    BizLayer.Query.PersonQuery.AddPerson(Name, City, Street, HouseNumber, Phone);
 
                     var persons = BizLayer.Query.PersonQuery.GetPersons().ToArray();
                     var thisPerson = persons[persons.Length-1];
                     if (thisPerson != null) BizLayer.Query.ClientQuery.AddClient(thisPerson.personID);
-                    MessageBox.Show("User was successfully added to system", "OK",
+                    MessageBox.Show("User was successfully added", "OK",
                         MessageBoxButton.OK);
                     Load();
                    ClearFields();
@@ -125,6 +123,10 @@ namespace WorkShop.ViewModel
             
         }
 
+        private void Refresh()
+        {
+            Load();
+        }
       
         private  void Load()
         {
@@ -150,9 +152,9 @@ namespace WorkShop.ViewModel
         {
             Name = o.Person.name;
             Phone = o.Person.phone.ToString();
-            Street = o.Person.address;
-            City = o.Person.address;
-            HouseNumber = o.Person.address;
+            Street = o.Person.street;
+            City = o.Person.city;
+            HouseNumber = o.Person.housenumber;
             ClientId = o.clientID.ToString();
 
 

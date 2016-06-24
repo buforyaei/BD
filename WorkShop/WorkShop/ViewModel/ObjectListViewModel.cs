@@ -21,6 +21,8 @@ namespace WorkShop.ViewModel
           public ICommand LoadCmd { get; set; }
           public ICommand AddObjectCmd { get; set; }
           public ICommand ClientChangedCmd { get; set; }
+          public ICommand RefreshCmd { get; set; }
+          public ICommand FillFieldsByClickedItemCmd { get; set; }
         private ObservableCollection<ObjectItem> _objects;
         public ObservableCollection<ObjectItem> Objects
         {
@@ -35,6 +37,13 @@ namespace WorkShop.ViewModel
             set { Set(ref _name, value); }
         }
 
+        private ObjectItem _selctedObject;
+
+        public ObjectItem SelectedObject
+        {
+            get { return _selctedObject; }
+            set { Set(ref _selctedObject, value); }
+        }
         private string _model;
         public string Model
         {
@@ -74,32 +83,74 @@ namespace WorkShop.ViewModel
         private void InitializeCommands()
         {
             LoadCmd = new RelayCommand(Load);
-            AddObjectCmd = new RelayCommand(AddObject); 
-            ClientChangedCmd = new RelayCommand(ClientChanged);
+            AddObjectCmd = new RelayCommand(AddObject);
+            ClientChangedCmd = new RelayCommand<DataLayer.Client>(ClientChanged);
+            RefreshCmd = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(Refresh);
+            FillFieldsByClickedItemCmd = new RelayCommand<DataLayer.Object>(FillFieldsByClickedItem);
         }
 
-        private void AddObject()
+        private void FillFieldsByClickedItem(DataLayer.Object obj)
         {
-            if (Name != "" && Model != "" && Name != null && Model != null)
+            Name = obj.name;
+            Model = obj.model;
+            ObjId = obj.objectID.ToString();
+            try
             {
-              //dodawac objektu sie nie da
-                //BizLayer.ObjectQuery.AddObject();
-                MessageBox.Show("User was successfully added to system", "OK",
-                     MessageBoxButton.OK);
-            }
-            else
+                SelectedClient = obj.Client;
+            }catch
             {
-                MessageBox.Show("Some unnullable fields where left emppty.", "Ops!",
-                    MessageBoxButton.OK);
+                //ingored
             }
-            var users = BizLayer.Query.EmployeesQuery.GetEmployees();
+            
+        }
+        private void Refresh()
+        {
+            Load();
+        }
+
+        private void ClearFields()
+        {
             Name = "";
             Model = "";
+            ObjId = "";
+        }
+        private void AddObject()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Model) && SelectedClient != null)
+                {
+                    if (string.IsNullOrEmpty(ObjId)) ObjectQuery.AddObject(SelectedClient.clientID, Name, Model);
+                    else ObjectQuery.UpdateObject(Int32.Parse(ObjId), SelectedClient.clientID, Name, Model);
+
+                    MessageBox.Show("Operation successfull", "OK",
+                        MessageBoxButton.OK);
+                    Load();
+                    ClearFields();
+                }
+                else
+                {
+                    MessageBox.Show("Some unnullable fields where left emppty.", "Ops!",
+                        MessageBoxButton.OK);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Operation failed", "Ops!", MessageBoxButton.OK);
+            }
         }
 
-        private void ClientChanged()
+        private void ClientChanged(DataLayer.Client selectedClient)
         {
-            ClientNameString = SelectedClient.Person.name + " "+SelectedClient.Person.surname;
+            foreach (var client in Clients)
+            {
+                if (client.Person.name == selectedClient.Person.name)
+                {
+                    SelectedClient = client;
+                }
+            }
+           
+            ClientNameString = SelectedClient.Person.name;
         }
         private  void Load()
         {
@@ -126,7 +177,12 @@ namespace WorkShop.ViewModel
                 
                 objects.Add(new ObjectItem(o, o.Client, problemList));
             }
-            Objects = objects;
+            if (objects.Count > 0)
+            {
+                Objects = objects;
+                SelectedObject = Objects.FirstOrDefault();
+            }
+            
         }
     }
 }
