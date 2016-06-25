@@ -20,6 +20,7 @@ namespace WorkShop.UserControls
         public DataLayer.Object Obj { get; set; }
         public DataLayer.Client Client { get; set; }
         public List<DataLayer.Problem> Problems { get; set; }
+        public int Counter { get; set; }
 
         public ObjectItem(DataLayer.Object obj, DataLayer.Client client, List<DataLayer.Problem> problems)
         {
@@ -31,31 +32,50 @@ namespace WorkShop.UserControls
                 Problems = problems;
                 Name.Content = obj.name;
                 Model.Content = obj.model;
-
+                Counter = 0;
                 ObjId.Content = obj.objectID.ToString();
+                if (Problems.Any())
+                {
+                    problems.Sort((x, y) => DateTime.Compare(x.beginDate.Value, y.beginDate.Value));
+                    FillProblemGrid(Counter);
+                }
+                else
+                {
+                    ProblemInfoButton.Visibility = Visibility.Collapsed;
+                }
+                   
                 if (Client != null)
                 {
                     ClientInfo.Content += "\nId: " + Client.clientID + " Name: " + Client.Person.name + "Phone: " + Client.Person.phone + "\n" +
-                        "Address: " + Client.Person.city + " "+ Client.Person.street +" "+ Client.Person.housenumber;
-                    foreach (var p in Problems)
-                    {
-                        if (p.endDate < DateTime.Now)
-                        {
-                                    ProblemInfo.Content += "\nId:" + p.problemID + "\nDescription: " + p.problemDesc + " \nResult:" +
-                                                           p.resultDesc + "\nProblem started at " + p.beginDate.Value.ToString("dd-mm-yy") +
-                                                           "\n is closed at " + p.endDate.Value.ToString("dd-mm-yy") + "\n";
-                        }
-                        else
-                            ProblemInfo.Content += "id:" + p.problemID + "\nDescription: " + p.problemDesc + " \nResult:" +
-                                                   p.resultDesc + "\nProblem started at " + p.beginDate.Value.ToString("dd-MM-yy") +
-                                                   " is notclosed\n";
-                    }
-
+                        "Address: " + Client.Person.city + " "+ Client.Person.street +" "+ Client.Person.housenumber; 
                 }
+
             }
             
         }
+        private void  FillProblemGrid(int counter)
+        {
+            var problems = Problems.ToArray();
+            if (problems[counter].endDate < DateTime.Now)
+            {
+                ProblemDates.Content = "Problem id: " + problems[counter].problemID + " Problem started at " +
+                                       problems[counter].beginDate.Value.ToString("dd-mm-yy") +
+                                       "\nis closed at " + problems[counter].endDate.Value.ToString("dd-mm-yy");
+                ResultDesc.Content = "Result: " + problems[counter].resultDesc;
+                Description.Content = "Description: " + problems[counter].problemDesc;
 
+            }
+            else
+            {
+                ProblemDates.Content = "Problem id: " + problems[counter].problemID + " Problem started at " + problems[counter].beginDate.Value.ToString("dd-MM-yy") +
+                                       "\nNot closed";
+                Description.Content = "Description: " + problems[counter].problemDesc;
+                ResultDesc.Content = ""; 
+            }
+               
+
+
+        }
         private void ClientInfoButton_Click(object sender, RoutedEventArgs e)
         {
            
@@ -63,7 +83,12 @@ namespace WorkShop.UserControls
 
         private void ProblemInfo_Click(object sender, RoutedEventArgs e)
         {
-
+            Counter++;
+            if (Counter == Problems.Count)
+            {
+                Counter = 0;
+            }
+            FillProblemGrid(Counter);
         }
     }
 }

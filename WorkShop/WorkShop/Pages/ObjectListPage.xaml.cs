@@ -30,14 +30,14 @@ namespace WorkShop.Pages
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                if (ClientComboBox.HasItems) _viewModel.ClientChangedCmd.Execute(e.AddedItems[0]);
-            }
-            catch
-            {
-                //ignored do nothing istead of 'isworking bools'
-            }
+            //try
+            //{
+            //    if (ClientComboBox.HasItems) _viewModel.ClientChangedCmd.Execute(e.AddedItems[0]);
+            //}
+            //catch
+            //{
+            //    //ignored do nothing istead of 'isworking bools'
+            //}
 
         }
 

@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
-        <TextBox Grid.Column="0" Grid.Row="0" Text="Obj" HorizontalAlignment="Center"  Foreground="White" Background="Gray"  FontSize="45" Width="80" Height="80" VerticalAlignment="Stretch"/>
+        <TextBox Grid.Column="0" Grid.Row="0" Text="Obj" HorizontalAlignment="Center"  Foreground="White" Background="Gray"  FontSize="45" Width="80" Height="80" VerticalAlignment="Top"/>
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -42,9 +42,24 @@
             </Grid>
            
             <Label Grid.Row="1" Grid.Column="0" Content="Client Info "  Name="ClientInfo" FontSize="11" Foreground="Gray" Margin="0,0,0,0"/>
-            <Button Grid.Row="1"  Content="Show Info" Name="ClientInfoButton" FontSize="12" Foreground="Gray" Margin="0,5,15,5" HorizontalAlignment="Right" Click="ClientInfoButton_Click"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Problem Info " Name="ProblemInfo" FontSize="12" Foreground="Gray" Margin="0,0,0,0"/>
-            <Button Grid.Row="2"  Content="Show Info" Name="ProblemInfoButton" FontSize="12" Foreground="Gray" Margin="0,5,15,10" HorizontalAlignment="Right" MaxWidth="60" MaxHeight="20" Click="ProblemInfo_Click"/>
+            <!--<Button Grid.Row="1"  Content="Show Info" Name="ClientInfoButton" FontSize="12" Foreground="Gray" Margin="0,5,15,5" HorizontalAlignment="Right" Click="ClientInfoButton_Click"/>-->
+            <Grid Grid.Row="2" Grid.Column="0"  Name="ProblemInfo" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" FontSize="12" Content=""  Foreground="MidnightBlue" Margin="0,0,0,0"  Name="ProblemDates"/>
+                <Label Grid.Column="0" Grid.Row="1" Name="Description"  Content=""  FontSize="12" Foreground="MidnightBlue" Margin="0,0,0,0"/>
+                <Label Grid.Column="0" Grid.Row="2" Name="ResultDesc" Content=""  FontSize="12" Foreground="MidnightBlue" Margin="0,0,0,0"/>
+                <Button Grid.Row="0" Grid.Column="1" Content="Scroll Problem" Name="ProblemInfoButton" FontSize="12" Foreground="Gray" Margin="0,5,10,10" HorizontalAlignment="Right" MaxWidth="80" MaxHeight="20" Click="ProblemInfo_Click"/>
+            </Grid>
+                
+           
         </Grid>
     </Grid>
 </UserControl>
