@@ -70,7 +70,7 @@ namespace WorkShop.Pages
             {
                 if (item.IsSelected)
                 {
-                   // if (NavigationService != null) NavigationService.Navigate(new ProblemsTaskListPage()));
+                    if (NavigationService != null) NavigationService.Navigate(new ProblemsTaskListPage(item));
                     return;
                 }
 

@@ -5,35 +5,87 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using DataLayer;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using WorkShop.UserControls;
+using Task = DataLayer.Task;
 
 namespace WorkShop.ViewModel
 {
     public class ProblemsTaskListViewModel : ViewModelBase
     {
-        TaskListItem _w0 = new TaskListItem("Topic 1", "Kowalski","16-06-2016", "testdescritpion", "done without problems");
-        TaskListItem _w1 = new TaskListItem("Topicrve 1", "Kazmierczak","16-06-2016", "testdescritpion", "done without problems");
-        TaskListItem _w2 = new TaskListItem("Topic sdas1", "Glac","16-06-2016", "testdescritpiontestdescritpiontestdescritpiontestdescritpiontestdescritpiontestdescritpiontestdescritpion", "done without problems");
-        TaskListItem _w3 = new TaskListItem("Topic sad1", "Kowalski","16-6-2016", "testdescritpion", "done without problems");
-        TaskListItem _w4 = new TaskListItem("Topic vdverver1", "Kowalski","14-06-2016", "testdescritpiontestdescritpiontestdescritpiontestdescritpion", "done without problems");
+        public ICommand LoadCmd { get; set; }
+        public ICommand RefreshCmd { get; set; }
+        public ICommand ClearFieldsCmd { get; set; }
+        public ICommand AddTaskCmd { get; set; }
+        public ICommand FillFieldsByClickedItemCmd { get; set; }
 
+        private DateTime _beginDate;
+        private DateTime _endDate;
+        private ObservableCollection<Employee> _employees;
+        private Employee _selectedEmployee;
+        private string _taskId;
+        private string _description;
+        private string _resultDescription;
+        private ProblemListItem _currentProblem;
+        private ObservableCollection<ProblemListItem> _currentProblemAsList;
+        private ObservableCollection<TaskListItem> _tasksList;
 
+        public DateTime BeginDate
+        {
+            get { return _beginDate; }
+            set { Set(ref _beginDate, value); }
+        }
+        public DateTime EndDate
+        {
+            get { return _endDate; }
+            set { Set(ref _endDate, value); }
+        }
+        public ObservableCollection<Employee> Employees
+        {
+            get { return _employees; }
+            set { Set(ref _employees, value); }
+        }
 
-
+        public Employee SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set { Set(ref _selectedEmployee, value); }
+        }
+        public string TaskId
+        {
+            get { return _taskId; }
+            set { Set(ref _taskId, value); }
+        }
+        public string Description
+        {
+            get { return _description; }
+            set { Set(ref _description, value); }
+        }
+        public string ResultDescription
+        {
+            get { return _resultDescription; }
+            set { Set(ref _resultDescription, value); }
+        }
+        public ObservableCollection<ProblemListItem> CurrentProblemAsList
+        {
+            get { return _currentProblemAsList; }
+            set { Set(ref _currentProblemAsList, value); }
+        }
+        public ProblemListItem CurrentProblem
+        {
+            get { return _currentProblem; }
+            set { Set(ref _currentProblem, value); }
+        }
         public ObservableCollection<TaskListItem> TasksList
         {
             get { return _tasksList; }
             set { Set(ref _tasksList, value); }
         }
-
-        private ObservableCollection<TaskListItem> _tasksList;
-        public ICommand LoadCmd { get; set; }
-        public ICommand ReloadCmd { get; set; }
-
-
+        
         public ProblemsTaskListViewModel()
         {
             InitializeCommands();
@@ -41,55 +93,105 @@ namespace WorkShop.ViewModel
         private void InitializeCommands()
         {
             LoadCmd = new RelayCommand(Load);
-            ReloadCmd = new RelayCommand<int>(Reload);
+            RefreshCmd = new RelayCommand(Refresh);
+            ClearFieldsCmd = new RelayCommand(ClearFields);
+            AddTaskCmd = new RelayCommand(AddTask);
+            FillFieldsByClickedItemCmd = new RelayCommand<DataLayer.Task>(FillFieldsByClickedItem);
         }
-        public void Reload(int id)
+        private void FillFieldsByClickedItem(Task task)
         {
-            ObservableCollection<TaskListItem> tasksList = new ObservableCollection<TaskListItem>();
-            var tasks = BizLayer.Query.TaskQuery.GetTasks();
-            var sortedTasks = new List<DataLayer.Task>();
-            foreach(var task in tasks)
+            Description = task.taskDesc;
+            TaskId = task.taskID.ToString();
+            ResultDescription = task.resultDesc;
+            BeginDate = task.beginDate.Value;
+            EndDate = task.endDate.Value;
+            try
             {
-                if (task.problemID == id) sortedTasks.Add(task);
+                if (Employees.Any())
+                    SelectedEmployee = task.Employee;
             }
-            if (sortedTasks.Any())
+            catch
             {
-                foreach (var task in sortedTasks)
-                {
-                    if (task.employID != null)
-                    {
-                        var empl = BizLayer.Query.EmployeesQuery.GetEmployee(task.employID.Value);
-                        //empl wypluwa chyba prywatnie wszystko i nie mozna do niego wejsc
-                        if (task.problemID != null && task.endDate.HasValue)
-                            tasksList.Add(new TaskListItem(task.problemID.Value.ToString(), "Seba paczek",
-                                task.endDate.Value.ToString(CultureInfo.CurrentCulture), task.taskDesc, task.resultDesc));
-                    }
-                }
-                TasksList = tasksList;
+                //ignored :)
+            }
+            
+        }
+        private void AddTask()
+        {
+            if (!String.IsNullOrEmpty(Description) && SelectedEmployee != null)
+            {
+                if(string.IsNullOrEmpty(TaskId))
+                    BizLayer.Query.TaskQuery.AddTask(BeginDate,EndDate,Description,ResultDescription,"removethisprop",CurrentProblem.Problem.problemID,SelectedEmployee.employID);
+                else BizLayer.Query.TaskQuery.UpdateTask(Int32.Parse(TaskId),BeginDate,EndDate,Description,ResultDescription,"removethisproperty",CurrentProblem.Problem.problemID,SelectedEmployee.employID);
+                MessageBox.Show("Operation successfull", "OK",
+                  MessageBoxButton.OK);
+                ClearFields();
+                Load();
             }
             else
             {
-                ObservableCollection<TaskListItem> fakeTasks = new ObservableCollection<TaskListItem>();
-                fakeTasks.Add(_w0);
-                fakeTasks.Add(_w1);
-                fakeTasks.Add(_w2);
-                fakeTasks.Add(_w3);
-                fakeTasks.Add(_w4);
-                TasksList = tasksList;
+                MessageBox.Show("Operation failed", "Ops!",
+                  MessageBoxButton.OK);
+                Load();
             }
-          
         }
-        public void Load()
+        private void ClearFields()
         {
-          
+            Description = String.Empty;
+            TaskId = String.Empty;
+            ResultDescription = String.Empty;
+            BeginDate = DateTime.Today;
+            EndDate = DateTime.MaxValue;
+            try
+            {
+                if (Employees.Any())
+                    SelectedEmployee = Employees.FirstOrDefault();
+            }
+            catch
+            {
+                
+            }
             
-            
-            //Nie można wykonać operacji tworzenia, aktualizacji lub usuwania w odniesieniu do elementu 
-            //„Table(Task)”, ponieważ nie ma ona klucza podstawowego
-            //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow 23problemu numer 3", "resultdescpire", "open", 3, 1);
-            //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow 12problemu numer 3", "resultdescpire", "open", 3, 1);
-            //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow21212 problemu numer 2", "resultdescpire", "open", 2, 1);
-            //BizLayer.Query.TaskQuery.AddTask(DateTime.Today, DateTime.MaxValue, "jeden z taskow 342342problemu numer 2", "resultdescpire", "open", 2, 1);
+        }
+        private void Refresh()
+        {
+            Load();
+        }
+        private void Load()
+        {
+            //Combobox Employees fill
+            var empolyees = BizLayer.Query.EmployeesQuery.GetEmployees();
+            var empolyeesObservable = new ObservableCollection<Employee>();
+            foreach (var e in empolyees)
+            {
+                if (e.role.Contains("mplo"))
+                empolyeesObservable.Add(e);
+            }
+            if (empolyeesObservable.Any())
+            {
+                Employees = empolyeesObservable;
+                SelectedEmployee = Employees.FirstOrDefault();
+            }
+            //CurrentProblem inject
+            var currentProblemAsList = new ObservableCollection<ProblemListItem>();
+            currentProblemAsList.Add(CurrentProblem);
+            CurrentProblemAsList = currentProblemAsList;
+            //TasksList Load
+            var tasks = BizLayer.Query.TaskQuery.GetTasks();
+            var tasksListForCurrentProblem = new ObservableCollection<TaskListItem>();
+            foreach (var t in tasks)
+            {
+                if(t.problemID.HasValue)
+                    if (t.problemID.Value == CurrentProblem.Problem.problemID)
+                    {
+                       tasksListForCurrentProblem.Add(new TaskListItem(t));
+                    }
+            }
+            if (tasksListForCurrentProblem.Any())
+            {
+                TasksList = tasksListForCurrentProblem;
+            }
+            ClearFields();
         }
     }
 }

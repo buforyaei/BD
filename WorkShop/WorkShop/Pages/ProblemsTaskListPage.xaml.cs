@@ -12,17 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkShop.UserControls;
 using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
 {
-    /// <summary>
-    /// Interaction logic for ProblemsTaskList.xaml
-    /// </summary>
     public partial class ProblemsTaskListPage : Page
     {
         private ProblemsTaskListViewModel _viewModel = new ProblemsTaskListViewModel();
-          public int Id { get; set; }
+    
+
         public ProblemsTaskListPage()
         {
             InitializeComponent();
@@ -30,35 +29,48 @@ namespace WorkShop.Pages
             _viewModel.LoadCmd.Execute(null);
         }
 
-        public ProblemsTaskListPage(string id)
+        public ProblemsTaskListPage(ProblemListItem problemlistItem)
         {
             InitializeComponent();
-            try
-            {
-                Id = Int32.Parse(id.Substring(4));
-                _viewModel.ReloadCmd.Execute(Id);
-            }
-            catch (Exception e)
-            {
-                // ignored
-            }
+            DataContext = _viewModel;
+            _viewModel.CurrentProblem = problemlistItem;
+            
+            _viewModel.LoadCmd.Execute(null);
+             
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.ProblemsPage);
+            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.MenuManagerPage);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void CurrentProblemGrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //konstruktor musi przekaza prametry tasku
-            if (NavigationService != null) NavigationService.Navigate(new TaskSimplePage());
+            if (CurrentProblemGrid.Visibility == Visibility.Visible)
+            {
+                CurrentProblemGrid.Visibility = Visibility.Collapsed;
+                Problem.Visibility = Visibility.Visible;
+            }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Problem_OnClick(object sender, RoutedEventArgs e)
         {
-            if (NavigationService != null) NavigationService.Navigate(new TaskSimplePage(Id));
+            if (Problem.Visibility == Visibility.Visible)
+            {
+                Problem.Visibility = Visibility.Collapsed;
+                CurrentProblemGrid.Visibility = Visibility.Visible;
+            }
+        }
+      
+
+        private void TasksListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!TasksListBox.Items.IsEmpty)
+            {
+                var c = TasksListBox.SelectedItem as TaskListItem;
+                if (c != null) _viewModel.FillFieldsByClickedItemCmd.Execute(c.ThisTask);
+            }
         }
     }
 }

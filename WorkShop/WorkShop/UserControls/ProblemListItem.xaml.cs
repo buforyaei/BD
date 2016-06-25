@@ -42,7 +42,12 @@ namespace WorkShop.UserControls
             
         }
 
-   
+        public ProblemListItem()
+        {
+            InitializeComponent();
+        }
+
+
         private void UIElement_OnMouseUp(object sender, MouseButtonEventArgs e)
         {
 

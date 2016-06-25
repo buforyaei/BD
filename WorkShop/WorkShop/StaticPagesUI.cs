@@ -21,7 +21,6 @@ namespace WorkShop
         public static MyTasksPage MyTasksPage = new MyTasksPage();
         public static ObjectListPage ObjectListPage = new ObjectListPage();
         public static ProblemsPage ProblemsPage = new ProblemsPage();
-        public static ProblemsTaskListPage ProblemsTaskListPage = new ProblemsTaskListPage();
         public static RaportPage RaportPage = new RaportPage();
         public static RegisterProblemPage RegisterProblemPage = new RegisterProblemPage();
         public static SearchPage SearchPage = new SearchPage();

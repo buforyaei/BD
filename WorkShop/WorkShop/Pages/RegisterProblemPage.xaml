@@ -29,7 +29,7 @@
         
         <Label Grid.Row="1" Grid.Column="0" Content="End date:" HorizontalAlignment="Right" Margin="0,0,0,5" Foreground="Gray" FontSize="15"/>
 
-        <DatePicker Grid.Row="1" Grid.Column="1" Text="{Binding EndDate}"  Name="EndDate"  Margin="0,0,20,5" MaxWidth="250" MinWidth="250"
+        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding EndDate}"  Name="EndDate"  Margin="0,0,20,5" MaxWidth="250" MinWidth="250"
                     HorizontalAlignment="Left" Foreground="Gray" FontSize="15"/>
         
         <Label Grid.Row="2" Grid.Column="0" Content="Object:" HorizontalAlignment="Right" Margin="0,0,0,5" Foreground="Gray" FontSize="15"/>

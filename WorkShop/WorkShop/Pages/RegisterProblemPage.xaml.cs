@@ -31,7 +31,8 @@ namespace WorkShop.Pages
             InitializeComponent();
             DataContext = _viewModel;
             _viewModel.LoadCmd.Execute(null);
-            
+            _viewModel.LoadWithProblemCmd.Execute(problemItem);
+
 
 
 

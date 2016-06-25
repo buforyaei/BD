@@ -10,6 +10,7 @@ using BizLayer.Query;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using WorkShop.Models;
+using WorkShop.UserControls;
 
 namespace WorkShop.ViewModel
 {
@@ -20,6 +21,7 @@ namespace WorkShop.ViewModel
         public ICommand RegisterProblemCmd { get; set; }
         public ICommand ClearFieldsCmd { get; set; }
         public ICommand RefreshCmd { get; set; }
+        public ICommand LoadWithProblemCmd { get; set; }
         private string _descritpion;
         private string _resultDescritpion;
         private DataLayer.Object _selectedObject;
@@ -75,8 +77,17 @@ namespace WorkShop.ViewModel
             RegisterProblemCmd = new RelayCommand(RegisterProblem);
             ClearFieldsCmd = new RelayCommand(ClearFields); 
             RefreshCmd = new RelayCommand(Refresh);
+            LoadWithProblemCmd = new RelayCommand<ProblemListItem>(LoadWithProblem);
         }
 
+        private void LoadWithProblem(ProblemListItem problemItem)
+        {
+            BeginDate = problemItem.Problem.beginDate.Value;
+            EndDate = problemItem.Problem.endDate.Value;
+            ProblemId = problemItem.Problem.problemID.ToString();
+            Descritpion = problemItem.Problem.problemDesc;
+            ResultDescritpion = problemItem.Problem.resultDesc;
+        }
         private void Refresh()
         {
             Load();
@@ -101,12 +112,14 @@ namespace WorkShop.ViewModel
 
                 MessageBox.Show("Operation successfull", "OK",
                      MessageBoxButton.OK);
+                Load();
             }
             else
             {
                 MessageBox.Show("Some unnullable fields where left emppty.", "Ops!",
                     MessageBoxButton.OK);
             }
+            
         }
         private  void Load()
         {
