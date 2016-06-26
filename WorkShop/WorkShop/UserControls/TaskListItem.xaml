@@ -38,8 +38,8 @@
                 <Label Grid.Column="2" Grid.Row="0" Content="Assigned to: " Name="Assigned" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
                 <Label Grid.Column="3" Grid.Row="0" Content="" Name="Date" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
                 </Grid>
-                <Label Grid.Row="1"  Content="Description:" Name="Description" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
-            <Label Grid.Row="2"  Content="Comment:" Name="Comment" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
+                <Label Grid.Row="1"  Content="Description: " Name="Description" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
+            <Label Grid.Row="2"  Content="Comment: " Name="Comment" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
         </Grid>
         </Grid>
 </UserControl>

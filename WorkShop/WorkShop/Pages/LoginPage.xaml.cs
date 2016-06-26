@@ -94,8 +94,8 @@ namespace WorkShop.Pages
             BizLayer.Query.ObjectQuery.AddObject(1, "Volvo S60", "SJZ4564");
             BizLayer.Query.ObjectQuery.AddObject(2, "Fiat Punto", "SWD0545");
             BizLayer.Query.ProblemQuery.AddProblem(DateTime.Today, DateTime.MaxValue, "Wymiana opon.",null,1);
-            BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016,1,5), DateTime.Today, "Lakierowanie nadkola - lewego.", null, 2);
-            BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 3, 15), new DateTime(2016, 4, 1), "Spawanie progów", null, 1);
+            BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016,1,5), DateTime.Today, "Lakierowanie nadkola - lewego.", "Wykonano wszystko pomyślnie.", 2);
+            BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 3, 15), new DateTime(2016, 4, 1), "Spawanie progów", "All Done correctly", 1);
             /////////////////////
             var persons = BizLayer.Query.PersonQuery.GetPersons().ToArray();
             StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password.GetHashCode().ToString());

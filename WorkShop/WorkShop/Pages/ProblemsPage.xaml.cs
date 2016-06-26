@@ -89,8 +89,11 @@ namespace WorkShop.Pages
            
         }
 
-      
 
-
+        private void ShowOnlyOpenProblems_OnClick(object sender, RoutedEventArgs e)
+        {
+            _viewModel.ShowOnlyOpenProblemsCmd.Execute(null);
+          
+        }
     }
 }

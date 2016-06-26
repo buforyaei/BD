@@ -37,7 +37,7 @@ namespace WorkShop.UserControls
             }
             else
             {
-                Date.Content = "Start date: " + task.beginDate.Value.ToString("yy-MM-dd") + " End Date: " + ThisTask.endDate.Value.ToString("yy-MM-dd");
+                Date.Content = "Start date: " + task.beginDate.Value.ToString("yy-MM-dd") + "\nEnd Date: " + ThisTask.endDate.Value.ToString("yy-MM-dd");
                 Date.Foreground = Brushes.DarkGreen;
             }
         }

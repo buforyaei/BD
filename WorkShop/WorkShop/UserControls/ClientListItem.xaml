@@ -47,10 +47,10 @@
                     <Label Grid.Column="5" Grid.Row="0" Name="Phone" Content=""  FontSize="12" Foreground="Gray" Margin="5,0,0,0"/>
                    
                 </Grid>
-                <Label Grid.Column="0" Grid.Row="1" Content="Addres:" FontSize="12" Foreground="Gray" Margin="0,0,0,0"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Address:" FontSize="12" Foreground="Gray" Margin="0,0,0,0"/>
                 <Label Grid.Column="1" Grid.Row="1" Name="Address" Content="" FontSize="12" Foreground="Gray" Margin="50,0,0,0"/>
-                <Label Grid.Row="2" Grid.Column="0" Content="Object Info:" Name="ObjectInfo"  FontSize="12" Foreground="Gray" Margin="0,0,0,0"/>
-                <Button Grid.Row="2"  Content="Show Info" Name="ObjectInfoButton" FontSize="12" Foreground="Gray" Margin="0,5,15,5" HorizontalAlignment="Right" Click="ObjectInfoButton_Click" />
+                <Label Grid.Row="2" Grid.Column="0" Content="Client's objects in data base:" Name="ObjectInfo"  FontSize="12" Foreground="Gray" Margin="0,0,0,0"/>
+                <!--<Button Grid.Row="2"  Content="Show Info" Name="ObjectInfoButton" FontSize="12" Foreground="Gray" Margin="0,5,15,5" HorizontalAlignment="Right" Click="ObjectInfoButton_Click" />-->
                 <!--<Label Grid.Row="2" Grid.Column="0" Content="Problem Info:" Name="Comment" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
             <Button Grid.Row="2"  Content="Show Info" Name="ProblemInfo" FontSize="12" Foreground="Gray" Margin="0,5,15,10" HorizontalAlignment="Right" Click="ProblemInfo_Click"/>-->
             </Grid>

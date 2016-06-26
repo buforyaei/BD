@@ -31,14 +31,14 @@ namespace WorkShop.UserControls
                 Address.Content = Client.Person.city + " " + Client.Person.street + " " + Client.Person.housenumber;
                 Phone.Content = Client.Person.phone.ToString();
                 ClientId.Content = Client.clientID.ToString();
-                //if (Objects.Any())
-                //{
-                //    foreach (var o in Objects)
-                //    {
-                //        //wypisac ladnie objects jakos
-                //       // ObjectInfo.Content = 
-                //    }
-                //}
+                var objects = BizLayer.Query.ObjectQuery.GetObjects();
+                int clientObjectsNumber = 0;
+                foreach (var o in objects)
+                {
+                    if (o.clientID == Client.clientID)
+                        clientObjectsNumber ++;
+                }
+                ObjectInfo.Content += clientObjectsNumber.ToString();
             }
         }
 

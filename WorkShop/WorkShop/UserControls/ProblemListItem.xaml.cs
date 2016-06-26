@@ -25,19 +25,34 @@ namespace WorkShop.UserControls
             InitializeComponent();
             Problem = problem;
             Description.Content += Problem.problemDesc;
-            ResultDescription.Content += Problem.resultDesc;
             var obj = BizLayer.Query.ObjectQuery.GetObject(Problem.objectID.Value);
             Obj = obj.First();
-            ObjectInfo.Content += " Name:" + Obj.name + " Model:" + Obj.model + " Id:" + Obj.objectID + " Client Name:" + Obj.Client;
+            ObjectInfo.Content += " Name: " + Obj.name + " Model: " + Obj.model + " Id: " + Obj.objectID + "\nClient " + Obj.Client;
             if (problem.endDate.Value.Year ==DateTime.MaxValue.Year)
             {
                 Date.Content = "Start date: " + Problem.beginDate.Value.ToString("yy-MM-dd") + " Not closed";
                 Date.Foreground = Brushes.DarkRed;
+                ResultDescription.Content += "";
+                int taskNumber = 0;
+                int openTaskNumber = 0;
+                var tasks = BizLayer.Query.TaskQuery.GetTasks();
+                foreach (var t in tasks)
+                {
+                    if (t.problemID == Problem.problemID)
+                    {
+                        taskNumber++;
+                        if (t.endDate.Value.Year == DateTime.MaxValue.Year)
+                            openTaskNumber++;
+                    }
+                }
+                ResultDescription.Content = "Task number: " + taskNumber + "  Not closed: " + openTaskNumber;
+
             }
             else
             {
                 Date.Content = "Start date: " + Problem.beginDate.Value.ToString("yy-MM-dd") + " End Date: " + Problem.endDate.Value.ToString("yy-MM-dd");
                 Date.Foreground = Brushes.DarkGreen;
+                ResultDescription.Content += Problem.resultDesc;
             }
             
         }
