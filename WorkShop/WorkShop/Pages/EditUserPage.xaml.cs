@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkShop.UserControls;
 using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
 {
     public partial class EditUserPage : Page
     {
-
+        public UserListItem SelectedUserItem { get; set; }
 
         private EditUserViewModel ViewModel
         {
@@ -36,14 +37,39 @@ namespace WorkShop.Pages
             ViewModel.LoadCmd.Execute(null);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddUserButton_Click(object sender, RoutedEventArgs e)
         {
             if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.AddUserPage);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void GoBackButton_Click_1(object sender, RoutedEventArgs e)
         {
             if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.MenuAdminPage);
+        }
+      
+        private void EditUser_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (SelectedUserItem != null)
+            {
+                var user = BizLayer.Query.EmployeesQuery.GetEmployee(Int32.Parse(SelectedUserItem.Id.Content.ToString())).ToList();
+
+                if (NavigationService != null) NavigationService.Navigate(new AddUserPage(user.First()));
+            }
+           
+        }
+
+        private void DeleteUser_OnClick(object sender, RoutedEventArgs e)
+        {
+           //deleteuser with BizLayer
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!ListBox.Items.IsEmpty)
+            {
+                var c = ListBox.SelectedItem as UserListItem;
+                if (c != null) SelectedUserItem = c;
+            }
         }
     }
 }

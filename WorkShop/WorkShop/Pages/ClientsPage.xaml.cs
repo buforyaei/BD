@@ -19,6 +19,7 @@ namespace WorkShop.Pages
 {
     public partial class ClientsPage : Page
     {
+        public int LastClientId { get; set; }
         private ClientsViewModel _viewModel = new ClientsViewModel(); 
         public ClientsPage()
         {
@@ -37,8 +38,37 @@ namespace WorkShop.Pages
             if (!ListBox.Items.IsEmpty)
             {
                 var c = ListBox.SelectedItem as ClientListItem;
-                if (c != null) _viewModel.FillFieldsByClickedItem(c.Client);
+                if (c != null)
+                {
+                    _viewModel.FillFieldsByClickedItem(c.Client);
+                    LastClientId = c.Client.clientID;
+                }
             }
+        }
+
+        private void ObjectsListBox_OnSelectionChanged_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           // throw new NotImplementedException();
+        }
+
+        private void SelectedObjectsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LastClientId != 0) { 
+                _viewModel.ClientsObjectsLoadCmd.Execute(LastClientId);
+                if (ListBox.Visibility == Visibility.Visible)
+                {
+                    ListBox.Visibility = Visibility.Collapsed;
+                    ObjectsListBox.Visibility = Visibility.Visible;
+                    SelectedObjectsButton.Background = Brushes.Gray;
+                }
+                else
+                {
+                    ListBox.Visibility = Visibility.Visible;
+                    ObjectsListBox.Visibility = Visibility.Collapsed;
+                    SelectedObjectsButton.Background = Brushes.DodgerBlue;
+                }
+            }
+           
         }
     }
 }

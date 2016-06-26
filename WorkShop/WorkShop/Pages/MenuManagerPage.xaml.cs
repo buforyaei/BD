@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkShop.Models;
 using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
@@ -44,7 +45,9 @@ namespace WorkShop.Pages
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             ViewModelLocator.Cleanup();
-            Application.Current.Shutdown();
+            // Application.Current.Shutdown();
+            StaticPagesUi.User = new User();
+            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.LoginPage);
         }
 
         private void ClientsButton_Click(object sender, RoutedEventArgs e)

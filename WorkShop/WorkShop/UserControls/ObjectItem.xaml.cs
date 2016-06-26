@@ -63,12 +63,24 @@ namespace WorkShop.UserControls
                                        "\nis closed at " + problems[counter].endDate.Value.ToString("dd-mm-yy");
                 ResultDesc.Content = "Result: " + problems[counter].resultDesc;
                 Description.Content = "Description: " + problems[counter].problemDesc;
+                ProblemDates.Foreground = Brushes.MidnightBlue;
 
             }
             else
             {
+                var tasks = BizLayer.Query.TaskQuery.GetTasks();
+                int tasksNumberForCurrentProblem = 0;
+                foreach (var t in tasks)
+                {
+                    if (t.problemID == problems[counter].problemID)
+                    {
+                        if (t.endDate.Value.Year != DateTime.MaxValue.Year)
+                            tasksNumberForCurrentProblem++;
+                    }
+                }
                 ProblemDates.Content = "Problem id: " + problems[counter].problemID + " Problem started at " + problems[counter].beginDate.Value.ToString("dd-MM-yy") +
-                                       "\nNot closed";
+                                       "\nNot closed with " + tasksNumberForCurrentProblem + " open tasks";
+                ProblemDates.Foreground = Brushes.DarkRed;
                 Description.Content = "Description: " + problems[counter].problemDesc;
                 ResultDesc.Content = ""; 
             }

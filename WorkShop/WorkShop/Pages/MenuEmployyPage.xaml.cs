@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using WorkShop.Models;
 using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
@@ -17,7 +18,9 @@ namespace WorkShop.Pages
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ViewModelLocator.Cleanup();
-            Application.Current.Shutdown();
+            // Application.Current.Shutdown();
+            StaticPagesUi.User = new User();
+            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.LoginPage);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

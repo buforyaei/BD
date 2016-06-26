@@ -16,12 +16,13 @@ namespace WorkShop.Pages
 
         private void Main_Loaded(object sender, RoutedEventArgs e)
         {
-            Main.Content = new LoginPage();
+            Main.Content = new LoginPage(ProgressBar, LoadingLabel);
+          //  ProgressBar.Visibility = Visibility.Collapsed;
         }
 
         private void ProgressBar_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            ProgressBar.Visibility = Visibility.Collapsed;
         }
     }
 }

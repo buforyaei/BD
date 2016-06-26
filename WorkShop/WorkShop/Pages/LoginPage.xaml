@@ -6,8 +6,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="600"
 	Title="MainPage"
-      DataContext="{Binding Login, Source={StaticResource Locator}}">
-
+      DataContext="{Binding Login, Source={StaticResource Locator}}" Name="Page" Visibility="Hidden" Loaded="Page_Loaded">
+    
     <Grid Background="White">
       <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using WorkShop.Models;
 using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
@@ -14,11 +15,25 @@ namespace WorkShop.Pages
     public partial class LoginPage : Page
     {
         private LoginViewModel _viewModel = new LoginViewModel();
-        
+        private ProgressBar ProgressBarMainWindow { get; set; }
+        private Label LoginLabelMainWindow { get; set; }
         public LoginPage()
         {
             InitializeComponent();
-            
+            //ProgressBarMainWindow = progressBar;
+            DataContext = _viewModel;
+            /////////////////
+            LoginBox.Text = "mant";
+            //LoginBox.Text = "admint";
+            //LoginBox.Text = "emoplt";
+            LoginLabel.Visibility = Visibility.Collapsed;
+            ////////////////
+        }
+        public LoginPage(ProgressBar progressBar, Label loadingLabel)
+        {
+            InitializeComponent();
+            ProgressBarMainWindow = progressBar;
+            LoginLabelMainWindow = loadingLabel;
             DataContext = _viewModel;
             /////////////////
             LoginBox.Text = "mant";
@@ -67,9 +82,9 @@ namespace WorkShop.Pages
             BizLayer.Query.PersonQuery.AddPerson("Admin Test", "Rybnik", "Rynek", "23A", "769865456");
             BizLayer.Query.PersonQuery.AddPerson("ManAger Test", "Rybnik", "Rudzka", "13A", "769865456");
             BizLayer.Query.PersonQuery.AddPerson("Employee Test", "Rybnik", "Rudzka", "13C", "769865456");
-            BizLayer.Query.EmployeesQuery.AddEmployee("admint", "", "Admin", 1);
-            BizLayer.Query.EmployeesQuery.AddEmployee("mant", "", "Manager", 2);
-            BizLayer.Query.EmployeesQuery.AddEmployee("emplt", "", "Employy", 3);
+            BizLayer.Query.EmployeesQuery.AddEmployee("admint", "".GetHashCode().ToString(), "Admin", 1);
+            BizLayer.Query.EmployeesQuery.AddEmployee("mant", "".GetHashCode().ToString(), "Manager", 2);
+            BizLayer.Query.EmployeesQuery.AddEmployee("emplt", "".GetHashCode().ToString(), "Employy", 3);
             //////////////////////
             BizLayer.Query.PersonQuery.AddPerson("Johan", "Oslo", "TsjfStrrer", "253", "789456123");
             BizLayer.Query.PersonQuery.AddPerson("Tom Scavo", "Sadney", "WhisteriaLane", "1012", "325623564");
@@ -83,7 +98,7 @@ namespace WorkShop.Pages
             BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 3, 15), new DateTime(2016, 4, 1), "Spawanie progów", null, 1);
             /////////////////////
             var persons = BizLayer.Query.PersonQuery.GetPersons().ToArray();
-            StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password);
+            StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password.GetHashCode().ToString());
             var users = BizLayer.Query.EmployeesQuery.GetEmployees();
             if (NavigationService != null && _viewModel.Login())
             {
@@ -94,6 +109,20 @@ namespace WorkShop.Pages
                 else Application.Current.Shutdown();
 
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+            StaticPagesUi.User = new User();
+           // BizLayer.Query.ObjectQuery.GetObjects();
+            Page.Visibility = Visibility.Visible;
+            if (LoginLabelMainWindow != null && ProgressBarMainWindow != null)
+            {
+                LoginLabelMainWindow.Visibility = Visibility.Collapsed;
+                ProgressBarMainWindow.Visibility = Visibility.Collapsed;
+            }
+            
         }
     }
 }

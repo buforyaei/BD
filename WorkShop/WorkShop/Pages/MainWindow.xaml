@@ -5,5 +5,7 @@
         Title="Work Shop" Height="500" Width="700" MinHeight="500" MaxHeight="500" MinWidth="700" MaxWidth="700">
     <Grid>
         <Frame NavigationUIVisibility="Hidden" x:Name="Main" Margin="0,0,0,0" Loaded="Main_Loaded"/>
+        <Label Name="LoadingLabel" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="150,0,150,35">Loading...</Label>
+        <ProgressBar Name="ProgressBar" Width="400" IsIndeterminate="True" MaxHeight="15" Foreground="CornflowerBlue">  </ProgressBar>
     </Grid>
 </Window>

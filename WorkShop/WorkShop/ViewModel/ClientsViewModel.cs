@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using BizLayer.Query;
+using DataLayer;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using WorkShop.UserControls;
@@ -19,8 +20,15 @@ namespace WorkShop.ViewModel
           public ICommand AddClientCmd { get; set; }
           public ICommand ClearFieldsCmd { get; set; }
           public ICommand RefreshCmd { get; set; }
-
+          public ICommand ClientsObjectsLoadCmd { get; set; }
+          public ICommand FilterByNameCmd { get; set; }
         private ObservableCollection<ClientListItem> _clients;
+        private ObservableCollection<ObjectItem> _clientObjects;
+        public ObservableCollection<ObjectItem> ClientObjects
+        {
+            get { return _clientObjects; }
+            set { Set(ref _clientObjects, value); }
+        }
         public ObservableCollection<ClientListItem> Clients
         {
             get { return _clients; }
@@ -33,7 +41,12 @@ namespace WorkShop.ViewModel
             get { return _name; }
             set { Set(ref _name, value); }
         }
-
+        private string _filterString;
+        public string FilterString
+        {
+            get { return _filterString; }
+            set { Set(ref _filterString, value); }
+        }
         private string _phone;
         public string Phone
         {
@@ -75,8 +88,51 @@ namespace WorkShop.ViewModel
             RefreshCmd = new RelayCommand(Refresh);
             AddClientCmd = new RelayCommand(AddClient);
             ClearFieldsCmd = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(ClearFields);
+            ClientsObjectsLoadCmd = new RelayCommand<int>(ClientsObjectsLoad);
+            FilterByNameCmd = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(FilterByName);
         }
 
+        private void FilterByName()
+        {
+            if (string.IsNullOrEmpty(FilterString))
+                Load();
+            else
+            {
+                ObservableCollection<ClientListItem> clients = new ObservableCollection<ClientListItem>();
+                var clientsFromDb = ClientQuery.GetClients().ToList();
+                foreach (var c in clientsFromDb)
+                {
+                    if(c.Person.name.Contains(FilterString))
+                    clients.Add(new ClientListItem(c));
+                }
+                Clients = null;
+                Clients = clients;
+            }
+        }
+        private void ClientsObjectsLoad(int clientId)
+        {
+            ClientObjects = null;
+            var objects = BizLayer.Query.ObjectQuery.GetObjects();
+            var clientObjects = new ObservableCollection<ObjectItem>();
+            foreach (var o in objects)
+            {
+                if (o.clientID == clientId)
+                {
+                    var problems = BizLayer.Query.ProblemQuery.GetProblems();
+                    var objProblems = new List<Problem>();
+                    foreach (var p in problems)
+                    {
+                        if(p.objectID == o.objectID)
+                            objProblems.Add(p);
+                    }
+                        clientObjects.Add(new ObjectItem(o, o.Client, objProblems.ToList()));                 
+                }
+            }
+            if (clientObjects.Any())
+            {
+                ClientObjects = clientObjects;
+            }
+        }
         private void AddClient()
         {
             if (!string.IsNullOrEmpty(ClientId))

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DataLayer;
+using WorkShop.Models;
 using WorkShop.ViewModel;
 
 namespace WorkShop.Pages
@@ -21,11 +23,22 @@ namespace WorkShop.Pages
     /// </summary>
     public partial class AddUserPage : Page
     {
+        private AddUserViewModel _viewModel = new AddUserViewModel();
         public AddUserPage()
         {
             InitializeComponent();
+            DataContext = _viewModel;
+            _viewModel.LoadCmd.Execute(null);
         }
+        public AddUserPage(Employee employee)
+        {
+            InitializeComponent();
+            DataContext = _viewModel;
+            _viewModel.Employee = employee;
+          _viewModel.FillFieldsWithUser();
 
+
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ViewModelLocator.Cleanup();

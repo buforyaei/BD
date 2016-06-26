@@ -24,12 +24,36 @@ namespace WorkShop.ViewModel
             get { return _name; }
             set { Set(ref _name, value); }
         }
-
-        private string _address;
-        public string Address
+        private DataLayer.Employee _employee;
+        public DataLayer.Employee Employee
         {
-            get { return _address; }
-            set { Set(ref _address, value); }
+            get { return _employee; }
+            set { Set(ref _employee, value); }
+        }
+        private string _city;
+        public string City
+        {
+            get { return _city; }
+            set { Set(ref _city, value); }
+        }
+        private string _street;
+        public string Street
+        {
+            get { return _street; }
+            set { Set(ref _street, value); }
+        }
+        private string _houseNumber;
+        public string HouseNumber
+        {
+            get { return _houseNumber; }
+            set { Set(ref _houseNumber, value); }
+        }
+        
+        private string _userId;
+        public string UserId
+        {
+            get { return _userId; }
+            set { Set(ref _userId, value); }
         }
         private string _phone;
         public string Phone
@@ -62,34 +86,101 @@ namespace WorkShop.ViewModel
             AddUserCmd = new RelayCommand(AddUser); 
         }
 
+        public void FillFieldsWithUser()
+        {
+            Name = Employee.username;
+            UserId = Employee.employID.ToString();
+            Password = String.Empty;
+            Phone = Employee.Person.phone;
+            if (Employee.role.Contains("anager"))
+            {
+                IsEmployeeChecked = false; 
+            }
+            else
+            {
+                IsEmployeeChecked = true;
+            }
+            City = Employee.Person.city;
+            Street = Employee.Person.street;
+            HouseNumber = Employee.Person.housenumber;
+        }
         private void AddUser()
         {
-            if (Name != "" && Password != "" && Name != null && Password != null)
+            if (!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Phone) && !string.IsNullOrEmpty(City) &&
+                !string.IsNullOrEmpty(Street) && !string.IsNullOrEmpty(HouseNumber))
             {
-                //zabezpieczyc ze np spacje i literki nie moga byc w numerze telfonu
-               // BizLayer.Query.PersonQuery.AddPerson(Name,Address,Int32.Parse(Phone));
-                var persons = BizLayer.Query.PersonQuery.GetPersons().ToArray();
-                if (IsEmployeeChecked)
-                        BizLayer.Query.EmployeesQuery.AddEmployee(Name, Password, Role.Employy.ToString(),persons.Last().personID);
-                else 
-                        BizLayer.Query.EmployeesQuery.AddEmployee(Name, Password, Role.Manager.ToString(), persons.Last().personID);
-                MessageBox.Show("User was successfully added to system", "OK",
-                     MessageBoxButton.OK);
+                if (UserId == String.Empty)
+                {
+                    BizLayer.Query.PersonQuery.AddPerson(Name, City, Street, HouseNumber, Phone);
+                    var persons = BizLayer.Query.PersonQuery.GetPersons().ToList();
+                    var personId = persons[persons.Count - 1].personID;
+                        
+                        if (IsEmployeeChecked)
+                        {
+                            BizLayer.Query.EmployeesQuery.AddEmployee(Name, Password.GetHashCode().ToString(),
+                                Role.Employy.ToString(), personId);
+
+                        }
+                        else
+                        {
+                            BizLayer.Query.EmployeesQuery.AddEmployee(Name, Password.GetHashCode().ToString(),
+                                Role.Manager.ToString(), personId);
+
+                        }
+                    
+                    MessageBox.Show("Operation successfull", "OK",
+                        MessageBoxButton.OK);
+                    ClearFields();
+                }
+                else
+                {
+                    BizLayer.Query.PersonQuery.UpdatePerson(Employee.personID.Value, Name, City, Street, HouseNumber, Phone);
+                    if (IsEmployeeChecked)
+                    {
+                        if(Password==String.Empty)
+                        BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Name, Employee.password,
+                            Role.Employy.ToString(), Employee.personID.Value);
+                        else
+                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Name, Password.GetHashCode().ToString(),
+                          Role.Employy.ToString(), Employee.personID.Value);
+                    }
+                    else
+                    {
+                        if (Password == String.Empty)
+                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Name, Employee.password,
+                                Role.Manager.ToString(), Employee.personID.Value);
+                        else
+                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Name, Password.GetHashCode().ToString(),
+                          Role.Employy.ToString(), Employee.personID.Value);
+
+                    }
+                    MessageBox.Show("Operation successfull", "OK",
+                        MessageBoxButton.OK);
+                    ClearFields();
+                }
             }
             else
             {
                 MessageBox.Show("Some unnullable fields where left emppty.", "Ops!",
                     MessageBoxButton.OK);
             }
-            var users = BizLayer.Query.EmployeesQuery.GetEmployees();
-            Name = "";
-            Password = "";
-            Address = "";
-            Phone = "";
+
+
+        }
+
+        private void ClearFields()
+        {
+            Name = String.Empty;
+            Password = String.Empty;
+            City = String.Empty;
+            HouseNumber = String.Empty;
+            Street = String.Empty;
+            Phone = String.Empty;
+            UserId = String.Empty;
         }
         private  void Load()
         {
-            
+            ClearFields();
 
         }
     }
