@@ -33,7 +33,7 @@
             <TextBox Grid.Row="0" Grid.Column="1"  Margin="100,0,10,5" HorizontalAlignment="Stretch" Text="{Binding FilterString}" Foreground="Gray" FontSize="15" ></TextBox>
             <Button Grid.Column="0" Grid.Row="2" Content="Go Back" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="Gray" Click="Cancel_Click"  />
             <Button Grid.Column="0" Grid.Row="1" Content="Refresh (no filter)" Command="{Binding RefreshCmd}" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue"   />
-            <Button Grid.Column="1" Grid.Row="1"  Content="Edit selected problem" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="EditProblem_Click"   />
+            <Button Grid.Column="1" Name="EditSelectedProblemButton" Grid.Row="1"  Content="Edit selected problem" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="EditProblem_Click"   />
             <Button Grid.Column="1" Grid.Row="2"  Content="Show selected tasks list " Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="TasksList_Click"   />
         </Grid>
         

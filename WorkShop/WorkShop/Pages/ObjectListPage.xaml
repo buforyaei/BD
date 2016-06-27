@@ -59,7 +59,11 @@
         </Grid>
        
         <Grid Grid.Column="1">
-            <ListBox Margin="10" Name="ListBox" ItemsSource="{Binding Objects}" SelectionChanged="ListBox_OnSelectionChanged" SelectedItem="{Binding SelctedObject}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ListBox Margin="5" Grid.Row="0" Name="ListBox" ItemsSource="{Binding Objects}" SelectionChanged="ListBox_OnSelectionChanged" SelectedItem="{Binding SelctedObject}">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -67,6 +71,8 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
+            <Button Grid.Row="1" Content="Filter by name" Foreground="White" Background="DodgerBlue" Command="{Binding FilterByNameCmd}" HorizontalAlignment="Left" Margin="5,0,0,5"></Button>
+            <TextBox Grid.Row="1" Margin="90,0,5,5" HorizontalAlignment="Stretch" Text="{Binding FilterString}" Foreground="Gray" FontSize="15" ></TextBox>
         </Grid>
     </Grid>
 </Page>

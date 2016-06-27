@@ -120,13 +120,36 @@ namespace WorkShop.ViewModel
         {
             if (!String.IsNullOrEmpty(Description) && SelectedEmployee != null)
             {
-                if(string.IsNullOrEmpty(TaskId))
-                    BizLayer.Query.TaskQuery.AddTask(BeginDate,EndDate,Description,ResultDescription,"removethisprop",CurrentProblem.Problem.problemID,SelectedEmployee.employID);
-                else BizLayer.Query.TaskQuery.UpdateTask(Int32.Parse(TaskId),BeginDate,EndDate,Description,ResultDescription,"removethisproperty",CurrentProblem.Problem.problemID,SelectedEmployee.employID);
-                MessageBox.Show("Operation successfull", "OK",
-                  MessageBoxButton.OK);
-                ClearFields();
-                Load();
+                if (string.IsNullOrEmpty(TaskId) && StaticPagesUi.User.IsManaager())
+                {
+                    BizLayer.Query.TaskQuery.AddTask(BeginDate, EndDate, Description, ResultDescription,
+                     "removethisprop", CurrentProblem.Problem.problemID, SelectedEmployee.employID);
+                    MessageBox.Show("Operation successfull", "OK",
+                        MessageBoxButton.OK);
+                    ClearFields();
+                    Load();
+                }
+                 
+                else
+                {
+                    try
+                    {
+                        BizLayer.Query.TaskQuery.UpdateTask(Int32.Parse(TaskId), BeginDate, EndDate, Description,
+                            ResultDescription, "removethisproperty", CurrentProblem.Problem.problemID,
+                            SelectedEmployee.employID);
+                        MessageBox.Show("Operation successfull", "OK",
+                             MessageBoxButton.OK);
+                        ClearFields();
+                        Load();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Operation failed", "Ops!",
+                   MessageBoxButton.OK);
+                        Load();
+                    }
+                }
+              
             }
             else
             {

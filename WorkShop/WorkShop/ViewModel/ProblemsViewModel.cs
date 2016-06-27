@@ -69,10 +69,29 @@ namespace WorkShop.ViewModel
         {
             var problemsList = new ObservableCollection<ProblemListItem>();
             var problems = ProblemQuery.GetProblems().ToArray();
+            var allTasks = TaskQuery.GetTasks();
             foreach (var problem in problems)
             {
-                if(problem.endDate.Value.Year == DateTime.MaxValue.Year)
-                problemsList.Add(new ProblemListItem(problem));
+                if (problem.endDate.Value.Year == DateTime.MaxValue.Year)
+                {
+                    if (StaticPagesUi.User.IsEmployy())
+                    {
+                        foreach (var t in allTasks)
+                        {
+                            if (t.employID != null && (t.problemID == problem.problemID && StaticPagesUi.User.UserEmployeeId == t.employID.Value))
+                            {
+                                problemsList.Add(new ProblemListItem(problem));
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        problemsList.Add(new ProblemListItem(problem));
+                    }
+                    
+                }
+                
             }
             ProblemsList = null;
             ProblemsList = problemsList;
@@ -86,9 +105,25 @@ namespace WorkShop.ViewModel
             ProblemsList = null;
             var problemsList = new ObservableCollection<ProblemListItem>();
             var problems = ProblemQuery.GetProblems().ToArray();
+            var allTasks = TaskQuery.GetTasks();
             foreach (var problem in problems)
             {
-               problemsList.Add(new ProblemListItem(problem));
+                if (StaticPagesUi.User.IsEmployy())
+                {
+                    foreach (var t in allTasks)
+                    {
+                        if (t.employID != null && (t.problemID == problem.problemID && StaticPagesUi.User.UserEmployeeId == t.employID.Value))
+                        {
+                            problemsList.Add(new ProblemListItem(problem));
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    problemsList.Add(new ProblemListItem(problem));
+                }
+                
             }
             ProblemsList = problemsList;
         }

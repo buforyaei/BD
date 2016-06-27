@@ -18,7 +18,8 @@ namespace WorkShop.Models
         public string Name { get; set; }
         public string Password { get; set; }
         public Role Role { get; set; }
-       
+        public int UserPersonId { get; set; }
+        public int UserEmployeeId { get; set; }
         
 
         public void UserLoggedIn(string name,string password)

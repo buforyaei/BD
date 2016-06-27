@@ -28,6 +28,16 @@ namespace WorkShop.Pages
             InitializeComponent();
             DataContext = _viewModel;
             _viewModel.LoadCmd.Execute(null);
+            if (StaticPagesUi.User.IsEmployy())
+            {
+                EditSelectedProblemButton.IsEnabled = false;
+                EditSelectedProblemButton.Background = Brushes.LightGray;
+            }
+            else
+            {
+                EditSelectedProblemButton.IsEnabled = true;
+                EditSelectedProblemButton.Background = Brushes.DodgerBlue;
+            }
         }
         protected void OnNavigatedTo(NavigationEventArgs e)
         {

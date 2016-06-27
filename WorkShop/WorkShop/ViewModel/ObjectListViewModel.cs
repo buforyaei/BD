@@ -24,6 +24,8 @@ namespace WorkShop.ViewModel
           public ICommand RefreshCmd { get; set; }
           public ICommand FillFieldsByClickedItemCmd { get; set; }
           public ICommand ClearFieldsCmd { get; set; }
+          public ICommand FilterByNameCmd { get; set; }
+
         private ObservableCollection<ObjectItem> _objects;
         public ObservableCollection<ObjectItem> Objects
         {
@@ -63,6 +65,12 @@ namespace WorkShop.ViewModel
             get { return _objId; }
             set { Set(ref _objId, value); }
         }
+        private string _filterString;
+        public string FilterString
+        {
+            get { return _filterString; }
+            set { Set(ref _filterString, value); }
+        }
 
         private DataLayer.Client _selectedClient;
         private ObservableCollection<DataLayer.Client> _clients;
@@ -89,6 +97,7 @@ namespace WorkShop.ViewModel
             RefreshCmd = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(Refresh);
             FillFieldsByClickedItemCmd = new RelayCommand<DataLayer.Object>(FillFieldsByClickedItem);
             ClearFieldsCmd = new RelayCommand(ClearFields);
+            FilterByNameCmd = new GalaSoft.MvvmLight.CommandWpf.RelayCommand(FilterByName);
         }
 
         private void FillFieldsByClickedItem(DataLayer.Object obj)
@@ -109,7 +118,26 @@ namespace WorkShop.ViewModel
         {
             Load();
         }
-
+        private void FilterByName()
+        {
+            if (string.IsNullOrEmpty(FilterString))
+                Load();
+            else
+            {
+                Load();
+                ObservableCollection<ObjectItem> objects = new ObservableCollection<ObjectItem>();
+                var objsDb = ObjectQuery.GetObjects().ToArray();
+                var objectsArray = Objects.ToArray();
+                for(int i = 0; i<Objects.Count ;i++)
+                {
+                    if (objsDb[i].name.Contains(FilterString) || objsDb[i].model.Contains(FilterString))
+                        
+                        objects.Add(objectsArray[i]);
+                }
+                Objects = null;
+                Objects = objects;
+            }
+        }
         private void ClearFields()
         {
             Name = "";

@@ -28,10 +28,10 @@
                 Foreground="White" Background="DodgerBlue" Click="ClientsButton_Click" />
         <Button Grid.Column="0" Grid.Row="3" FontSize="18" Content="Register new problem" Margin="140,10,140,0" 
                 Foreground="White" Background="DodgerBlue" Click="RegisterProblemButton_Click" />
-        <Button Grid.Column="0" Grid.Row="4" Content="Problems &amp; Tasks Edition" FontSize="18"  Margin="140,10,140,0"
+        <Button Grid.Column="0" Grid.Row="4" Content="Problems &amp; Tasks" FontSize="18"  Margin="140,10,140,0"
                 Foreground="White" Background="DodgerBlue" Click="Button_Click_1" />
-        <Button Grid.Column="0" Grid.Row="5" Content="Search" FontSize="18"  Margin="140,10,140,0"
-                Foreground="White" Background="DodgerBlue" Click="Button_Click_2" />
+        <!--<Button Grid.Column="0" Grid.Row="5" Content="Search" FontSize="18"  Margin="140,10,140,0"
+                Foreground="White" Background="DodgerBlue" Click="Button_Click_2" />-->
         <Button Grid.Column="0" Grid.Row="6" Content="Logout" FontSize="18"  Margin="140,10,140,0"
                 Foreground="White" Background="DarkGray" Click="Button_Click_3" />
 

@@ -30,7 +30,7 @@ namespace WorkShop.Pages
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.ProblemsPage);
+            if (NavigationService != null) NavigationService.Navigate(new ProblemsPage());
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)

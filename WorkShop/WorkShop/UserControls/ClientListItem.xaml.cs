@@ -28,7 +28,7 @@ namespace WorkShop.UserControls
             if (Client != null)
             {
                 Name.Content = Client.Person.name;
-                Address.Content = Client.Person.city + " " + Client.Person.street + " " + Client.Person.housenumber;
+                Address.Content = Client.Person.city + ", " + Client.Person.street + " " + Client.Person.housenumber;
                 Phone.Content = Client.Person.phone.ToString();
                 ClientId.Content = Client.clientID.ToString();
                 var objects = BizLayer.Query.ObjectQuery.GetObjects();

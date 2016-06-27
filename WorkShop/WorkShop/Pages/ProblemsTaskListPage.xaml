@@ -94,8 +94,8 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Grid.Column="0" Command="{Binding ClearFieldsCmd}" Content="Clear Fields" Margin="5,0,5,5" FontSize="15" Foreground="White" Background="DodgerBlue"  />
                     <Button Grid.Row="1"  Grid.Column="0" Command="{Binding RefreshCmd}" Content="Refresh" Margin="5,0,5,5" FontSize="15" Foreground="White" Background="DodgerBlue"   />
-                    <Button Grid.Row="0"  Grid.Column="1"  Content="Go Back" Margin="5,0,5,5" FontSize="15" Foreground="White" Background="DodgerBlue" Click="GoBackButton_Click"   />
-                    <Button Grid.Row="1"   Grid.Column="1" Command="{Binding AddTaskCmd}" Content="Add/Update " Margin="5,0,5,5" FontSize="15" Foreground="White" Background="DodgerBlue"     />
+                    <Button Grid.Row="1"  Grid.Column="1"  Content="Go Back" Margin="5,0,5,5" FontSize="15" Foreground="White" Background="Gray" Click="GoBackButton_Click"   />
+                    <Button Grid.Row="0"   Grid.Column="1" Command="{Binding AddTaskCmd}" Content="Add/Update " Margin="5,0,5,5" FontSize="15" Foreground="White" Background="DodgerBlue"     />
                 </Grid>
           
         </Grid>

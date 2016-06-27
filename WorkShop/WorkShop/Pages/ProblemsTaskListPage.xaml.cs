@@ -36,6 +36,12 @@ namespace WorkShop.Pages
             _viewModel.CurrentProblem = problemlistItem;
             
             _viewModel.LoadCmd.Execute(null);
+            if (StaticPagesUi.User.IsEmployy())
+            {
+                ComboBox.IsEnabled = false;
+                Description.IsEnabled = false;
+                BeginDate.IsEnabled = false;
+            }
              
             
         }

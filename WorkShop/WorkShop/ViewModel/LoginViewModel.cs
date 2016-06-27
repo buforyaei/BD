@@ -31,9 +31,20 @@ namespace WorkShop.ViewModel
             {
                 if (e.username == StaticPagesUi.User.Name && e.password == StaticPagesUi.User.Password)
                 {
-                    if(e.role.Contains("mployy"))  StaticPagesUi.User.Role = Role.Employy;
-                    else if (e.role.Contains("anager")) StaticPagesUi.User.Role = Role.Manager;
-                    else if (e.role.Contains("dmin") ) StaticPagesUi.User.Role = Role.Admin;
+                    if (e.role.Contains("mployy"))
+                    {
+                        StaticPagesUi.User.Role = Role.Employy;
+                    }
+                    else
+                    {
+                        if (e.role.Contains("anager")) StaticPagesUi.User.Role = Role.Manager;
+                        else
+                        {
+                            if (e.role.Contains("dmin") ) StaticPagesUi.User.Role = Role.Admin;
+                        }
+                    }
+                    StaticPagesUi.User.UserEmployeeId = e.employID;
+                    if (e.personID != null) StaticPagesUi.User.UserPersonId = e.personID.Value;
                     return true;
                 }    
             }

@@ -10,6 +10,7 @@ namespace WorkShop
 {
     static class StaticPagesUi
     {
+        public static User User = new User(); 
         public static AddUserPage AddUserPage = new AddUserPage();
         public static ClientsPage ClientsPage = new ClientsPage();
         public static EditTasksPage EditTasksPage = new EditTasksPage();
@@ -27,6 +28,6 @@ namespace WorkShop
         public static TaskSimplePage TaskSimplePage = new TaskSimplePage();
 
 
-        public static User User = new User();
+        
     }
 }
