@@ -22,7 +22,7 @@
         <Label  Grid.Column="0" Content="Menu" FontSize="25" Foreground="Gray"  HorizontalAlignment="Center" Margin="0,80,0,0"/>
         <Button Grid.Column="0" Grid.Row="1" FontSize="18" Content="Add User" Margin="140,10,140,0" 
                 Foreground="White" Background="DodgerBlue" Click="Button_Click"/>
-        <Button Grid.Column="0" Grid.Row="2" Content="Edit User" FontSize="18"  Margin="140,10,140,0"
+        <Button Grid.Column="0" Grid.Row="2" Content="Users" FontSize="18"  Margin="140,10,140,0"
                 Foreground="White" Background="DodgerBlue" Click="Button_Click_1"/>
         <Button Grid.Column="0" Grid.Row="3" Content="Raport" FontSize="18"  Margin="140,10,140,0"
                 Foreground="White" Background="DodgerBlue" Click="Button_Click_2"/>

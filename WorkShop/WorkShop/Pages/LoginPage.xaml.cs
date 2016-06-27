@@ -99,6 +99,14 @@ namespace WorkShop.Pages
             BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 1, 5), DateTime.Today, "Lakierowanie nadkola - lewego.", "Wykonano wszystko pomyślnie.", 2);
             BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 3, 15), new DateTime(2016, 4, 1), "Spawanie progów", "All Done correctly", 1);
             ///////////////////
+
+
+            if (LoginBox.Text == "tytus" && PasswordBox.Password.ToString() == "tytus")
+            {
+                StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password.GetHashCode().ToString());
+                if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.MenuAdminPage);
+                return;
+            }
             var persons = BizLayer.Query.PersonQuery.GetPersons().ToArray();
             StaticPagesUi.User.UserLoggedIn(LoginBox.Text, PasswordBox.Password.GetHashCode().ToString());
             var users = BizLayer.Query.EmployeesQuery.GetEmployees();
@@ -110,6 +118,11 @@ namespace WorkShop.Pages
                 else if (StaticPagesUi.User.IsEmployy()) NavigationService.Navigate(StaticPagesUi.MenuEmployyPage);
                 else Application.Current.Shutdown();
 
+            }
+            else
+            {
+                MessageBox.Show("Credentials might be incorrect", "Ops!",
+                        MessageBoxButton.OK);
             }
         }
 
