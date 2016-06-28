@@ -51,30 +51,31 @@ namespace WorkShop.ViewModel
 
             if (WorkerListItems.Any())
             {
-                ObservableCollection<UserListItem> workerListItems = WorkerListItems;
-                var list = workerListItems.ToArray();
+               // ObservableCollection<UserListItem> workerListItems = WorkerListItems;
+                var list = WorkerListItems.ToArray();
                 for (int i = 0;i<list.Length;i++)
                 {
-                    if (list[i].Role.Content.ToString() == "Manager")
+                    if (list[i].Role.Content.ToString().Contains("anager"));
                     {
                         UserListItem item = list[i];
                         for (int j = i; j > 0; j--)
-                            list[j] = workerListItems[j - 1];
+                            list[j] = WorkerListItems[j - 1];
                         list[0] = item;
                     }
                 }
-                WorkerListItems = new ObservableCollection<UserListItem>(); 
+                var workerListItems = new ObservableCollection<UserListItem>(); 
                 foreach (UserListItem t in list)
-                    WorkerListItems.Add(t);
+                    workerListItems.Add(t);
+                WorkerListItems = workerListItems;
             }
             
         }
         private void IdFilter()
         {
             var list = WorkerListItems.ToArray();
-           
 
-            int temp = 0;
+
+            UserListItem temp;
 
             for (int write = 0; write < list.Length; write++)
             {
@@ -82,15 +83,16 @@ namespace WorkShop.ViewModel
                 {
                     if (Int32.Parse(list[sort].Id.Content.ToString()) > Int32.Parse(list[sort + 1].Id.Content.ToString()))
                     {
-                        temp = Int32.Parse(list[sort + 1].Id.Content.ToString());
-                        list[sort + 1].Id.Content = list[sort].Id.Content;
-                        list[sort].Id.Content = temp.ToString();
+                        temp = list[sort+1]; 
+                        list[sort + 1]= list[sort];
+                        list[sort] = temp;
                     }
                 }
             }
-            WorkerListItems = new ObservableCollection<UserListItem>();
+            var workerListItems = new ObservableCollection<UserListItem>();
             foreach (UserListItem t in list)
-                WorkerListItems.Add(t);
+                workerListItems.Add(t);
+            WorkerListItems = workerListItems;
 
         }
         private void NameFilter()

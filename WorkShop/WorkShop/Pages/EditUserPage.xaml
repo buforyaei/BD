@@ -17,11 +17,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding NameFilterCmd}" HorizontalAlignment="Stretch" Grid.Column="0" Content="Sort by name" Margin="10,10,10,10" FontSize="12" Foreground="White" Background="DodgerBlue" />
-            <Button Command="{Binding IdFilterCmd}" HorizontalAlignment="Stretch" Grid.Column="1" Content="Sort by id" Margin="10,10,10,10" FontSize="12" Foreground="White" Background="DodgerBlue" />
-            <Button Command="{Binding RoleFilterCmd}" HorizontalAlignment="Stretch" Grid.Column="2" Content="Sort by role" Margin="10,10,10,10" FontSize="12" Foreground="White" Background="DodgerBlue" />
+            <Button Command="{Binding NameFilterCmd}" HorizontalAlignment="Stretch" Grid.Column="0" Content="Sort by name" Margin="10,5,5,5" FontSize="12" Foreground="White" Background="DodgerBlue" />
+            <Button Command="{Binding IdFilterCmd}" HorizontalAlignment="Stretch" Grid.Column="1" Content="Sort by id" Margin="10,5,5,5" FontSize="12" Foreground="White" Background="DodgerBlue" />
+            <Button Command="{Binding RoleFilterCmd}" HorizontalAlignment="Stretch" Grid.Column="2" Content="Sort by role" Margin="10,5,5,5" FontSize="12" Foreground="White" Background="DodgerBlue" Visibility="Collapsed"/>
 
         </Grid>
         <ListBox Name="ListBox" Grid.Row="1" Margin="10" ItemsSource="{Binding WorkerListItems}" SelectionChanged="ListBox_SelectionChanged"/>
@@ -33,10 +33,10 @@
                 <RowDefinition Height="Auto"/>
 
             </Grid.RowDefinitions>
-            <Button Grid.Row="2" Content="Edit checked user" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="EditUser_Click_1" />
+            <Button Grid.Row="2" Content="Edit selected user" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="EditUser_Click_1" />
             <Button Grid.Row="3" Content="GoBack" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="Gray" Click="GoBackButton_Click_1" />
             <Button Grid.Row="0"  Content="Add user" Margin="10,5,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Click="AddUserButton_Click" />
-            <Button Grid.Row="1"  Content="Delete checked user" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Name="DeleteUser" Click="DeleteUser_OnClick" />
+            <Button Grid.Row="1" Visibility="Collapsed" Content="Delete checked user" Margin="10,0,10,5" FontSize="18" Foreground="White" Background="DodgerBlue" Name="DeleteUser" Click="DeleteUser_OnClick" />
         </Grid>
     </Grid>
 </Page>

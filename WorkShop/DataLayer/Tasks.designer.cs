@@ -33,6 +33,9 @@ namespace DataLayer
     partial void InsertClient(Client instance);
     partial void UpdateClient(Client instance);
     partial void DeleteClient(Client instance);
+    partial void InsertTask(Task instance);
+    partial void UpdateTask(Task instance);
+    partial void DeleteTask(Task instance);
     partial void InsertEmployee(Employee instance);
     partial void UpdateEmployee(Employee instance);
     partial void DeleteEmployee(Employee instance);
@@ -45,13 +48,10 @@ namespace DataLayer
     partial void InsertProblem(Problem instance);
     partial void UpdateProblem(Problem instance);
     partial void DeleteProblem(Problem instance);
-    partial void InsertTask(Task instance);
-    partial void UpdateTask(Task instance);
-    partial void DeleteTask(Task instance);
     #endregion
 		
 		public TasksDataContext() : 
-				base(global::DataLayer.Properties.Settings.Default.SerwisConnectionString1, mappingSource)
+				base(global::DataLayer.Properties.Settings.Default.SerwisConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -88,6 +88,14 @@ namespace DataLayer
 			}
 		}
 		
+		public System.Data.Linq.Table<Task> Tasks
+		{
+			get
+			{
+				return this.GetTable<Task>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Employee> Employees
 		{
 			get
@@ -117,14 +125,6 @@ namespace DataLayer
 			get
 			{
 				return this.GetTable<Problem>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Task> Tasks
-		{
-			get
-			{
-				return this.GetTable<Task>();
 			}
 		}
 	}
@@ -284,6 +284,318 @@ namespace DataLayer
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Task")]
+	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _taskID;
+		
+		private string _status;
+		
+		private string _taskDesc;
+		
+		private string _resultDesc;
+		
+		private System.Nullable<System.DateTime> _beginDate;
+		
+		private System.Nullable<System.DateTime> _endDate;
+		
+		private System.Nullable<int> _problemID;
+		
+		private System.Nullable<int> _employID;
+		
+		private EntityRef<Employee> _Employee;
+		
+		private EntityRef<Problem> _Problem;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OntaskIDChanging(int value);
+    partial void OntaskIDChanged();
+    partial void OnstatusChanging(string value);
+    partial void OnstatusChanged();
+    partial void OntaskDescChanging(string value);
+    partial void OntaskDescChanged();
+    partial void OnresultDescChanging(string value);
+    partial void OnresultDescChanged();
+    partial void OnbeginDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnbeginDateChanged();
+    partial void OnendDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnendDateChanged();
+    partial void OnproblemIDChanging(System.Nullable<int> value);
+    partial void OnproblemIDChanged();
+    partial void OnemployIDChanging(System.Nullable<int> value);
+    partial void OnemployIDChanged();
+    #endregion
+		
+		public Task()
+		{
+			this._Employee = default(EntityRef<Employee>);
+			this._Problem = default(EntityRef<Problem>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_taskID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int taskID
+		{
+			get
+			{
+				return this._taskID;
+			}
+			set
+			{
+				if ((this._taskID != value))
+				{
+					this.OntaskIDChanging(value);
+					this.SendPropertyChanging();
+					this._taskID = value;
+					this.SendPropertyChanged("taskID");
+					this.OntaskIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="VarChar(50)")]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_taskDesc", DbType="VarChar(250)")]
+		public string taskDesc
+		{
+			get
+			{
+				return this._taskDesc;
+			}
+			set
+			{
+				if ((this._taskDesc != value))
+				{
+					this.OntaskDescChanging(value);
+					this.SendPropertyChanging();
+					this._taskDesc = value;
+					this.SendPropertyChanged("taskDesc");
+					this.OntaskDescChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_resultDesc", DbType="VarChar(250)")]
+		public string resultDesc
+		{
+			get
+			{
+				return this._resultDesc;
+			}
+			set
+			{
+				if ((this._resultDesc != value))
+				{
+					this.OnresultDescChanging(value);
+					this.SendPropertyChanging();
+					this._resultDesc = value;
+					this.SendPropertyChanged("resultDesc");
+					this.OnresultDescChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_beginDate", DbType="Date")]
+		public System.Nullable<System.DateTime> beginDate
+		{
+			get
+			{
+				return this._beginDate;
+			}
+			set
+			{
+				if ((this._beginDate != value))
+				{
+					this.OnbeginDateChanging(value);
+					this.SendPropertyChanging();
+					this._beginDate = value;
+					this.SendPropertyChanged("beginDate");
+					this.OnbeginDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_endDate", DbType="Date")]
+		public System.Nullable<System.DateTime> endDate
+		{
+			get
+			{
+				return this._endDate;
+			}
+			set
+			{
+				if ((this._endDate != value))
+				{
+					this.OnendDateChanging(value);
+					this.SendPropertyChanging();
+					this._endDate = value;
+					this.SendPropertyChanged("endDate");
+					this.OnendDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_problemID", DbType="Int")]
+		public System.Nullable<int> problemID
+		{
+			get
+			{
+				return this._problemID;
+			}
+			set
+			{
+				if ((this._problemID != value))
+				{
+					if (this._Problem.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnproblemIDChanging(value);
+					this.SendPropertyChanging();
+					this._problemID = value;
+					this.SendPropertyChanged("problemID");
+					this.OnproblemIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employID", DbType="Int")]
+		public System.Nullable<int> employID
+		{
+			get
+			{
+				return this._employID;
+			}
+			set
+			{
+				if ((this._employID != value))
+				{
+					if (this._Employee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnemployIDChanging(value);
+					this.SendPropertyChanging();
+					this._employID = value;
+					this.SendPropertyChanged("employID");
+					this.OnemployIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_Task", Storage="_Employee", ThisKey="employID", OtherKey="employID", IsForeignKey=true)]
+		public Employee Employee
+		{
+			get
+			{
+				return this._Employee.Entity;
+			}
+			set
+			{
+				Employee previousValue = this._Employee.Entity;
+				if (((previousValue != value) 
+							|| (this._Employee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Employee.Entity = null;
+						previousValue.Tasks.Remove(this);
+					}
+					this._Employee.Entity = value;
+					if ((value != null))
+					{
+						value.Tasks.Add(this);
+						this._employID = value.employID;
+					}
+					else
+					{
+						this._employID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Employee");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Problem_Task", Storage="_Problem", ThisKey="problemID", OtherKey="problemID", IsForeignKey=true)]
+		public Problem Problem
+		{
+			get
+			{
+				return this._Problem.Entity;
+			}
+			set
+			{
+				Problem previousValue = this._Problem.Entity;
+				if (((previousValue != value) 
+							|| (this._Problem.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Problem.Entity = null;
+						previousValue.Tasks.Remove(this);
+					}
+					this._Problem.Entity = value;
+					if ((value != null))
+					{
+						value.Tasks.Add(this);
+						this._problemID = value.problemID;
+					}
+					else
+					{
+						this._problemID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Problem");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employees")]
 	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -387,7 +699,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="NChar(10)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="VarChar(50)")]
 		public string role
 		{
 			get
@@ -761,7 +1073,7 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(250)")]
 		public string name
 		{
 			get
@@ -781,7 +1093,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city", DbType="VarChar(250)")]
 		public string city
 		{
 			get
@@ -801,7 +1113,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_street", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_street", DbType="VarChar(250)")]
 		public string street
 		{
 			get
@@ -821,7 +1133,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone", DbType="VarChar(250)")]
 		public string phone
 		{
 			get
@@ -861,7 +1173,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_housenumber", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_housenumber", DbType="VarChar(250)")]
 		public string housenumber
 		{
 			get
@@ -1019,7 +1331,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_problemDesc", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_problemDesc", DbType="VarChar(250)")]
 		public string problemDesc
 		{
 			get
@@ -1039,7 +1351,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_resultDesc", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_resultDesc", DbType="VarChar(250)")]
 		public string resultDesc
 		{
 			get
@@ -1200,318 +1512,6 @@ namespace DataLayer
 		{
 			this.SendPropertyChanging();
 			entity.Problem = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Task")]
-	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _taskID;
-		
-		private string _status;
-		
-		private string _taskDesc;
-		
-		private string _resultDesc;
-		
-		private System.Nullable<System.DateTime> _beginDate;
-		
-		private System.Nullable<System.DateTime> _endDate;
-		
-		private System.Nullable<int> _problemID;
-		
-		private System.Nullable<int> _employID;
-		
-		private EntityRef<Employee> _Employee;
-		
-		private EntityRef<Problem> _Problem;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OntaskIDChanging(int value);
-    partial void OntaskIDChanged();
-    partial void OnstatusChanging(string value);
-    partial void OnstatusChanged();
-    partial void OntaskDescChanging(string value);
-    partial void OntaskDescChanged();
-    partial void OnresultDescChanging(string value);
-    partial void OnresultDescChanged();
-    partial void OnbeginDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnbeginDateChanged();
-    partial void OnendDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnendDateChanged();
-    partial void OnproblemIDChanging(System.Nullable<int> value);
-    partial void OnproblemIDChanged();
-    partial void OnemployIDChanging(System.Nullable<int> value);
-    partial void OnemployIDChanged();
-    #endregion
-		
-		public Task()
-		{
-			this._Employee = default(EntityRef<Employee>);
-			this._Problem = default(EntityRef<Problem>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_taskID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int taskID
-		{
-			get
-			{
-				return this._taskID;
-			}
-			set
-			{
-				if ((this._taskID != value))
-				{
-					this.OntaskIDChanging(value);
-					this.SendPropertyChanging();
-					this._taskID = value;
-					this.SendPropertyChanged("taskID");
-					this.OntaskIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="VarChar(50)")]
-		public string status
-		{
-			get
-			{
-				return this._status;
-			}
-			set
-			{
-				if ((this._status != value))
-				{
-					this.OnstatusChanging(value);
-					this.SendPropertyChanging();
-					this._status = value;
-					this.SendPropertyChanged("status");
-					this.OnstatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_taskDesc", DbType="VarChar(50)")]
-		public string taskDesc
-		{
-			get
-			{
-				return this._taskDesc;
-			}
-			set
-			{
-				if ((this._taskDesc != value))
-				{
-					this.OntaskDescChanging(value);
-					this.SendPropertyChanging();
-					this._taskDesc = value;
-					this.SendPropertyChanged("taskDesc");
-					this.OntaskDescChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_resultDesc", DbType="VarChar(50)")]
-		public string resultDesc
-		{
-			get
-			{
-				return this._resultDesc;
-			}
-			set
-			{
-				if ((this._resultDesc != value))
-				{
-					this.OnresultDescChanging(value);
-					this.SendPropertyChanging();
-					this._resultDesc = value;
-					this.SendPropertyChanged("resultDesc");
-					this.OnresultDescChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_beginDate", DbType="Date")]
-		public System.Nullable<System.DateTime> beginDate
-		{
-			get
-			{
-				return this._beginDate;
-			}
-			set
-			{
-				if ((this._beginDate != value))
-				{
-					this.OnbeginDateChanging(value);
-					this.SendPropertyChanging();
-					this._beginDate = value;
-					this.SendPropertyChanged("beginDate");
-					this.OnbeginDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_endDate", DbType="Date")]
-		public System.Nullable<System.DateTime> endDate
-		{
-			get
-			{
-				return this._endDate;
-			}
-			set
-			{
-				if ((this._endDate != value))
-				{
-					this.OnendDateChanging(value);
-					this.SendPropertyChanging();
-					this._endDate = value;
-					this.SendPropertyChanged("endDate");
-					this.OnendDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_problemID", DbType="Int")]
-		public System.Nullable<int> problemID
-		{
-			get
-			{
-				return this._problemID;
-			}
-			set
-			{
-				if ((this._problemID != value))
-				{
-					if (this._Problem.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnproblemIDChanging(value);
-					this.SendPropertyChanging();
-					this._problemID = value;
-					this.SendPropertyChanged("problemID");
-					this.OnproblemIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employID", DbType="Int")]
-		public System.Nullable<int> employID
-		{
-			get
-			{
-				return this._employID;
-			}
-			set
-			{
-				if ((this._employID != value))
-				{
-					if (this._Employee.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnemployIDChanging(value);
-					this.SendPropertyChanging();
-					this._employID = value;
-					this.SendPropertyChanged("employID");
-					this.OnemployIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_Task", Storage="_Employee", ThisKey="employID", OtherKey="employID", IsForeignKey=true)]
-		public Employee Employee
-		{
-			get
-			{
-				return this._Employee.Entity;
-			}
-			set
-			{
-				Employee previousValue = this._Employee.Entity;
-				if (((previousValue != value) 
-							|| (this._Employee.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Employee.Entity = null;
-						previousValue.Tasks.Remove(this);
-					}
-					this._Employee.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks.Add(this);
-						this._employID = value.employID;
-					}
-					else
-					{
-						this._employID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Employee");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Problem_Task", Storage="_Problem", ThisKey="problemID", OtherKey="problemID", IsForeignKey=true)]
-		public Problem Problem
-		{
-			get
-			{
-				return this._Problem.Entity;
-			}
-			set
-			{
-				Problem previousValue = this._Problem.Entity;
-				if (((previousValue != value) 
-							|| (this._Problem.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Problem.Entity = null;
-						previousValue.Tasks.Remove(this);
-					}
-					this._Problem.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks.Add(this);
-						this._problemID = value.problemID;
-					}
-					else
-					{
-						this._problemID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Problem");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

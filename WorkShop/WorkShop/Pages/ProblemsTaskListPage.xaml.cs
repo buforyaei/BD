@@ -48,7 +48,14 @@ namespace WorkShop.Pages
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.MenuManagerPage);
+            if (StaticPagesUi.User.IsManaager())
+            {
+                if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.ProblemsPage);
+            }
+            else
+                if (NavigationService != null) NavigationService.Navigate(new ProblemsPage());
+
+
         }
 
         private void CurrentProblemGrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)

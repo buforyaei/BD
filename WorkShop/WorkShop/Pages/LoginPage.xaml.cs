@@ -23,7 +23,7 @@ namespace WorkShop.Pages
             //ProgressBarMainWindow = progressBar;
             DataContext = _viewModel;
             /////////////////
-            LoginBox.Text = "mant";
+            //LoginBox.Text = "mant";
             //LoginBox.Text = "admint";
             //LoginBox.Text = "emoplt";
             LoginLabel.Visibility = Visibility.Collapsed;
@@ -36,10 +36,10 @@ namespace WorkShop.Pages
             LoginLabelMainWindow = loadingLabel;
             DataContext = _viewModel;
             /////////////////
-            LoginBox.Text = "mant";
+            //LoginBox.Text = "mant";
             //LoginBox.Text = "admint";
             //LoginBox.Text = "emoplt";
-            LoginLabel.Visibility = Visibility.Collapsed;
+            //LoginLabel.Visibility = Visibility.Collapsed;
             ////////////////
         }
 
@@ -79,26 +79,26 @@ namespace WorkShop.Pages
 
         private void Login()
         {
-            BizLayer.Query.PersonQuery.AddPerson("Admin Test", "Rybnik", "Rynek", "23A", "769865456");
-            BizLayer.Query.PersonQuery.AddPerson("ManAger Test", "Rybnik", "Rudzka", "13A", "769865456");
-            BizLayer.Query.PersonQuery.AddPerson("Jessica Mak", "Rybnik", "Rudzka", "13C", "769865456");
-            BizLayer.Query.PersonQuery.AddPerson("Sebastian Orc", "Ruda", "Kopernika", "1", "764265456");
-            BizLayer.Query.EmployeesQuery.AddEmployee("admint", "".GetHashCode().ToString(), "Admin", 1);
-            BizLayer.Query.EmployeesQuery.AddEmployee("mant", "".GetHashCode().ToString(), "Manager", 2);
-            BizLayer.Query.EmployeesQuery.AddEmployee("Jessica Mak", "".GetHashCode().ToString(), "Employy", 3);
-            BizLayer.Query.EmployeesQuery.AddEmployee("Sebastian Orc", "".GetHashCode().ToString(), "Employy", 4);
-            //////////////////////
-            BizLayer.Query.PersonQuery.AddPerson("Johan", "Oslo", "Uber Strase", "253", "789456123");
-            BizLayer.Query.PersonQuery.AddPerson("Tom Scavo", "Sadney", "WhisteriaLane", "1012", "325623564");
-            BizLayer.Query.ClientQuery.AddClient(4);
-            BizLayer.Query.ClientQuery.AddClient(5);
-            BizLayer.Query.ObjectQuery.AddObject(1, "Opel Corsa", "SWD0545");
-            BizLayer.Query.ObjectQuery.AddObject(1, "Volvo S60", "SJZ4564");
-            BizLayer.Query.ObjectQuery.AddObject(2, "Fiat Punto", "SWD0545");
-            BizLayer.Query.ProblemQuery.AddProblem(DateTime.Today, DateTime.MaxValue, "Wymiana opon.", null, 1);
-            BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 1, 5), DateTime.Today, "Lakierowanie nadkola - lewego.", "Wykonano wszystko pomyślnie.", 2);
-            BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 3, 15), new DateTime(2016, 4, 1), "Spawanie progów", "All Done correctly", 1);
-            ///////////////////
+            //BizLayer.Query.PersonQuery.AddPerson("Admin Test", "Rybnik", "Rynek", "23A", "769865456");
+            //BizLayer.Query.PersonQuery.AddPerson("ManAger Test", "Rybnik", "Rudzka", "13A", "769865456");
+            //BizLayer.Query.PersonQuery.AddPerson("Jessica Mak", "Rybnik", "Rudzka", "13C", "769865456");
+            //BizLayer.Query.PersonQuery.AddPerson("Sebastian Orc", "Ruda", "Kopernika", "1", "764265456");
+            //BizLayer.Query.EmployeesQuery.AddEmployee("admint", "".GetHashCode().ToString(), "Admin", 1);
+            //BizLayer.Query.EmployeesQuery.AddEmployee("mant", "".GetHashCode().ToString(), "Manager", 2);
+            //BizLayer.Query.EmployeesQuery.AddEmployee("Jessica Mak", "".GetHashCode().ToString(), "Employy", 3);
+            //BizLayer.Query.EmployeesQuery.AddEmployee("Sebastian Orc", "".GetHashCode().ToString(), "Employy", 4);
+            ////////////////////////
+            //BizLayer.Query.PersonQuery.AddPerson("Johan", "Oslo", "Uber Strase", "253", "789456123");
+            //BizLayer.Query.PersonQuery.AddPerson("Tom Scavo", "Sadney", "WhisteriaLane", "1012", "325623564");
+            //BizLayer.Query.ClientQuery.AddClient(4);
+            //BizLayer.Query.ClientQuery.AddClient(5);
+            //BizLayer.Query.ObjectQuery.AddObject(1, "Opel Corsa", "SWD0545");
+            //BizLayer.Query.ObjectQuery.AddObject(1, "Volvo S60", "SJZ4564");
+            //BizLayer.Query.ObjectQuery.AddObject(2, "Fiat Punto", "SWD0545");
+            //BizLayer.Query.ProblemQuery.AddProblem(DateTime.Today, DateTime.MaxValue, "Wymiana opon.", null, 1);
+            //BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 1, 5), DateTime.Today, "Lakierowanie nadkola - lewego.", "Wykonano wszystko pomyślnie.", 2);
+            //BizLayer.Query.ProblemQuery.AddProblem(new DateTime(2016, 3, 15), new DateTime(2016, 4, 1), "Spawanie progów", "All Done correctly", 1);
+            /////////////////////
 
 
             if (LoginBox.Text == "tytus" && PasswordBox.Password.ToString() == "tytus")
