@@ -23,9 +23,9 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Label  Grid.Column="0" Content="Login" FontSize="25" Foreground="Gray" HorizontalAlignment="Center" Margin="0,80,0,0"/>
-        <TextBox  Name="LoginBox" TextWrapping="NoWrap" Foreground="Black" Grid.Column="0" Grid.Row="1" FontSize="18" Margin="140,10,140,0" TextChanged="TextBox_TextChanged"  />
+        <TextBox  Name="LoginBox" TextWrapping="NoWrap" Foreground="Black" Grid.Column="0" Grid.Row="1" FontSize="18" Margin="140,10,140,0" TextChanged="TextBox_TextChanged"/>
         <Label Name="LoginLabel" Content="Login" Grid.Column="0" Grid.Row="1" Foreground="Gray" FontSize="12" Margin="140,10,140,0" MouseDown="LoginLabel_MouseDown"/>
-        <PasswordBox  Name="PasswordBox"  Foreground="Black" Grid.Column="0" Grid.Row="2" FontSize="18" Margin="140,10,140,0" PasswordChanged="PasswordBox_PasswordChanged" />
+        <PasswordBox  Name="PasswordBox"  Foreground="Black" Grid.Column="0" Grid.Row="2" FontSize="18" Margin="140,10,140,0" PasswordChanged="PasswordBox_PasswordChanged" KeyDown="PasswordBox_KeyDown_1" />
         <Label Name="PasswordLabel" Content="Password" Grid.Column="0" Grid.Row="2" Foreground="Gray" FontSize="12" Margin="140,10,140,0" MouseDown="PasswordLabel_MouseDown"/>             
          
         <Button Grid.Column="0" Grid.Row="3" Margin="140,10,140,0" Height="30" Content="Login"  FontSize="18"

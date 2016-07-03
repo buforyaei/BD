@@ -112,7 +112,7 @@ namespace WorkShop.ViewModel
             {
                 if(employee.Person!=null)
                 workerListItems.Add(new UserListItem(employee.Person.name,employee.Person.phone.ToString(),
-                    employee.Person.city+" "+employee.Person.street+" "+ employee.Person.housenumber,employee.role,employee.employID));
+                    employee.Person.city+" "+employee.Person.street+" "+ employee.Person.housenumber,employee.role,employee.employID, employee.username));
             }
             WorkerListItems = workerListItems;
             //workerListItems.Add(_w0);

@@ -29,6 +29,7 @@ namespace WorkShop.Pages
             InitializeComponent();
             DataContext = _viewModel;
             _viewModel.LoadCmd.Execute(null);
+            Street.Height = Cityy.Height;
         }
         public AddUserPage(Employee employee)
         {
@@ -36,13 +37,27 @@ namespace WorkShop.Pages
             DataContext = _viewModel;
             _viewModel.Employee = employee;
           _viewModel.FillFieldsWithUser();
-
+            Login.IsEnabled = false;
+            Street.Height = Cityy.Height;
 
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ViewModelLocator.Cleanup();
             if (NavigationService != null) NavigationService.Navigate(StaticPagesUi.MenuAdminPage);
+        }
+
+        private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Password = Password.Password;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            _viewModel.AddUserCmd.Execute(null);
+            Password.Password = "";
+            if (_viewModel.WasSuccesfull)
+                Login.IsEnabled = true;
         }
     }
 }

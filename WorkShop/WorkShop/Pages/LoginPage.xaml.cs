@@ -50,7 +50,7 @@ namespace WorkShop.Pages
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (LoginBox.Text != "") LoginLabel.Visibility = Visibility.Collapsed;
+            if (LoginBox.Text != "") PasswordLabel.Visibility = Visibility.Collapsed;
 
 
         }
@@ -62,7 +62,7 @@ namespace WorkShop.Pages
             
             
         }
-
+      
         private void LoginLabel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             LoginLabel.Visibility = Visibility.Collapsed;
@@ -138,6 +138,19 @@ namespace WorkShop.Pages
                 ProgressBarMainWindow.Visibility = Visibility.Collapsed;
             }
             
+        }
+
+        private void PasswordBox_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ProgressBar.Visibility = Visibility.Visible;
+                Login();
+
+                ProgressBar.Visibility = Visibility.Hidden;  
+            }
+                
+        
         }
     }
 }

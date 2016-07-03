@@ -74,7 +74,7 @@ namespace WorkShop.UserControls
                 {
                     if (t.problemID == problems[counter].problemID)
                     {
-                        if (t.endDate.Value.Year != DateTime.MaxValue.Year)
+                        if (t.endDate.Value.Year == DateTime.MaxValue.Year)
                             tasksNumberForCurrentProblem++;
                     }
                 }

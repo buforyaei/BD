@@ -25,8 +25,9 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="1" Name="Name" FontSize="12" Foreground="Gray" Margin="10,0,0,0" />
-            <Label Grid.Row="1" Grid.Column="0" Name="Id" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
+            <Label Grid.Row="1" Grid.Column="0" Name="Id" FontSize="12" Foreground="Gray" Margin="10,0,0,0" Visibility="Collapsed"/>
             <Label Grid.Row="0" Grid.Column="0" Name="Role" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
+            <Label Grid.Row="1" Grid.Column="0" Name="Login" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
             <Label Grid.Row="2" Grid.Column="1" Content="Address: "  Name="Address" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
             <Label Grid.Row="1" Grid.Column="1" Content="Phone: " Name="Phone" FontSize="12" Foreground="Gray" Margin="10,0,0,0"/>
         </Grid>

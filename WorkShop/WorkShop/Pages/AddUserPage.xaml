@@ -14,6 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -22,30 +23,33 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="1" Content="Worker" HorizontalAlignment="Left" Margin="0,0,0,20" Foreground="Gray" FontSize="20"></Label>
-        <Label Grid.Row="0" Grid.Column="0" Content="Name:" HorizontalAlignment="Right" Margin="20,50,0,20" Foreground="Gray" FontSize="15"></Label>
-        <TextBox Text="{Binding Name}"  Grid.Row="0" Grid.Column="1" Margin="0,50,10,20" Foreground="Gray" FontSize="15" Name="Name"></TextBox>
+        <Label Grid.Row="0" Grid.Column="0" Content="Login:" HorizontalAlignment="Right" Margin="20,50,0,20" Foreground="Gray" FontSize="15"></Label>
+        <TextBox Text="{Binding Login}"  Grid.Row="0" Grid.Column="1" Margin="0,50,10,20" Foreground="Gray" FontSize="15" Name="Login"></TextBox>
         <Label Grid.Row="1" Grid.Column="0" Content="Password:" HorizontalAlignment="Right" Margin="20,0,0,20" Foreground="Gray" FontSize="15"></Label>
-        <TextBox Text="{Binding Password}" Name="Password"  Grid.Row="1" Grid.Column="1" Margin="0,00,10,20" Foreground="Gray" FontSize="15"></TextBox>
-        <Label Grid.Row="0" Grid.Column="2" Content="Phone:" HorizontalAlignment="Right" Margin="20,50,0,20" Foreground="Gray" FontSize="15"></Label>
-        <TextBox Text="{Binding Phone}" Name="Phone"  Grid.Row="0" Grid.Column="3" Margin="0,50,80,20" Foreground="Gray" FontSize="15"></TextBox>
-        <Label Grid.Row="1" Grid.Column="2" Content="City:" HorizontalAlignment="Right" Margin="20,0,0,20" Foreground="Gray" FontSize="15"></Label>
-        <TextBox Text="{Binding City}" Name="City"  Grid.Row="1" Grid.Column="3" Margin="0,00,80,20" Foreground="Gray" FontSize="15"></TextBox>
-        <Label Grid.Row="2" Grid.Column="2" Content="Street:" HorizontalAlignment="Right" Margin="20,0,0,20" Foreground="Gray" FontSize="15"></Label>
-        <TextBox Text="{Binding Street}" Name="Street" Grid.Row="2" Grid.Column="3" Margin="0,00,80,20" Foreground="Gray" FontSize="15"></TextBox>
-        <Label Grid.Row="3" Grid.Column="2" Content="House nr:" HorizontalAlignment="Right" Margin="20,0,0,20" Foreground="Gray" FontSize="15"></Label>
-        <TextBox Text="{Binding HouseNumber}" Name="HouseNumber" Grid.Row="3" Grid.Column="3" Margin="0,00,80,20" Foreground="Gray" FontSize="15"></TextBox>
+        <PasswordBox PasswordChanged="Password_OnPasswordChanged" Name="Password"  Grid.Row="1" Grid.Column="1" Margin="0,0,10,20" Foreground="Gray" FontSize="15"></PasswordBox>
+        <Label Grid.Row="0" Grid.Column="2" Content="Name:" HorizontalAlignment="Right" Margin="20,50,0,20" Foreground="Gray" FontSize="15"></Label>
+        <TextBox Text="{Binding Name}" Name="Name"  Grid.Row="0" Grid.Column="3" Margin="0,50,80,20" Foreground="Gray" FontSize="15"></TextBox>
+        <Label Grid.Row="1" Grid.Column="2" Content="Phone:" HorizontalAlignment="Right" Margin="20,0,0,20" Foreground="Gray" FontSize="15"></Label>
+        <TextBox Text="{Binding Phone}" Name="Phone"  Grid.Row="1" Grid.Column="3" Margin="0,0,80,20" Foreground="Gray" FontSize="15"></TextBox>
+        <Label Grid.Row="2" Grid.Column="2" Content="City:" HorizontalAlignment="Right" Margin="20,0,0,20" Foreground="Gray" FontSize="15"></Label>
+        <TextBox Text="{Binding City}" x:Name="Cityy"  Grid.Row="2" Grid.Column="3" Margin="0,00,80,20" Foreground="Gray" FontSize="15"></TextBox>
+        <Label Grid.Row="3" Grid.Column="2" Content="Street:" HorizontalAlignment="Right" Margin="20,0,0,20" Foreground="Gray" FontSize="15"></Label>
+        <TextBox Text="{Binding Street}" Name="Street" Grid.Row="3" Grid.Column="3" Height="40" Margin="0,00,80,20" Foreground="Gray" FontSize="15" VerticalAlignment="Top" ></TextBox>
+        <Label Grid.Row="3" Grid.Column="2" Content="House nr:" HorizontalAlignment="Right" Margin="20,45,0,20" Foreground="Gray" FontSize="15"></Label>
+        <TextBox Text="{Binding HouseNumber}" Name="HouseNumber" Grid.Row="3" Grid.Column="3" Margin="0,45,80,20" Foreground="Gray" FontSize="15"></TextBox>
         <Label Grid.Row="2" Grid.Column="0" Content="Id:" HorizontalAlignment="Right" Margin="0,0,0,20" Foreground="Gray" FontSize="15"></Label>
         <TextBox IsEnabled="False" Grid.Row="2" Text="{Binding UserId}"  Name="UserId" Grid.Column="1" Margin="0,0,10,20" Foreground="Gray" FontSize="15"> </TextBox>
         <Label Grid.Row="3" Grid.Column="0" Content="Role:" HorizontalAlignment="Right" Foreground="Gray" FontSize="15" Margin="10,0,0,0"></Label>
         <RadioButton IsChecked="{Binding IsEmployeeChecked}" Name="RadioButtonEmployee" Grid.Row="3" Grid.Column="1" Content="Employy" Margin="10,5,0,0" Foreground="Gray" FontSize="15"></RadioButton>
-        <RadioButton IsChecked="True" Grid.Row="3" Name="RadioButtonManager" Grid.Column="1" Content="Manager" Margin="100,5,0,0" Foreground="Gray" FontSize="15"></RadioButton>
+        <RadioButton IsChecked="{Binding IsAdminChecked}" Name="RadioButtonAdmin" Grid.Row="3" Grid.Column="1" Content="Admin" Margin="10,65,0,0" Foreground="Gray" FontSize="15"></RadioButton>
+        <RadioButton IsChecked="{Binding IsManagerChecked}" Grid.Row="3" Name="RadioButtonManager" Grid.Column="1" Content="Manager" Margin="10,35,0,0" Foreground="Gray" FontSize="15"></RadioButton>
         <Grid Grid.Row="4" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button HorizontalAlignment="Stretch" Grid.Column="1" Content="Accept" Margin="0,20,10,0" Command="{Binding AddUserCmd}" FontSize="18" Foreground="White" Background="DodgerBlue"/>
-            <Button HorizontalAlignment="Stretch" Grid.Column="0"  Content="Go Back" Margin="0,20,10,0" FontSize="18" Foreground="White" Background="Gray" Click="Button_Click"/>
+            <Button HorizontalAlignment="Stretch" MinWidth="100" Grid.Column="1" Content="Accept" Margin="0,20,10,0" FontSize="18" Foreground="White" Background="DodgerBlue" Click="Button_Click_1"/>
+            <Button HorizontalAlignment="Stretch" MinWidth="80" Grid.Column="0"  Content="Go Back" Margin="0,20,10,0" FontSize="18" Foreground="White" Background="Gray" Click="Button_Click"/>
         </Grid>
     </Grid>
 </Page>

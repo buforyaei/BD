@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Serwis" Class="TasksDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LENOVO;Initial Catalog=Serwis;Integrated Security=True" SettingsObjectName="DataLayer.Properties.Settings" SettingsPropertyName="SerwisConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Serwis.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="DataLayer.Properties.Settings" SettingsPropertyName="SerwisConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Client" Member="Clients">
     <Type Name="Client">
       <Column Name="clientID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -45,7 +45,7 @@
   </Table>
   <Table Name="dbo.Person" Member="Persons">
     <Type Name="Person">
-      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="city" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="street" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="phone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />

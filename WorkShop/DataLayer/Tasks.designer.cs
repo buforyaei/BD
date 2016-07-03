@@ -51,7 +51,7 @@ namespace DataLayer
     #endregion
 		
 		public TasksDataContext() : 
-				base(global::DataLayer.Properties.Settings.Default.SerwisConnectionString2, mappingSource)
+				base(global::DataLayer.Properties.Settings.Default.SerwisConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1073,7 +1073,7 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50)")]
 		public string name
 		{
 			get

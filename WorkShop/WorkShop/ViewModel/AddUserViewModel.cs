@@ -18,6 +18,12 @@ namespace WorkShop.ViewModel
         public ICommand LoadCmd { get; set; }
         public ICommand AddUserCmd { get; set; }
 
+        private string _login;
+        public string Login
+        {
+            get { return _login; }
+            set { Set(ref _login, value); }
+        }
         private string _name;
         public string Name
         {
@@ -69,6 +75,27 @@ namespace WorkShop.ViewModel
         }
         private bool _isEmployeeChecked;
 
+        public bool IsManagerChecked
+        {
+            get { return _isManagerChecked; }
+            set { Set(ref _isManagerChecked, value); }
+        }
+        private bool _isManagerChecked;
+
+        public bool IsAdminChecked
+        {
+            get { return _isAdminChecked; }
+            set { Set(ref _isAdminChecked, value); }
+        }
+        private bool _isAdminChecked;
+
+        public bool WasSuccesfull
+        {
+            get { return _wasSuccesfull; }
+            set { Set(ref _wasSuccesfull, value); }
+        }
+        private bool _wasSuccesfull;
+
         private string _password;
         public string Password
         {
@@ -88,17 +115,28 @@ namespace WorkShop.ViewModel
 
         public void FillFieldsWithUser()
         {
-            Name = Employee.username;
+            Name = Employee.Person.name;
+            Login = Employee.username;
             UserId = Employee.employID.ToString();
             Password = String.Empty;
             Phone = Employee.Person.phone;
             if (Employee.role.Contains("anager"))
             {
-                IsEmployeeChecked = false; 
+                IsManagerChecked = true;
+                IsEmployeeChecked = false;
+                IsAdminChecked = false; 
+            }
+            else if (Employee.role.Contains("dmin"))
+            {
+                IsAdminChecked = true; 
+                IsEmployeeChecked = false;
+                IsManagerChecked = true;
             }
             else
             {
                 IsEmployeeChecked = true;
+                IsManagerChecked = false;
+                IsAdminChecked = false; 
             }
             City = Employee.Person.city;
             Street = Employee.Person.street;
@@ -106,7 +144,7 @@ namespace WorkShop.ViewModel
         }
         private void AddUser()
         {
-            if (!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Phone) && !string.IsNullOrEmpty(City) &&
+            if (!string.IsNullOrEmpty(Login) && !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Phone) && !string.IsNullOrEmpty(City) &&
                 !string.IsNullOrEmpty(Street) && !string.IsNullOrEmpty(HouseNumber))
             {
                 if (UserId == String.Empty)
@@ -117,19 +155,25 @@ namespace WorkShop.ViewModel
                         
                         if (IsEmployeeChecked)
                         {
-                            BizLayer.Query.EmployeesQuery.AddEmployee(Name, Password.GetHashCode().ToString(),
+                            BizLayer.Query.EmployeesQuery.AddEmployee(Login, Password.GetHashCode().ToString(),
                                 Role.Employy.ToString(), personId);
+
+                        }
+                        else if (IsManagerChecked)
+                        {
+                            BizLayer.Query.EmployeesQuery.AddEmployee(Login, Password.GetHashCode().ToString(),
+                                Role.Manager.ToString(), personId);
 
                         }
                         else
                         {
-                            BizLayer.Query.EmployeesQuery.AddEmployee(Name, Password.GetHashCode().ToString(),
-                                Role.Manager.ToString(), personId);
-
+                            BizLayer.Query.EmployeesQuery.AddEmployee(Login, Password.GetHashCode().ToString(),
+                               Role.Admin.ToString(), personId);
                         }
                     
                     MessageBox.Show("Operation successfull", "OK",
                         MessageBoxButton.OK);
+                    WasSuccesfull = true;
                     ClearFields();
                 }
                 else
@@ -137,25 +181,37 @@ namespace WorkShop.ViewModel
                     BizLayer.Query.PersonQuery.UpdatePerson(Employee.personID.Value, Name, City, Street, HouseNumber, Phone);
                     if (IsEmployeeChecked)
                     {
-                        if(Password==String.Empty)
-                        BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Name, Employee.password,
+                        if(Password==string.Empty)
+                        BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Login, Employee.password,
                             Role.Employy.ToString(), Employee.personID.Value);
                         else
-                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Name, Password.GetHashCode().ToString(),
+                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Login, Password.GetHashCode().ToString(),
                           Role.Employy.ToString(), Employee.personID.Value);
+                    }
+                    else if (IsManagerChecked)
+                    {
+                        if (Password == string.Empty)
+                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Login, Employee.password,
+                                Role.Manager.ToString(), Employee.personID.Value);
+                        else
+                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Login,
+                                Password.GetHashCode().ToString(),
+                                Role.Employy.ToString(), Employee.personID.Value);
+
                     }
                     else
                     {
-                        if (Password == String.Empty)
-                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Name, Employee.password,
-                                Role.Manager.ToString(), Employee.personID.Value);
+                        if (Password == string.Empty)
+                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Login, Employee.password,
+                                Role.Admin.ToString(), Employee.personID.Value);
                         else
-                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Name, Password.GetHashCode().ToString(),
-                          Role.Employy.ToString(), Employee.personID.Value);
-
+                            BizLayer.Query.EmployeesQuery.UpdateEmployee(Int32.Parse(UserId), Login,
+                                Password.GetHashCode().ToString(),
+                                Role.Admin.ToString(), Employee.personID.Value); 
                     }
                     MessageBox.Show("Operation successfull", "OK",
                         MessageBoxButton.OK);
+                    WasSuccesfull = true;
                     ClearFields();
                 }
             }
@@ -171,6 +227,7 @@ namespace WorkShop.ViewModel
         private void ClearFields()
         {
             Name = String.Empty;
+            Login = String.Empty;
             Password = String.Empty;
             City = String.Empty;
             HouseNumber = String.Empty;
@@ -181,6 +238,7 @@ namespace WorkShop.ViewModel
         private  void Load()
         {
             ClearFields();
+            IsEmployeeChecked = true;
 
         }
     }
